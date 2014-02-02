@@ -1,5 +1,5 @@
 module.exports = {
-	db : "mongodb://seraph.sj.gs/kula",
+	db : "mongodb://inori.sj.gs/kula",
 
 	db_options : {
     	server: { poolSize: 10 }

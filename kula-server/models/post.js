@@ -3,9 +3,26 @@ var mongoose = require('mongoose'),
     typeList = require('../enums/role').TYPE_LIST,
     validator = require('../lib/validator');
 
+// Status
+var Status = {
+    ACTIVE: 'active',
+    INACTIVE: 'inactive',
+    CLOSED: 'closed',
+    DELETED: 'deleted',
+    PENDING: 'pending',
+    enums: [ this.ACTIVE, this.INACTIVE, this.CLOSED, this.DELETED, this.PENDING ]
+}
+
 // Schema
 var PostSchema = new Schema({
     title: {
+        type: String
+    },
+    author: {
+        type: String
+    },
+    area: [String],
+    category: {
         type: String
     },
     content: {
@@ -25,8 +42,7 @@ var PostSchema = new Schema({
     },
     lastModified: {
         type: Date
-    },
-    id: false
+    }
 });
 
 // Static CRUD

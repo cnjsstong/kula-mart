@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <form role="form">
+            <input type="hidden" ng-model="category.id">
+            <div class="form-group">
+                <label for="categoryTitle">Title</label>
+                <input type="text" class="form-control" id="categoryTitle" placeholder="Category Title" ng-model="category.title">
+            </div>
+            <div class="form-group">
+                <label for="categoryTemplate">Template</label>
+                <input type="text" class="form-control" id="categoryTemplate" placeholder="Category Author" ng-model="category.author">
+            </div>
+            <div class="form-group">
+                <label for="categoryParent">Parent</label>
+                <input type="text" class="form-control" id="categoryParent" placeholder="Category Parent" ng-model="category.parent">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="Submit(category)">Submit</button>
+        </form>
+    </div>
+</div>

@@ -71,54 +71,6 @@ AccountSchema.statics = {
                 }
             });
         }
-    },
-
-    findAccount: function (query, projection, callback) {
-        this.findOne(query, projection, function (err, account) {
-            if (err) {
-                callback(err);
-            } else {
-                if (!account) {
-                    callback('Account not found');
-                } else {
-                    callback(null, account);
-                }
-            }
-        });
-    },
-
-    findAccountList: function (option, callback) {
-        this.find(option, function (err, accounts) {
-            if (err) {
-                callback(err);
-            } else {
-                if (!accounts) {
-                    callback('Accounts not found');
-                } else {
-                    callback(null, accounts);
-                }
-            }
-        });
-    },
-
-    updateAccount: function (condition, update, callback) {
-        this.update(condition, update, function (err) {
-            if (err) {
-                callback(err);
-            } else {
-                callback(null);
-            }
-        });
-    },
-
-    deleteAccount: function (option, callback) {
-        this.remove(option, function (err) {
-            if (err) {
-                callback(err);
-            } else {
-                callback(null);
-            }
-        });
     }
 };
 
