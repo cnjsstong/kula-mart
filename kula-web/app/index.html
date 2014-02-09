@@ -14,10 +14,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,700'
-          rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic'
-          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -26,76 +24,72 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/custom.css">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="styles/magnific-popup.css">
+    <link rel="stylesheet" href="styles/animations.css">
+
     <!-- endbuild -->
 </head>
-<body ng-app="kulaWebApp">
+<body ng-app="kulaWebApp" class="inner">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">KulaMart</a>
-        </div>
+<div id="wrapper">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brandeis <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Bently</a></li>
-                        <li><a href="#">Tufts</a></li>
-                        <li><a href="#">North Eastern</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">More</a></li>
-                    </ul>
+    <header>
+        <div class="side-nav">
+            <ul id="gn-menu" class="gn-menu-main">
+                <li class="gn-trigger">
+                    <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+                    <nav class="gn-menu-wrapper">
+                        <div class="gn-scroller">
+                            <ul class="gn-menu">
+                                <li class="current"><a href="index-full.html#intro"><i class="gn-icon icon-home"></i>Home</a>
+                                </li>
+                                <li>
+                                    <a href="#/"><i class="gn-icon linecon-bulb"></i>University</a>
+                                    <ul class="gn-submenu">
+                                        <li><a class="gn-icon" href="#/">Brandeis University</a></li>
+                                        <li><a class="gn-icon" href="#/">Boston University</a></li>
+                                        <li><a class="gn-icon" href="#/">Tufts University</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#/"><i class="gn-icon linecon-star"></i>Market</a>
+                                    <ul class="gn-submenu">
+                                        <li><a class="gn-icon" href="#/">Textbook</a></li>
+                                        <li><a class="gn-icon" href="#/">Housing</a></li>
+                                        <li><a class="gn-icon" href="#/">Car</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#/"><i class="gn-icon linecon-user"></i>Business</a></li>
+                                <li><a href="#/"><i class="gn-icon linecon-like"></i>Info</a></li>
+                            </ul>
+                        </div>
+                        <!-- /gn-scroller -->
+                    </nav>
                 </li>
-                <li class="dropdown">
-                    <a href="#/market" class="dropdown-toggle" data-toggle="dropdown">Market <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Textbook</a></li>
-                        <li><a href="#">Housing</a></li>
-                        <li><a href="#">Car</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">More</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Info</a></li>
-                <li><a href="#">Sign In</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
 
-                    </ul>
-                </li>
-                <li><a href="#/admin/post">Post</a></li>
-                <li><a href="#/admin/category">Category</a></li>
+                <!-- logo -->
+                <li class="logo-wrapper"><a class="logo home" href="index.html">KulaMart</a></li>
+
+                <!-- top right: call to action -->
+                <li class="cta"><a href="login.html">Login</a></li>
+                <li class="cta hidden-xxsm"><a href="signup.html">Sign up</a></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+        </div>
+    </header>
 
 
-<!-- Add your site or application content here -->
-<div ng-view=""></div>
+    <!-- Add your site or application content here -->
+    <div ng-view=""></div>
+</div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
@@ -120,6 +114,8 @@
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
 
+<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/jquery.js"></script>
@@ -132,15 +128,33 @@
 <!-- endbower -->
 <!-- endbuild -->
 
+<!-- build:js scripts/template.js -->
+<script src="scripts/lib/modernizr.custom.js"></script>
+<script src="scripts/lib/jquery.easing.1.3.js"></script>
+<script src="scripts/lib/jquery.scrollTo-min.js"></script>
+<script src="scripts/lib/jquery.nav.js"></script>
+<script src="scripts/lib/jquery.magnific-popup.min.js"></script>
+<script src="scripts/lib/jquery.waypoints.min.js"></script>
+<script src="scripts/lib/jquery.caroufredsel.js"></script>
+<script src="scripts/lib/classie.js"></script>
+<script src="scripts/lib/jquery.gnmenu.js"></script>
+
+<script src="scripts/lib/custom.js"></script>
+<!-- endbuild -->
+
+
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/controllers/adminPost.js"></script>
 <script src="scripts/resources/api.js"></script>
 <script src="scripts/resources/post.js"></script>
+<script src="scripts/resources/category.js"></script>
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/market.js"></script>
-<script src="scripts/controllers/adminCategory.js"></script>
-<script src="scripts/resources/category.js"></script>
+<script src="scripts/controllers/adminPostNewEdit.js"></script>
+<script src="scripts/controllers/adminPostList.js"></script>
+<script src="scripts/controllers/adminCategoryList.js"></script>
+<script src="scripts/controllers/adminCategoryNewEdit.js"></script>
+<script src="scripts/filters/convertCategory.js"></script>
 <!-- endbuild -->
 </body>
 </html>

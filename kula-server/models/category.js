@@ -5,15 +5,12 @@ var mongoose = require('mongoose'),
 // Schema
 var CategorySchema = new Schema({
     title: {
-        type: String
-    },
-    parent: {
-        type: String
+        type: String,
+        index: true
     },
     template: {
         type: String
-    },
-    id: false
+    }
 });
 
 // Static CRUD

@@ -1,4 +1,3 @@
-
 var role = require('../enums/role'),
     httpMethod = require('../enums/http'),
     mongoose = require('mongoose'),
@@ -13,25 +12,40 @@ var Category = mongoose.model('Category');
 /*
  * Create or Update one category.
  */
-function createOrUpdateCategory(req, res){
+function createCategory(req, res) {
     var category = new Category();
-    if(req.body.id) {
-        category._id = req.body.id;
-    } else {
-        category._id = new ObjectID();
-    }
-
+    category._id = new ObjectID();
     category.title = req.body.title;
-    category.parent = req.body.parent;
     category.template = req.body.template;
 
-    category.save();
-    return res.send(200);
+    category.save(function(err) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200);
+        }
+    });
+}
+
+function updateCategory(req, res) {
+
+    var category = {};
+    category.title = req.body.title;
+    category.template = req.body.template;
+
+    Category.update({_id: ObjectID(req.body.id)},category,function(err) {
+        if (err) {
+            console.log(err);
+            return res.send(500);
+        } else {
+            return res.send(200);
+        }
+    });
 }
 
 function listCategorys(req, res) {
-    Category.find({}, function(err, categorys) {
-        if(err) {
+    Category.find({}, function (err, categorys) {
+        if (err) {
             return res.send(500);
         } else {
             return res.send(200, categorys);
@@ -40,8 +54,8 @@ function listCategorys(req, res) {
 }
 
 function getCategory(req, res) {
-    Category.findOne({_id: ObjectID(req.params.categoryId)}, function(err, category) {
-        if(err) {
+    Category.findOne({_id: ObjectID(req.params.categoryId)}, function (err, category) {
+        if (err) {
             return res.send(500);
         } else {
             return res.send(200, category);
@@ -49,23 +63,44 @@ function getCategory(req, res) {
     });
 }
 
+function removeCategory(req, res) {
+    Category.remove({_id: ObjectID(req.params.categoryId)}, function (err) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200);
+        }
+    });
+
+}
+
 
 exports.base = 'category';
 
 exports.routes = [
     {
-        'path' : '',
-        'method' : httpMethod.POST,
-        'handler' : createOrUpdateCategory
+        'path': '',
+        'method': httpMethod.POST,
+        'handler': createCategory
     },
     {
-        'path' : '',
-        'method' : httpMethod.GET,
-        'handler' : listCategorys
+        'path': ':categoryId',
+        'method': httpMethod.POST,
+        'handler': updateCategory
+    },
+    {
+        'path': '',
+        'method': httpMethod.GET,
+        'handler': listCategorys
     },
     {
         'path': ':categoryId',
         'method': httpMethod.GET,
         'handler': getCategory
+    },
+    {
+        'path': ':categoryId',
+        'method': httpMethod.DELETE,
+        'handler': removeCategory
     }
 ];

@@ -1,0 +1,35 @@
+<section id="adminCategoryList" class="section">
+    <div class="container">
+        <div class="row">
+            <a href="#/admin/category/new" class="btn cta">New Category</a>
+            <br>
+            &nbsp;
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Template
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="category in categories">
+                    <td ng-bind="category.title"></td>
+                    <td ng-bind="category.template"></td>
+                    <td><a ng-click="EditCategory(category, $index)">Edit</a> <a
+                            ng-click="RemoveCategory(category, $index)">Remove</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

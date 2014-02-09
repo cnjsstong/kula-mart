@@ -38,8 +38,7 @@ var AccountSchema = new Schema({
     },
     lastModified: {
         type: Date
-    },
-    id: false
+    }
 });
 
 // Static CRUD

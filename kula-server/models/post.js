@@ -1,7 +1,5 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    typeList = require('../enums/role').TYPE_LIST,
-    validator = require('../lib/validator');
+    Schema = mongoose.Schema;
 
 // Status
 var Status = {
@@ -15,35 +13,33 @@ var Status = {
 
 // Schema
 var PostSchema = new Schema({
-    title: {
-        type: String
-    },
-    author: {
-        type: String
-    },
-    area: [String],
-    category: {
-        type: String
-    },
-    content: {
-        type: String
-    },
-    type: {
-        type: Number,
-        enum: typeList.TYPE_LIST
-    },
-    status: {
-        type: String,
-        enum: Status.enums
-    },
-    createDate: {
-        type: Date,
-        'default': Date.now()
-    },
-    lastModified: {
-        type: Date
-    }
-});
+        title: {
+            type: String
+        },
+        author: {
+            type: String
+        },
+        area: [String],
+        category: {
+            type: String
+        },
+        content: {
+            type: String
+        },
+        status: {
+            type: String,
+            enum: Status.enums
+        },
+        createDate: {
+            type: Date,
+            'default': Date.now()
+        },
+        lastModified: {
+            type: Date
+        },
+        replies: [String]
+    })
+    ;
 
 // Static CRUD
 PostSchema.statics = {

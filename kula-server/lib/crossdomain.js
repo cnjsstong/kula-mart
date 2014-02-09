@@ -1,6 +1,5 @@
-/**
- * Created by s_000 on 13-12-14.
- */
+var restify = require('restify');
+
 exports.allowHeaders = ['Origin', 'Accept', 'Accept-Version', 'Foto-Client','Content-Length', 'Content-MD5', 'Content-Type', 'Date', 'X-Api-Version', 'Api-Version', 'X-Request-Id' ,'X-Response-Time', 'Foto', 'X-PINGOTHER', 'X-CSRF-Token', 'If-Modified-Since', 'X-HTTP-Method-Override'];
 
 exports.cors = function(req, res, next) {
