@@ -4,27 +4,30 @@ var mongoose = require('mongoose'),
 
 // Schema
 var ReplySchema = new Schema({
-    title: {
-        type: String
+        title: {
+            type: String
+        },
+        content: {
+            type: String
+        },
+        author: {
+            type: String
+        },
+        post: {
+            type: String,
+            index: true
+        },
+        createDate: {
+            type: Date,
+            'default': Date.now()
+        },
+        anonymous: {
+            type: Boolean
+        }
     },
-    content: {
-        type: String
-    },
-    author: {
-        type: String
-    },
-    post: {
-        type: String,
-        index: true
-    },
-    createDate: {
-        type: Date,
-        'default': Date.now()
-    },
-    anonymous: {
-        type: Boolean
-    }
-});
+    {
+        id: true
+    });
 
 // Static CRUD
 ReplySchema.statics = {

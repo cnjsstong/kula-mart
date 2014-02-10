@@ -1,0 +1,39 @@
+<section id="adminAreaList" class="section">
+    <div class="container">
+        <div class="row">
+            <a href="#/admin/area/new" class="btn cta">New Area</a>
+            <br>
+            &nbsp;
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="area in areas">
+                    <td ng-bind="area.title"></td>
+                    <td ng-bind="area.description"></td>
+                    <td ng-bind="area.address"></td>
+                    <td><a ng-click="EditArea(area, $index)">Edit</a> <a
+                            ng-click="RemoveArea(area, $index)">Remove</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

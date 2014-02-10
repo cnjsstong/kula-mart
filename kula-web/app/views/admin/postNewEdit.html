@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <form role="form">
-                <input type="hidden" ng-model="post.id">
+                <input type="hidden" ng-model="post._id">
 
                 <div class="form-group">
                     <label for="postTitle">Title</label>
@@ -16,12 +16,15 @@
                 </div>
                 <div class="form-group">
                     <label for="postArea">Area</label>
-                    <input type="text" class="form-control" id="postArea" placeholder="Post Area" ng-model="post.area">
+                    <select multiple class="form-control" id="postArea" ng-model="post.area"
+                            ng-options="a._id as a.title for a in areas">
+                        <option value="">-- Select One --</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="postCategory">Primary Tag</label>
                     <select class="form-control" id="postCategory" ng-model="post.category"
-                            ng-options="c.title for c in categories">
+                            ng-options="c._id as c.title for c in categories">
                         <option value="">-- Select One --</option>
                     </select>
                 </div>

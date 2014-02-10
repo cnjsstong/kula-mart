@@ -1,7 +1,7 @@
 var role = require('../enums/role'),
     httpMethod = require('../enums/http'),
     mongoose = require('mongoose'),
-    ObjectID = require('mongodb').ObjectID
+    ObjectID = require('mongodb').ObjectID;
 
 // Load configurations (default: development)
 var env = process.env.NODE_ENV || 'development',
@@ -18,7 +18,7 @@ function createCategory(req, res) {
     category.title = req.body.title;
     category.template = req.body.template;
 
-    category.save(function(err) {
+    category.save(function (err) {
         if (err) {
             return res.send(500);
         } else {
@@ -29,11 +29,13 @@ function createCategory(req, res) {
 
 function updateCategory(req, res) {
 
+    console.log(req.body);
+
     var category = {};
     category.title = req.body.title;
     category.template = req.body.template;
 
-    Category.update({_id: ObjectID(req.body.id)},category,function(err) {
+    Category.update({_id: ObjectID(req.body._id)}, category, {upsert: true}, function (err) {
         if (err) {
             console.log(err);
             return res.send(500);

@@ -19,6 +19,9 @@
                     <th>
                         Category
                     </th>
+                    <th>
+                        Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,11 +36,13 @@
                         <span ng-bind="post.area"></span>
                     </td>
                     <td>
-                        <span ng-bind="post.date"></span>
+                        <span ng-bind="post.createDate | date:'yyyy-MM-dd' "></span>
                     </td>
                     <td>
-                        <span>{{ GetCategory(post.category) }}</span>
+                        <span ng-bind="post.categoryObject.title"></span>
                     </td>
+                    <td><a ng-click="EditPost(post, $index)">Edit</a> <a
+                            ng-click="RemovePost(post, $index)">Remove</a></td>
                 </tr>
                 </tbody>
             </table>

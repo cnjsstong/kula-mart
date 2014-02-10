@@ -28,7 +28,8 @@ var PostSchema = new Schema({
         },
         status: {
             type: String,
-            enum: Status.enums
+            enum: Status.enums,
+            'dafault': Status.ACTIVE
         },
         createDate: {
             type: Date,
@@ -38,8 +39,10 @@ var PostSchema = new Schema({
             type: Date
         },
         replies: [String]
-    })
-    ;
+    },
+    {
+        id: true
+    });
 
 // Static CRUD
 PostSchema.statics = {

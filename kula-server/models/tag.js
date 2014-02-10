@@ -4,11 +4,14 @@ var mongoose = require('mongoose'),
 
 // Schema
 var TagSchema = new Schema({
-    title: {
-        type: String,
-        index: true
-    }
-});
+        title: {
+            type: String,
+            index: true
+        }
+    },
+    {
+        id: true
+    });
 
 // Static CRUD
 TagSchema.statics = {

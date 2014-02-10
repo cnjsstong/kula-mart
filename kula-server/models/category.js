@@ -4,14 +4,17 @@ var mongoose = require('mongoose'),
 
 // Schema
 var CategorySchema = new Schema({
-    title: {
-        type: String,
-        index: true
+        title: {
+            type: String,
+            index: true
+        },
+        template: {
+            type: String
+        }
     },
-    template: {
-        type: String
-    }
-});
+    {
+        id: true
+    });
 
 // Static CRUD
 CategorySchema.statics = {

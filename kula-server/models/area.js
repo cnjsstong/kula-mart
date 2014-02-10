@@ -4,18 +4,21 @@ var mongoose = require('mongoose'),
 
 // Schema
 var AreaSchema = new Schema({
-    title: {
-        type: String
+        title: {
+            type: String
+        },
+        description: {
+            type: String
+        },
+        address: String,
+        coords: {
+            latitude: String,
+            longitude: String
+        }
     },
-    description: {
-        type: String
-    },
-    address: String,
-    coords: {
-        latitude: String,
-        longitude: String
-    }
-});
+    {
+        id: true
+    });
 
 // Static CRUD
 AreaSchema.statics = {

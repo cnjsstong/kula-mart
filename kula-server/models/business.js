@@ -4,21 +4,24 @@ var mongoose = require('mongoose'),
 
 // Schema
 var BusinessSchema = new Schema({
-    title: {
-        type: String
+        title: {
+            type: String
+        },
+        description: {
+            type: String
+        },
+        area: {
+            type: String,
+            index: true
+        },
+        admin: [String],
+        template: {
+            type: String
+        }
     },
-    description: {
-        type: String
-    },
-    area: {
-        type: String,
-        index: true
-    },
-    admin: [String],
-    template: {
-        type: String
-    }
-});
+    {
+        id: true
+    });
 
 // Static CRUD
 BusinessSchema.statics = {

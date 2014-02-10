@@ -5,6 +5,7 @@ angular.module('kulaWebApp', [
         'ngResource',
         'ngSanitize',
         'ngRoute',
+//        'ngTagsInput',
         'resources'
     ])
     .config(function ($routeProvider) {
@@ -14,12 +15,16 @@ angular.module('kulaWebApp', [
                 controller: 'MainCtrl'
             })
             .when('/admin/post', {
+                templateUrl: 'views/admin/postList.html',
+                controller: 'AdminPostListCtrl'
+            })
+            .when('/admin/post/new', {
                 templateUrl: 'views/admin/postNewEdit.html',
                 controller: 'AdminPostNewEditCtrl'
             })
-            .when('/admin/posts', {
-                templateUrl: 'views/admin/postList.html',
-                controller: 'AdminPostListCtrl'
+            .when('/admin/post/:postId', {
+                templateUrl: 'views/admin/postNewEdit.html',
+                controller: 'AdminPostNewEditCtrl'
             })
             .when('/admin/category', {
                 templateUrl: 'views/admin/categoryList.html',
@@ -32,6 +37,18 @@ angular.module('kulaWebApp', [
             .when('/admin/category/:categoryId', {
                 templateUrl: 'views/admin/categoryNewEdit.html',
                 controller: 'AdminCategoryNewEditCtrl'
+            })
+            .when('/admin/area', {
+                templateUrl: 'views/admin/areaList.html',
+                controller: 'AdminAreaListCtrl'
+            })
+            .when('/admin/area/new', {
+                templateUrl: 'views/admin/areaNewEdit.html',
+                controller: 'AdminAreaNewEditCtrl'
+            })
+            .when('/admin/area/:areaId', {
+                templateUrl: 'views/admin/areaNewEdit.html',
+                controller: 'AdminAreaNewEditCtrl'
             })
             .when('/market', {
                 templateUrl: 'views/market.html',

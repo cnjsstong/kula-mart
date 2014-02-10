@@ -14,32 +14,35 @@ var Status = {
 
 // Schema
 var AccountSchema = new Schema({
-    token: {
-        type: String
+        token: {
+            type: String
+        },
+        type: {
+            type: Number,
+            enum: typeList.TYPE_LIST
+        },
+        status: {
+            type: String,
+            enum: Status.enums
+        },
+        email: {
+            type: String,
+            index: { unique: true, sparse: true }
+        },
+        password: {
+            type: String
+        },
+        createDate: {
+            type: Date,
+            'default': Date.now()
+        },
+        lastModified: {
+            type: Date
+        }
     },
-    type: {
-        type: Number,
-        enum: typeList.TYPE_LIST
-    },
-    status: {
-        type: String,
-        enum: Status.enums
-    },
-    email: {
-        type: String,
-        index: { unique: true, sparse: true }
-    },
-    password: {
-        type: String
-    },
-    createDate: {
-        type: Date,
-        'default': Date.now()
-    },
-    lastModified: {
-        type: Date
-    }
-});
+    {
+        id: true
+    });
 
 // Static CRUD
 AccountSchema.statics = {
