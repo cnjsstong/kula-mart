@@ -3,14 +3,14 @@
 angular.module('kulaWebApp')
     .controller('AdminAreaNewEditCtrl', ['$scope', 'Area', '$routeParams', '$location', function ($scope, Area, $routeParams, $location) {
 
-        function loadArea() {
-            if ($routeParams.areaId) {
-                $scope.area = Area.get({areaId: $routeParams.areaId});
+        function loadArea(areaId) {
+            if (areaId) {
+                $scope.area = Area.get({areaId: areaId});
             }
         }
 
         $scope.$on('$routeChangeSuccess', function() {
-            loadArea();
+            loadArea($routeParams.areaId);
         });
 
         $scope.Submit = function (area) {

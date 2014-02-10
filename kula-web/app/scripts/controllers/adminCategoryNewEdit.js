@@ -3,14 +3,14 @@
 angular.module('kulaWebApp')
     .controller('AdminCategoryNewEditCtrl', ['$scope', 'Category', '$routeParams', '$location', function ($scope, Category, $routeParams, $location) {
 
-        function loadCategory() {
-            if ($routeParams.categoryId) {
-                $scope.category = Category.get({categoryId: $routeParams.categoryId});
+        function loadCategory(categoryId) {
+            if (categoryId) {
+                $scope.category = Category.get({categoryId: categoryId});
             }
         }
 
         $scope.$on('$routeChangeSuccess', function() {
-            loadCategory();
+            loadCategory($routeParams.categoryId);
         });
 
         $scope.Submit = function (category) {
