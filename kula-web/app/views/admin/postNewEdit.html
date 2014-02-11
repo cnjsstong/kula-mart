@@ -33,7 +33,17 @@
                     <textarea class="form-control" id="postContent" placeholder="Post Content" rows="10"
                               ng-model="post.content"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default cta" ng-click="Submit(post)">Submit</button>
+                <div class="form-group">
+                    <label>Images</label>
+                    <ul class="post-image-list">
+                        <li class="image" ng-repeat="image in post.images">
+                            <img ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}">
+                        </li>
+                    </ul>
+                    <input type="file" fileread="upload.file" ng-model="upload.filename">
+                    <button type="button" class="btn-btn-default btn-xs cta" ng-click="UploadImage(upload.file)">Add</button>
+                </div>
+                <button type="submit" class="btn btn-primary cta" ng-click="Submit(post)">Submit</button>
             </form>
         </div>
     </div>

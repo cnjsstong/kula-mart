@@ -38,7 +38,7 @@
                         <span ng-bind="post.author"></span>
                     </td>
                     <td>
-                        <span ng-bind="post.area"></span>
+                        <span ng-bind="post.area | areaTitle"></span>
                     </td>
                     <td>
                         <span ng-bind="post.createDate | date:'yyyy-MM-dd' "></span>

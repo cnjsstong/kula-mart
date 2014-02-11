@@ -2,3 +2,20 @@ a {
     cursor: pointer;
     text-decoration: none;
 }
+
+.post-image-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-image-list .image {
+    display: inline-block;
+    margin: 5px 5px 5px 0;
+}
+
+.post-image-list .image img {
+    height: 200px;
+    width: auto;
+    border-radius: 5px;
+}

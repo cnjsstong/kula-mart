@@ -81,8 +81,10 @@
                 <li class="logo-wrapper"><a class="logo home" href="index.html">KulaMart</a></li>
 
                 <!-- top right: call to action -->
-                <li class="cta"><a href="login.html">Login</a></li>
-                <li class="cta hidden-xxsm"><a href="signup.html">Sign up</a></li>
+                <li class="cta" ng-controller="LoginCtrl">
+                    <a ng-click="Logout()" ng-show="isLoggedIn">Logout</a>
+                    <a ng-click="Login()" ng-hide="isLoggedIn">Login</a>
+                </li>
             </ul>
         </div>
     </header>
@@ -116,6 +118,7 @@
 <![endif]-->
 
 <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="//sdk.amazonaws.com/js/aws-sdk-2.0.0-rc9.min.js"></script>
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
@@ -128,6 +131,7 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
 <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+<script src="bower_components/angular-easyfb/angular-easyfb.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -148,7 +152,7 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/resources/api.js"></script>
+<script src="scripts/resources/constants.js"></script>
 <script src="scripts/resources/post.js"></script>
 <script src="scripts/resources/category.js"></script>
 <script src="scripts/resources/area.js"></script>
@@ -160,6 +164,12 @@
 <script src="scripts/controllers/adminCategoryNewEdit.js"></script>
 <script src="scripts/controllers/adminAreaList.js"></script>
 <script src="scripts/controllers/adminAreaNewEdit.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/services/login.js"></script>
+<script src="scripts/services/upload.js"></script>
+<script src="scripts/services/area.js"></script>
+<script src="scripts/directives/fileread.js"></script>
+<script src="scripts/filters/area.js"></script>
 <!-- endbuild -->
 </body>
 </html>

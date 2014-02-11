@@ -5,8 +5,11 @@ angular.module('kulaWebApp', [
         'ngResource',
         'ngSanitize',
         'ngRoute',
-//        'ngTagsInput',
-        'resources'
+        'ezfb',
+        'resources',
+        'services.login',
+        'services.upload',
+        'services.area'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -57,4 +60,12 @@ angular.module('kulaWebApp', [
             .otherwise({
                 redirectTo: '/'
             });
+    })
+    .config(function($FBProvider, API) {
+        $FBProvider.setInitParams({
+            appId: API.FB.AppId
+        });
+    })
+    .run(function() {
+
     });

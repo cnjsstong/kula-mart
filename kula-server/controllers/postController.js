@@ -21,6 +21,7 @@ function createPost(req, res) {
     post.content = req.body.content;
     post.category = req.body.category;
     post.replies = [];
+    post.images = req.body.images;
 
     post.save(function (err) {
         if (err) {
@@ -40,6 +41,7 @@ function updatePost(req, res) {
     post.content = req.body.content;
     post.category = req.body.category;
     post.lastModified = Date.now();
+    post.images = req.body.images;
 
     Post.update({_id: ObjectID(req.body._id)}, post, {upsert: true}, function (err) {
         if (err) {
