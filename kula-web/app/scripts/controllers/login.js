@@ -1,5 +1,5 @@
 angular.module('kulaWebApp')
-    .controller('LoginCtrl', function ($scope, LoginService) {
+    .controller('LoginCtrl', ['$scope', 'LoginService', function ($scope, LoginService) {
         $scope.Login = function() {
             console.log('Will Login...');
             LoginService.login();
@@ -18,4 +18,4 @@ angular.module('kulaWebApp')
         });
 
 
-    });
+    }]);

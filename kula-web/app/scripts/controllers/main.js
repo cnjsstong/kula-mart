@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('kulaWebApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', ['$scope', function ($scope) {
 
-  });
+  }]);

@@ -12,7 +12,7 @@ angular.module('kulaWebApp', [
         'services.area',
         'services.category'
     ])
-    .config(function ($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -73,12 +73,12 @@ angular.module('kulaWebApp', [
             .otherwise({
                 redirectTo: '/'
             });
-    })
-    .config(function($FBProvider, API) {
+    }])
+    .config(['$FBProvider', 'API', function($FBProvider, API) {
         $FBProvider.setInitParams({
             appId: API.FB.AppId
         });
-    })
+    }])
     .run(function() {
 
     });
