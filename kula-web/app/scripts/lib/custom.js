@@ -336,10 +336,12 @@ $(function() {
     
 
 //   });
+function InitPortfolioImages() {
+    setTimeout(function(){
+        $('.portfolio-item .block-item.first').addClass('slideRight');
+    }, 500);
+}
 
-setTimeout(function(){
-    $('.portfolio-item .block-item.first').addClass('slideRight');
-}, 500);
 
 
 
@@ -403,7 +405,7 @@ $(document).ready(function() {
    -- src: 
    ---------------------------- */
 
-(function() {
+function InitImageHover() {
   var pspZoom;
 
   $.gridSize = function() {
@@ -549,7 +551,7 @@ $(document).ready(function() {
   */
 
 
-}).call(this);
+}
 
 
 
@@ -574,11 +576,11 @@ $(document).ready(function(){
 
 // All images need to be loaded for this plugin to work so
     // we end up waiting for the whole window to load in this example
-    $(window).load(function () {
-        $(document).ready(function(){
-            collage();
-        });
-    });
+//    $(window).load(function () {
+//        $(document).ready(function(){
+//            collage();
+//        });
+//    });
 
 
     // Here we apply the actual CollagePlus plugin

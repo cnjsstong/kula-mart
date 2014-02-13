@@ -4,13 +4,7 @@ angular.module('kulaWebApp')
     .controller('AdminPostListCtrl', ['$scope', 'Post', 'Category', '$location', function ($scope, Post, Category, $location) {
 
         function loadPosts() {
-            $scope.posts = Post.query(function() {
-                for(var p in $scope.posts) {
-                    if($scope.posts[p].hasOwnProperty('category')) {
-                        $scope.posts[p].categoryObject = Category.get({categoryId:$scope.posts[p].category});
-                    }
-                }
-            });
+            $scope.posts = Post.query();
         }
 
         $scope.$on('$routeChangeSuccess', function() {

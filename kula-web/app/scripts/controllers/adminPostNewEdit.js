@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', function ($scope, Post, Category, Area, $routeParams, $location, UploadService) {
+    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window) {
 
         function loadPost(postId) {
             $scope.categories = Category.query();
@@ -18,7 +18,8 @@ angular.module('kulaWebApp')
 
         $scope.Submit = function (post) {
             Post.save({postId: $routeParams.postId}, post);
-            $location.path('/admin/post');
+//            $location.path('/admin/post');
+            $window.history.back();
         };
 
         $scope.UploadImage = function(file) {

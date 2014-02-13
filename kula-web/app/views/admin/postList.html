@@ -38,13 +38,13 @@
                         <span ng-bind="post.author"></span>
                     </td>
                     <td>
-                        <span ng-bind="post.area | areaTitle"></span>
+                        <span ng-bind="post.area | areasTitle"></span>
                     </td>
                     <td>
                         <span ng-bind="post.createDate | date:'yyyy-MM-dd' "></span>
                     </td>
                     <td>
-                        <span ng-bind="post.categoryObject.title"></span>
+                        <span ng-bind="post.category | categoryTitle"></span>
                     </td>
                     <td><a ng-click="EditPost(post, $index)">Edit</a> <a
                             ng-click="RemovePost(post, $index)">Remove</a></td>

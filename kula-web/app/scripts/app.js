@@ -9,7 +9,8 @@ angular.module('kulaWebApp', [
         'resources',
         'services.login',
         'services.upload',
-        'services.area'
+        'services.area',
+        'services.category'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -56,6 +57,18 @@ angular.module('kulaWebApp', [
             .when('/market', {
                 templateUrl: 'views/market.html',
                 controller: 'MarketCtrl'
+            })
+            .when('/market/:categoryTitle', {
+                templateUrl: 'views/market.html',
+                controller: 'MarketCtrl'
+            })
+            .when('/area/:areaId', {
+                templateUrl: 'views/market.html',
+                controller: 'AreaCtrl'
+            })
+            .when('/post/:postId', {
+                templateUrl: 'views/post.html',
+                controller: 'PostDetailCtrl'
             })
             .otherwise({
                 redirectTo: '/'

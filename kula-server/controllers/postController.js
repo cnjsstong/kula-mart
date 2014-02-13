@@ -8,6 +8,7 @@ var env = process.env.NODE_ENV || 'development',
     config = require('../conf/' + env + '.local.config');
 
 var Post = mongoose.model('Post');
+var Category = mongoose.model('Category');
 
 /*
  * Create or Update one post.
@@ -54,13 +55,40 @@ function updatePost(req, res) {
 }
 
 function listPosts(req, res) {
-    Post.find({}, function (err, posts) {
-        if (err) {
-            return res.send(500);
+    if (req.params.categoryTitle) {
+        Category.findOne({title: {$regex: new RegExp(req.params.categoryTitle, 'i')}}, function (err, category) {
+            if (err) {
+                return res.send(500);
+            } else {
+                Post.find({category: {$all: [category._id.toString()]}}, function (err, posts) {
+                    if (err) {
+                        return res.send(500);
+                    } else {
+                        return res.send(200, posts);
+                    }
+                });
+            }
+        });
+    }
+    else {
+        if(req.params.areaId) {
+            Post.find({area: {$all: [req.params.areaId]}}, function(err, posts) {
+                if (err) {
+                    return res.send(500);
+                } else {
+                    return res.send(200, posts);
+                }
+            })
         } else {
-            return res.send(200, posts);
+            Post.find({}, function (err, posts) {
+                if (err) {
+                    return res.send(500);
+                } else {
+                    return res.send(200, posts);
+                }
+            });
         }
-    });
+    }
 }
 
 function getPost(req, res) {

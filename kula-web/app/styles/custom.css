@@ -3102,7 +3102,7 @@ fieldset[disabled] .btn.cta.btn-info.active {
 }
 .inner .intro-heading {
   background: #273646;
-  background: url('../img/backgrounds/bg-gplay-blue.svg');
+  background: url('../images/backgrounds/bg-gplay-blue.svg');
   border-bottom: 1px solid #253443;
   padding: 5.5em 0 4em;
 }
@@ -3115,15 +3115,15 @@ fieldset[disabled] .btn.cta.btn-info.active {
   font-size: 0.9em;
 }
 .inner.about #intro {
-  background: url('../img/backgrounds/bg-gplay-blue.svg');
+  background: url('../images/backgrounds/bg-gplay-blue.svg');
   border-bottom: 1px solid #253443;
 }
 .inner.services #intro {
-  background: url('../img/backgrounds/bg-eavetiles-blue.svg');
+  background: url('../images/backgrounds/bg-eavetiles-blue.svg');
   border-bottom: 1px solid #253443;
 }
 .inner.contact #intro {
-  background: url('../img/backgrounds/bg-arrowstripes-blue.svg');
+  background: url('../images/backgrounds/bg-arrowstripes-blue.svg');
   border-bottom: 1px solid #253443;
 }
 .inner.pricing .page-header {

@@ -1,0 +1,72 @@
+
+<!-- Intro Section -->
+<section id="intro" class="intro-heading section current">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 ng-bind="post.category | categoryTitle"></h1>
+                <p ng-bind="post.title"></p>
+            </div>
+        </div>
+    </div>
+</section> <!-- end Intro Section -->
+
+
+<section id="main-wrapper" class="portfolio-item">
+    <div class="">
+        <div class="row">
+
+            <div class="col-lg-6 images grid">
+                <div class="row" ng-repeat="image in post.images" fire-portfolio-images>
+                    <div class="col-lg-12 block-item section" ng-class="{'animation-fade':!$first, 'first':$first}">
+                        <!-- zoom effect -->
+                        <div class="hovercontent"></div>
+                        <img class="img-responsive" ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 col-xs-12 project-description" data-spy="affix" data-offset-top="200">
+                <div class="wrapper">
+
+                    <!-- about project -->
+                    <div class="project-about">
+                        <h3>Content</h3>
+                        <p ng-bind="post.content"></p>
+                    </div>
+
+                    <!-- project details -->
+                    <div class="project-details clearfix">
+                        <h3>Tags</h3>
+                        <ul>
+                            <li><i class="icon-li icon-ok"></i>Creative Execution</li>
+                            <li><i class="icon-li icon-ok"></i>Design</li>
+                            <li><i class="icon-li icon-ok"></i>Development</li>
+                            <li><i class="icon-li icon-ok"></i>Marketing</li>
+                        </ul>
+                    </div>
+
+                    <!-- project links -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control" ng-model="reply"></textarea>
+                        </div>
+                    </div>
+                    <div class="row project-links clearfix">
+                        <div class="col-lg-6 view-project">
+                            <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
+                        </div>
+                        <div class="col-lg-6 social-sharing">
+                            <!-- social sharing -->
+                            <div class="social-links">
+                                <a href="#" class="icon-facebook facebook"></a>
+                                <a href="#" class="icon-twitter twitter"></a>
+                                <a href="#" class="icon-google-plus google"></a>
+                                <a href="#" class="icon-pinterest pinterest"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

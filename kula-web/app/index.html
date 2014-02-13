@@ -51,22 +51,22 @@
                     <nav class="gn-menu-wrapper">
                         <div class="gn-scroller">
                             <ul class="gn-menu">
-                                <li class="current"><a href="index-full.html#intro"><i class="gn-icon icon-home"></i>Home</a>
+                                <li class="current"><a href="#/"><i class="gn-icon icon-home"></i>Home</a>
                                 </li>
                                 <li>
                                     <a href="#/"><i class="gn-icon linecon-bulb"></i>University</a>
                                     <ul class="gn-submenu">
-                                        <li><a class="gn-icon" href="#/">Brandeis University</a></li>
-                                        <li><a class="gn-icon" href="#/">Boston University</a></li>
-                                        <li><a class="gn-icon" href="#/">Tufts University</a></li>
+                                        <li><a class="gn-icon" href="#/area/52f830afa80bfe4818f56654">Brandeis University</a></li>
+                                        <li><a class="gn-icon" href="#/area/52f83202a80bfe4818f56656">Boston University</a></li>
+                                        <li><a class="gn-icon" href="#/area/52f83378a80bfe4818f56660">Tufts University</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#/"><i class="gn-icon linecon-star"></i>Market</a>
+                                    <a href="#/market"><i class="gn-icon linecon-star"></i>Market</a>
                                     <ul class="gn-submenu">
-                                        <li><a class="gn-icon" href="#/">Textbook</a></li>
-                                        <li><a class="gn-icon" href="#/">Housing</a></li>
-                                        <li><a class="gn-icon" href="#/">Car</a></li>
+                                        <li><a class="gn-icon" href="#/market/textbook">Textbook</a></li>
+                                        <li><a class="gn-icon" href="#/market/housing">Housing</a></li>
+                                        <li><a class="gn-icon" href="#/market/car">Car</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#/"><i class="gn-icon linecon-user"></i>Business</a></li>
@@ -78,7 +78,7 @@
                 </li>
 
                 <!-- logo -->
-                <li class="logo-wrapper"><a class="logo home" href="index.html">KulaMart</a></li>
+                <li class="logo-wrapper"><a class="logo home" href="#/">KulaMart</a></li>
 
                 <!-- top right: call to action -->
                 <li class="cta" ng-controller="LoginCtrl">
@@ -92,6 +92,22 @@
 
     <!-- Add your site or application content here -->
     <div ng-view=""></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-4 copyright">
+                <p>&copy; All Rights Reserved. 2013 - 2014 <a target="_blank">Kula Mart</a></p>
+            </div>
+            <div class="col-lg-8 social pull-right text-right">
+                <a href="#"><span aria-hidden="true" class="icon-facebook"></span></a>
+                <a href="#"><span aria-hidden="true" class="icon-twitter"></span></a>
+                <a href="#"><span aria-hidden="true" class="icon-dribbble"></span></a>
+                <a href="#"><span aria-hidden="true" class="icon-youtube-play"></span></a>
+                <a href="#"><span aria-hidden="true" class="icon-google-plus"></span></a>
+            </div>
+        </div>
+    </footer> <!-- end Footer -->
 </div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -140,6 +156,8 @@
 <script src="scripts/lib/jquery.easing.1.3.js"></script>
 <script src="scripts/lib/jquery.scrollTo-min.js"></script>
 <script src="scripts/lib/jquery.nav.js"></script>
+<script src="scripts/lib/jquery.collagePlus.min.js"></script>
+<script src="scripts/lib/jquery.removeWhitespace.min.js"></script>
 <script src="scripts/lib/jquery.magnific-popup.min.js"></script>
 <script src="scripts/lib/jquery.waypoints.min.js"></script>
 <script src="scripts/lib/jquery.caroufredsel.js"></script>
@@ -158,6 +176,7 @@
 <script src="scripts/resources/area.js"></script>
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/market.js"></script>
+<script src="scripts/controllers/area.js"></script>
 <script src="scripts/controllers/adminPostNewEdit.js"></script>
 <script src="scripts/controllers/adminPostList.js"></script>
 <script src="scripts/controllers/adminCategoryList.js"></script>
@@ -165,11 +184,16 @@
 <script src="scripts/controllers/adminAreaList.js"></script>
 <script src="scripts/controllers/adminAreaNewEdit.js"></script>
 <script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/postDetail.js"></script>
 <script src="scripts/services/login.js"></script>
 <script src="scripts/services/upload.js"></script>
 <script src="scripts/services/area.js"></script>
+<script src="scripts/services/category.js"></script>
 <script src="scripts/directives/fileread.js"></script>
+<script src="scripts/directives/fireCollage.js"></script>
+<script src="scripts/directives/firePortfolioImages.js"></script>
 <script src="scripts/filters/area.js"></script>
+<script src="scripts/filters/category.js"></script>
 <!-- endbuild -->
 </body>
 </html>

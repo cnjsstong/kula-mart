@@ -3,7 +3,7 @@ angular.module('services.upload', [
 ]);
 
 angular.module('services.upload')
-    .factory('UploadService', ['$q', 'API', '$rootScope', function ($q, API, $rootScope) {
+    .factory('UploadService', ['$q', 'API', '$rootScope', 'LoginService', function ($q, API, $rootScope, LoginService) {
 
         var bucket = new AWS.S3({
             params: {
@@ -11,19 +11,6 @@ angular.module('services.upload')
             }
         });
         var fbUserId;
-
-        $rootScope.$on('Facebook.Connected', function(event, res) {
-            bucket.config.credentials = new AWS.WebIdentityCredentials({
-                ProviderId: 'graph.facebook.com',
-                RoleArn: API.AWS.RoleARN,
-                WebIdentityToken: res.authResponse.accessToken
-            });
-            fbUserId = res.authResponse.userID;
-        });
-
-        $rootScope.$on('Facebook.NotConnected', function(res) {
-            fbUserId = null;
-        });
 
         var allowedFileTypes = ['image/jpeg','image/png'];
         function isFileTypeAllowed(fileType) {
@@ -41,7 +28,14 @@ angular.module('services.upload')
 
                 var defer = $q.defer();
 
-                if(fbUserId) {
+                LoginService.getLoginStatus().then(function(res) {
+                    bucket.config.credentials = new AWS.WebIdentityCredentials({
+                        ProviderId: 'graph.facebook.com',
+                        RoleArn: API.AWS.RoleARN,
+                        WebIdentityToken: res.authResponse.accessToken
+                    });
+                    fbUserId = res.authResponse.userID;
+
                     var fileType = file.type;
                     if(isFileTypeAllowed(fileType)) {
                         var objKey = 'facebook-' + fbUserId + '/' + Date.now();
@@ -57,10 +51,10 @@ angular.module('services.upload')
                         console.log('File type not allowed.');
                         defer.reject('File type not allowed.');
                     }
-                } else {
+                },function() {
                     console.log('Not logged in.');
                     defer.reject('Not logged in.');
-                }
+                });
 
                 return defer.promise;
             }
