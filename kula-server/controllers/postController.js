@@ -23,6 +23,8 @@ function createPost(req, res) {
     post.category = req.body.category;
     post.replies = [];
     post.images = req.body.images;
+    post.type = req.body.type;
+    post.price = req.body.price;
 
     post.save(function (err) {
         if (err) {
@@ -43,6 +45,8 @@ function updatePost(req, res) {
     post.category = req.body.category;
     post.lastModified = Date.now();
     post.images = req.body.images;
+    post.type = req.body.type;
+    post.price = req.body.price;
 
     Post.update({_id: ObjectID(req.body._id)}, post, {upsert: true}, function (err) {
         if (err) {

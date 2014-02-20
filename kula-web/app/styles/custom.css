@@ -118,11 +118,11 @@ body {
   text-transform: uppercase;
   color: #16a085;
 }
-hr {
-  margin: 20px 0;
-  border: 0;
-  border-top: 4px solid #253443;
-}
+/*hr {*/
+  /*margin: 20px 0;*/
+  /*border: 0;*/
+  /*border-top: 4px solid #253443;*/
+/*}*/
 .no-bottom {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -2399,7 +2399,7 @@ footer .social a:hover {
   text-decoration: none;
 }
 .btn {
-  padding: 9px 20px;
+  /*padding: 9px 20px;*/
   border: none;
   background-image: none;
   color: white;

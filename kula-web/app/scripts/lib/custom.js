@@ -104,9 +104,9 @@ $("a.home").click(function() {
    -- src: http://caroufredsel.dev7studios.com
    ---------------------------- */
 
-$(document).ready(function(){
+function fireCarouFredSel(element){
 
-  $(".carousel-small").carouFredSel({
+  $(element).carouFredSel({
       responsive: true,
       width: '100%',
       circular: false,
@@ -125,16 +125,16 @@ $(document).ready(function(){
       items:{
         visible:{
           min: 1,
-          max: 4
+          max: 6
         },
-        width: 320,
+        width: 160,
         height: 'auto'
       },
       prev : "#carousel-prev",
       next : "#carousel-next"
     });
 
-});
+}
 
 
 /* -- Full Screen Viewport Container

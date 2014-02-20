@@ -1,0 +1,47 @@
+<div id="lead-form" class="col-xs-12 lead-form post">
+    <div class="row">
+        <div class="col-xs-2">
+            <img class="post-image" ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] }}">
+        </div>
+        <div class="col-xs-10 post-content">
+            <div class="header">
+                <span class="type" ng-switch="post.type">
+                    <a class="btn btn-sm btn-warning" ng-switch-when="request">Requesting</a>
+                    <a class="btn btn-sm btn-danger" ng-switch-when="offer">Offering</a>
+                </span>
+
+                <span class="price pull-right">
+                    for $<strong ng-bind="post.price"></strong>
+                </span>
+            </div>
+
+            <div class="title" ng-bind="post.title">The Title of The POST is HERE!!!</div>
+            <div class="details" ng-show="expanded">
+                <div ng-bind="post.content">Have a question you would like to ask? Or maybe a project you would like us
+                    to work on? Either way,
+                    why not get in touch!
+                </div>
+                <br>
+                <b>Reply to this post:</b>
+                <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
+                          ng-model="reply"></textarea>
+
+                <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 footer">
+                <span class="tags" ng-init="post.tags=['Good','Stuff','Cheap']">
+                    <span class="tag btn btn-xs btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
+                </span>
+                <span class="actions pull-right">
+                    <a class="btn btn-sm btn-primary">Save for later</a>
+                    <a class="btn btn-sm btn-primary" ng-click="expanded=!expanded" ng-init="expanded=false">View
+                        Details</a>
+                    <!--<a class="btn btn-sm btn-primary" ng-click="expanded=!expanded">Reply</a>-->
+                </span>
+        </div>
+    </div>
+</div>

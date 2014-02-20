@@ -1,4 +1,3 @@
-
 var role = require('../enums/role'),
     httpMethod = require('../enums/http'),
     validator = require('../lib/validator'),
@@ -26,34 +25,33 @@ function alive(req, res) {
  */
 function login(req, res) {
 
-    if(req.body.email!=null && req.body.password!=null){
+    if (req.body.email != null && req.body.password != null) {
 
-        if (validator.checkEmailFormat(req.body.email)){
+        if (validator.checkEmailFormat(req.body.email)) {
 
-            var query = { email : req.body.email };
+            var query = { email: req.body.email };
 
-            var projection = { email : 1, password : 1, token : 1, lastModified : 1, status : 1, type : 1, appVersion : 1 };
+            var projection = { email: 1, password: 1, token: 1, lastModified: 1, status: 1, type: 1, appVersion: 1 };
 
-            Account.findAccount(query, projection, function(err, account){
-             
-                if (err){
+            Account.findAccount(query, projection, function (err, account) {
+
+                if (err) {
                     return res.send(404, 'Account not found');
                 }
 
-                if (account.status != Account.accountStatus.ACTIVE){
+                if (account.status != Account.accountStatus.ACTIVE) {
                     return res.send(403, 'Account is not active');
                 }
 
-                if (account.type != role.UNREGISTERED && account.type != role.REGISTERED){
+                if (account.type != role.UNREGISTERED && account.type != role.REGISTERED) {
                     return res.send(403, 'Unautherized account role');
                 }
 
-                if (!bcrypt.compareSync(req.body.password, account.password)){
+                if (!bcrypt.compareSync(req.body.password, account.password)) {
                     return res.send(403, 'Password does not match');
                 }
 
-
-                tokenGenerator.randomBytes(config.tokenLength, function(ex, buf) {
+                tokenGenerator.randomBytes(config.tokenLength, function (ex, buf) {
 
                     // account reset token
                     account.token = buf.toString('hex');
@@ -62,13 +60,13 @@ function login(req, res) {
                     var lastModified = Date.now();
 
                     // update account
-                    var condition = { _id : account._id };
+                    var condition = { _id: account._id };
 
-                    var update = { token : account.token, lastModified : lastModified };
+                    var update = { token: account.token, lastModified: lastModified };
 
-                    Account.updateAccount(condition, update, function(err){
+                    Account.updateAccount(condition, update, function (err) {
 
-                        if(err){
+                        if (err) {
                             return res.send(404, 'Update Failed');
                         }
 
@@ -80,13 +78,13 @@ function login(req, res) {
                 });// end: tokenGenerator
 
             }); // end: findAccount
-        
-        } else{
+
+        } else {
             return res.send(400, 'Invalid Email Format');
         }
-           
+
     } else {
-         // Bad Request
+        // Bad Request
         return res.send(400, 'Bad Request');
     }
 }
@@ -95,20 +93,15 @@ function login(req, res) {
 /*
  * Anonymous account register
  */
-function anonymousregister(req, res){
+function anonymousregister(req, res) {
 
     var account = new Account();
-
-    var favorite = new Favorite();
 
     // Initialize id
     account._id = new ObjectID();
 
-    favorite._id = account._id;
-
-
     // Initialize
-    account.email = account._id + '@user.fotodish.com';
+    account.email = req.body.email;
 
     account.createDate = Date.now();
 
@@ -118,10 +111,10 @@ function anonymousregister(req, res){
 
     account.type = role.UNREGISTERED;
 
-    tokenGenerator.randomBytes(config.tokenLength, function(ex, buf){
+    tokenGenerator.randomBytes(config.tokenLength, function (ex, buf) {
 
         var token = buf.toString('hex');
-    
+
         var password = token;
 
         account.password = bcrypt.hashSync(password, salt);
@@ -129,30 +122,18 @@ function anonymousregister(req, res){
         account.token = token;
 
         // Create account        
-        Account.createAccount(account, function(err){
+        Account.createAccount(account, function (err) {
 
-            if(err){
+            if (err) {
                 return res.send(404, 'Create account failed');
-            } 
+            }
 
-            // Create favorite
+            // return account
+            var toClientAccount = account.securityMapping();
 
-            favorite.favorite = [];
+            toClientAccount.password = token;
 
-            Favorite.createFavorite(favorite, function(err){
-
-                if(err){
-                    return res.send(404, 'Create favorite failed');
-                }
-
-                // return account
-                var toClientAccount = account.securityMapping();
-
-                toClientAccount.password = token;
-
-                return res.send(201, toClientAccount);
-
-            });// end: createFavorite
+            return res.send(201, toClientAccount);
 
 
         });// end: createAccount
@@ -166,21 +147,21 @@ exports.base = 'account';
 
 exports.routes = [
     {
-        'path' : 'alive',
-        'method' : httpMethod.GET,
-        'handler' : alive,
-        'version' : '0.0.1'
+        'path': 'alive',
+        'method': httpMethod.GET,
+        'handler': alive,
+        'version': '0.0.1'
     },
     {
-        'path' : 'login',
-        'method' : httpMethod.POST,
-        'handler' : login,
-        'version' : '0.0.1'
+        'path': 'login',
+        'method': httpMethod.POST,
+        'handler': login,
+        'version': '0.0.1'
     },
     {
-        'path' : 'anonymousregister',
-        'method' : httpMethod.POST,
-        'handler' : anonymousregister,
-        'version' : '0.0.1'
+        'path': 'anonymousregister',
+        'method': httpMethod.POST,
+        'handler': anonymousregister,
+        'version': '0.0.1'
     }
 ];

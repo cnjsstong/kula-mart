@@ -9,11 +9,24 @@ var Status = {
     DELETED: 'deleted',
     PENDING: 'pending',
     enums: [ this.ACTIVE, this.INACTIVE, this.CLOSED, this.DELETED, this.PENDING ]
-}
+};
+
+var Type = {
+    REQUEST: 'request',
+    OFFER: 'offer',
+    enums: [ this.REQUEST, this.OFFER ]
+};
 
 // Schema
 var PostSchema = new Schema({
         title: {
+            type: String
+        },
+        type: {
+            type: String,
+            enum: Type.enums
+        },
+        price: {
             type: String
         },
         author: {
@@ -26,6 +39,7 @@ var PostSchema = new Schema({
         content: {
             type: String
         },
+        tags: [String],
         status: {
             type: String,
             enum: Status.enums,
@@ -33,7 +47,7 @@ var PostSchema = new Schema({
         },
         createDate: {
             type: Date,
-            'default': Date.now()
+            'default': Date.now
         },
         lastModified: {
             type: Date
@@ -58,4 +72,5 @@ Post = mongoose.model('Post', PostSchema, 'Post');
 // Exports
 exports.Post = Post;
 exports.Post.Status = Status;
+exports.Post.Type = Type;
 

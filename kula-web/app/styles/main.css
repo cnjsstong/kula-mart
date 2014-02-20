@@ -19,3 +19,57 @@ a {
     width: auto;
     border-radius: 5px;
 }
+
+.school-selector a {
+    font-weight: 200;
+    font-size: 1.3em;
+}
+
+input.form-control.no-margin {
+    margin: 0;
+}
+
+.team article {
+    height: 200px;
+    width: 160px;
+}
+
+.team {
+    padding-top: 0 !important;
+}
+
+.post-list {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.lead-form.post {
+    margin-bottom: 2em;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.post .post-content {
+    position: relative;
+}
+
+.post .tags .tag {
+    margin-right: 3px;
+    margin-top: 5px;
+}
+
+.post .title {
+    font-size: 1.6em;
+}
+
+.post .price {
+    font-size: 1.5em;
+}
+
+.post .details {
+    font-size: 1.2em;
+}
