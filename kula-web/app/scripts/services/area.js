@@ -13,10 +13,17 @@ angular.module('services.area')
                     areaTitleMapping[areas[i].title.toLowerCase()] = areas[i];
                 }
             }
+            console.log(areaMapping, areaTitleMapping);
         });
 
         var service = {
+
+            getAreas: function() {
+                return areas;
+            },
+
             getArea: function(areaId) {
+                console.log(areaMapping, areaId, areaMapping[areaId]);
                 if(areaMapping.hasOwnProperty(areaId)) {
                     return areaMapping[areaId];
                 } else {

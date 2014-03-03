@@ -31,20 +31,20 @@ function login(req, res) {
 
             var query = { email: req.body.email };
 
-            var projection = { email: 1, password: 1, token: 1, lastModified: 1, status: 1, type: 1, appVersion: 1 };
+            var projection = { email: 1, password: 1, token: 1, status: 1, type: 1};
 
-            Account.findAccount(query, projection, function (err, account) {
+            Account.findOne(query, projection, function (err, account) {
 
                 if (err) {
                     return res.send(404, 'Account not found');
                 }
 
-                if (account.status != Account.accountStatus.ACTIVE) {
+                if (account.status != Account.Status.ACTIVE) {
                     return res.send(403, 'Account is not active');
                 }
 
-                if (account.type != role.UNREGISTERED && account.type != role.REGISTERED) {
-                    return res.send(403, 'Unautherized account role');
+                if (account.type > role.CUSTOMER) {
+                    return res.send(403, 'Unauthorized account role');
                 }
 
                 if (!bcrypt.compareSync(req.body.password, account.password)) {
@@ -56,15 +56,12 @@ function login(req, res) {
                     // account reset token
                     account.token = buf.toString('hex');
 
-                    // account reset last modify
-                    var lastModified = Date.now();
-
                     // update account
                     var condition = { _id: account._id };
 
-                    var update = { token: account.token, lastModified: lastModified };
+                    var update = { token: account.token};
 
-                    Account.updateAccount(condition, update, function (err) {
+                    Account.update(condition, update, function (err) {
 
                         if (err) {
                             return res.send(404, 'Update Failed');
@@ -93,7 +90,7 @@ function login(req, res) {
 /*
  * Anonymous account register
  */
-function anonymousregister(req, res) {
+function signup(req, res) {
 
     var account = new Account();
 
@@ -102,22 +99,17 @@ function anonymousregister(req, res) {
 
     // Initialize
     account.email = req.body.email;
+    account.password = req.body.password;
 
-    account.createDate = Date.now();
+    account.status = Account.Status.ACTIVE;
 
-    account.lastModified = account.createDate;
-
-    account.status = Account.accountStatus.ACTIVE;
-
-    account.type = role.UNREGISTERED;
+    account.type = role.CUSTOMER;
 
     tokenGenerator.randomBytes(config.tokenLength, function (ex, buf) {
 
         var token = buf.toString('hex');
 
-        var password = token;
-
-        account.password = bcrypt.hashSync(password, salt);
+        account.password = bcrypt.hashSync(account.password, salt);
 
         account.token = token;
 
@@ -131,10 +123,7 @@ function anonymousregister(req, res) {
             // return account
             var toClientAccount = account.securityMapping();
 
-            toClientAccount.password = token;
-
             return res.send(201, toClientAccount);
-
 
         });// end: createAccount
 
@@ -159,9 +148,9 @@ exports.routes = [
         'version': '0.0.1'
     },
     {
-        'path': 'anonymousregister',
+        'path': 'signup',
         'method': httpMethod.POST,
-        'handler': anonymousregister,
+        'handler': signup,
         'version': '0.0.1'
     }
 ];

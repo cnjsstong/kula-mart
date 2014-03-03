@@ -1,0 +1,24 @@
+<div class="container padding-top-lg">
+    <div class="row">
+        <div class="col-xs-12 padding-bottom">
+            <kl-post kl-post-id="reply.post"></kl-post>
+        </div>
+        <div class="col-xs-12">
+            <div class="title">Reply:</div>
+            <div class="details">
+                <div ng-bind="reply.content">Have a question you would like to ask? Or maybe a project you would like us
+                    to work on? Either way,
+                    why not get in touch!
+                </div>
+                <br>
+                <b>Respond to this reply:</b>
+                <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
+                          ng-model="respond.content"></textarea>
+                <!--<b>My Email:</b>-->
+                <!--<input type="email" class="form-control" ng-model="respond.email">-->
+
+                <a class="btn cta" ng-click="Respond(respond,reply)">Send</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -31,13 +31,6 @@ var AccountSchema = new Schema({
         },
         password: {
             type: String
-        },
-        createDate: {
-            type: Date,
-            'default': Date.now
-        },
-        lastModified: {
-            type: Date
         }
     },
     {
@@ -89,6 +82,7 @@ AccountSchema.methods = {
         account.id = this.id;
         account.email = this.email;
         account.token = this.token;
+        account.type = this.type;
         return account;
     }
 };

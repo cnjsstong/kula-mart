@@ -7,6 +7,13 @@ var TagSchema = new Schema({
         title: {
             type: String,
             index: true
+        },
+        category: {
+            type: String,
+            index: true
+        },
+        counter: {
+            type: Number
         }
     },
     {

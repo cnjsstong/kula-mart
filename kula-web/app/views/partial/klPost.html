@@ -1,7 +1,7 @@
 <div id="lead-form" class="col-xs-12 lead-form post">
     <div class="row">
         <div class="col-xs-2">
-            <img class="post-image" ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] }}">
+            <img class="post-image" ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">
         </div>
         <div class="col-xs-10 post-content">
             <div class="header">
@@ -24,7 +24,9 @@
                 <br>
                 <b>Reply to this post:</b>
                 <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
-                          ng-model="reply"></textarea>
+                          ng-model="reply.content"></textarea>
+                <b>My Email:</b>
+                <input type="email" class="form-control" ng-model="reply.email">
 
                 <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
                 <hr>

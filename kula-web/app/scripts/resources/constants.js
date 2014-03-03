@@ -9,7 +9,7 @@ angular.module('resources')
         BuildDate: '20140115',
         BuildDateString: 'Jan 15, 2014',
         FeatureString: 'Ashley.',
-        ResourceUrl: 'http://inori.sj.gs:3000/',
+        ResourceUrl: 'http://localhost:3000/',
         Method: {
             GET: 'GET',
             POST: 'POST',

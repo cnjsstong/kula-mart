@@ -1,63 +1,147 @@
 <section id="adminPostNewEdit" class="section">
     <div class="container">
         <div class="row">
-            <form role="form">
+            <form role="form" name="postForm">
                 <input type="hidden" ng-model="post._id">
 
-                <div class="form-group">
-                    <label for="postType">Type</label>
-                    <select id="postType" class="form-control" ng-model="post.type">
-                        <option value="request">Request</option>
-                        <option value="offer">Offer</option>
-                    </select>
+                <div class="col-xs-12 lead-form post-form">
+                    <div class="row">
+                        <div class="table">
+                            <div class="form-group table-row">
+                                <div class="table-cell" style="width: 50px;">
+                                    I am
+                                </div>
+                                <div class="btn-group table-cell" style="width: 160px;">
+                                    <a class="btn btn-sm" ng-class="{'btn-danger bold':post.type=='offer','btn-warning':post.type!='offer'}" ng-click="post.type='offer'">Offering</a>
+                                    <a class="btn btn-sm" ng-class="{'btn-danger bold':post.type=='request','btn-warning':post.type!='request'}" ng-click="post.type='request'">Requesting</a>
+                                </div>
+                                <input type="text" class="form-control table-cell" id="postTitle" placeholder="What?"
+                                       ng-model="post.title" required>
+
+                                <div class="table-cell">
+                                    in
+                                </div>
+                                <select class="form-control table-cell" id="postCategory" ng-model="post.category"
+                                        ng-options="c._id as c.title for c in categories" required>
+                                    <option value=""> ----- Which market?</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Add Tags</label>
+                            <tags-input id="postTags" ng-model="post.tags"
+                                        custom-class="kl-tags"
+                                        placeholder="Add tags here"
+                                        replace-spaces-with-dashes="false"
+                                        add-on-comma="false"
+                                        add-on-space="false"
+                                        add-on-enter="true"
+                                        add-on-blur="true">
+                                <auto-complete source="QueryTagsForAutocomplete($query)"
+                                               max-results-to-show="10">
+                                </auto-complete>
+                            </tags-input>
+                            Or choose from the following tags
+                            <div>
+                                <a>Tag 1</a>
+                                <a>Tag 1</a>
+                                <a>Tag 1</a>
+                                <a>Tag 1</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row action-btns" ng-show="step==0">
+                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid" ng-click="step=1">Next</a>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="postTitle">Title</label>
-                    <input type="text" class="form-control" id="postTitle" placeholder="Post Title"
-                           ng-model="post.title">
+                <div class="col-xs-12 lead-form post-form" ng-show="step>=1">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="postContent">Description</label>
+                            <textarea class="form-control" id="postContent" placeholder="Tell us something more."
+                                      rows="3"
+                                      ng-model="post.content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="postPrice">Price</label>
+                            <input type="text" class="form-control" id="postPrice" placeholder="$"
+                                   ng-model="post.price">
+                        </div>
+                        <div class="form-inline">
+                            <span>End in</span>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="post.duration">
+                            </div>
+                            <span>days.</span>
+                            <label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="post.neverExpire"> Never Expire.
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Images</label>
+                            <ul class="post-image-list">
+                                <li class="image" ng-repeat="image in post.images">
+                                    <img ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}">
+                                </li>
+                            </ul>
+                            <input type="file" fileread="upload.file" ng-model="upload.filename">
+                            <button type="button" class="btn-btn-default btn-xs cta"
+                                    ng-click="UploadImage(upload.file)">Add
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row action-btns" ng-show="step==1">
+                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid" ng-click="step=2">Next</a>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="postPrice">Price</label>
-                    <input type="text" class="form-control" id="postPrice" placeholder="Post Price"
-                           ng-model="post.price">
+                <div class="col-xs-12 lead-form post-form" ng-show="step>=2">
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Post for</label>
+                            <br>
+                            <label ng-repeat="a in areas">
+                                <input type="checkbox" checklist-model="post.area" checklist-value="a._id"> {{a.title}} &nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Delivery Method</label>
+                            <br>
+                            <label ng-repeat="a in deliveries">
+                                <input type="checkbox" checklist-model="post.delivery" checklist-value="a.title"> {{a.title}} &nbsp;&nbsp;&nbsp;
+                            </label>
+                            <br>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row action-btns" ng-show="step==2">
+                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !post.area" ng-click="step=3">Next</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="postAuthor">Author</label>
-                    <input type="text" class="form-control" id="postAuthor" placeholder="Post Author"
-                           ng-model="post.author">
+
+                <div class="col-xs-12 lead-form post-form" ng-show="step>=3">
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Contact Email</label>
+                            <input type="text" class="form-control" placeholder="..@...edu"
+                                   ng-model="post.email" ng-required="step>=3">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contact Phone</label>
+                            <input type="text" class="form-control" placeholder="9999999999"
+                                   ng-model="post.phone">
+                        </div>
+                    </div>
+                    <div class="row action-btns">
+                        <a class="btn btn-primary cta" ng-disabled="postForm.$invalid" ng-click="Submit(post)">Post</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="postArea">Area</label>
-                    <select multiple class="form-control" id="postArea" ng-model="post.area"
-                            ng-options="a._id as a.title for a in areas">
-                        <option value="">-- Select One --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="postCategory">Primary Tag</label>
-                    <select class="form-control" id="postCategory" ng-model="post.category"
-                            ng-options="c._id as c.title for c in categories">
-                        <option value="">-- Select One --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="postContent">Content</label>
-                    <textarea class="form-control" id="postContent" placeholder="Post Content" rows="10"
-                              ng-model="post.content"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Images</label>
-                    <ul class="post-image-list">
-                        <li class="image" ng-repeat="image in post.images">
-                            <img ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}">
-                        </li>
-                    </ul>
-                    <input type="file" fileread="upload.file" ng-model="upload.filename">
-                    <button type="button" class="btn-btn-default btn-xs cta" ng-click="UploadImage(upload.file)">Add</button>
-                </div>
-                <button type="submit" class="btn btn-primary cta" ng-click="Submit(post)">Submit</button>
             </form>
         </div>
     </div>

@@ -15,11 +15,12 @@ angular.module('services.login')
                     if (res.status == 'connected') {
                         console.log('Broadcasting Facebook.Connected ...');
                         $rootScope.$broadcast('Facebook.Connected', res);
+                        defer.resolve(res);
                     } else {
                         console.log('Broadcasting Facebook.NotConnected ...');
                         $rootScope.$broadcast('Facebook.NotConnected', res);
+                        defer.reject(res);
                     }
-                    defer.resolve(res);
                 });
 
                 return defer.promise;
@@ -32,9 +33,11 @@ angular.module('services.login')
                     if (res.status == 'connected') {
                         console.log('Broadcasting Facebook.Connected ...');
                         $rootScope.$broadcast('Facebook.Connected', res);
+                        defer.resolve(res);
                     } else {
                         console.log('Broadcasting Facebook.NotConnected ...');
                         $rootScope.$broadcast('Facebook.NotConnected', res);
+                        defer.reject(res);
                     }
                     defer.resolve(res);
                 });
@@ -49,9 +52,11 @@ angular.module('services.login')
                     if (res.status == 'connected') {
                         console.log('Broadcasting Facebook.Connected ...');
                         $rootScope.$broadcast('Facebook.Connected', res);
+                        defer.resolve(res);
                     } else {
                         console.log('Broadcasting Facebook.NotConnected ...');
                         $rootScope.$broadcast('Facebook.NotConnected', res);
+                        defer.reject(res);
                     }
                     defer.resolve(res);
                 });

@@ -22,6 +22,15 @@ a {
 
 .school-selector a {
     font-weight: 200;
+    font-size: 1em;
+}
+
+.school-selector {
+    width: 320px;
+}
+
+.school-selector .dropdown-menu {
+    background-color: #ffffff;
     font-size: 1.3em;
 }
 
@@ -72,4 +81,94 @@ input.form-control.no-margin {
 
 .post .details {
     font-size: 1.2em;
+}
+
+.table {
+    display: table;
+    width: 100%;
+}
+
+.table-row {
+    display: table-row !important;
+    width: 100%;
+}
+
+.table-cell {
+    display: table-cell !important;
+    text-align: center;
+}
+
+.table-cell.form-control {
+    margin: 0;
+}
+
+.table-row.span-all {
+    column-span:all;
+}
+
+.post-form {
+    padding: 20px 40px 10px !important;
+}
+
+.form-inline .form-control {
+    display: inline-block !important;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.centered {
+    display: inline-block;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+.row.action-btns {
+    margin-bottom: 10px;
+}
+
+a.user-showcase {
+    width: 160px;
+    font-size: 0.8em !important;
+    text-transform: none !important;
+    line-height: 20px !important;
+    padding: 15px 0 !important;
+}
+
+.gn-menu-main > li.cta {
+    overflow: hidden;
+}
+
+[ng-view] {
+    min-height:600px;
+}
+
+.repeat-item.ng-enter,
+.repeat-item.ng-leave {
+    -webkit-transition:0.5s linear all;
+    transition:0.5s linear all;
+}
+
+.repeat-item.ng-enter,
+.repeat-item.ng-leave.ng-leave-active {
+    opacity:0;
+}
+.repeat-item.ng-leave,
+.repeat-item.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+.category-tag {
+    margin-right: 3px;
+}
+
+.padding-bottom {
+    padding-bottom: 20px !important;
+}
+
+.padding-top-lg {
+    padding-top: 8em;
 }

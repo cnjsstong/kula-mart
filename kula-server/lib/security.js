@@ -3,13 +3,13 @@ var Account = mongoose.model('Account');
 
 exports.auth = function () {
     return function (req, res, next) {
-        var authHeader = req.header('Kula-Auth');
-        console.log(authHeader);
+        var authHeader = req.header('KulaAuth');
+//        console.log(authHeader);
         if (typeof authHeader === 'string') {
             var authArray = authHeader.split(' ');
             if (authArray.length === 2) {
-                var username = authArray[1];
-                var token = authArray[2];
+                var username = authArray[0];
+                var token = authArray[1];
                 Account.authenticate(username, token, function (err, account) {
                     if (!err) {
                         req.account = account;

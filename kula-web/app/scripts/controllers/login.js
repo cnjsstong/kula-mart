@@ -1,13 +1,21 @@
 angular.module('kulaWebApp')
-    .controller('LoginCtrl', ['$scope', 'LoginService', function ($scope, LoginService) {
-        $scope.Login = function() {
-            console.log('Will Login...');
-            LoginService.login();
+    .controller('LoginCtrl', ['$scope', 'SecurityService', 'LoginService', 'Account', function ($scope, SecurityService, LoginService, Account) {
+//        $scope.Login = function() {
+//            console.log('Will Login...');
+//            LoginService.login();
+//        };
+//
+//        $scope.Logout = function() {
+//            LoginService.logout();
+//        };
+
+        $scope.SignUp = function(user) {
+            SecurityService.signUp(user);
         };
 
-        $scope.Logout = function() {
-            LoginService.logout();
-        }
+        $scope.Login = function(user) {
+            SecurityService.login(user);
+        };
 
         $scope.$on('Facebook.Connected', function(res) {
             $scope.isLoggedIn = true;
@@ -16,6 +24,13 @@ angular.module('kulaWebApp')
         $scope.$on('Facebook.NotConnected', function(res) {
             $scope.isLoggedIn = false;
         });
+
+        $scope.LoginWithFacebook = function() {
+            LoginService.login().then(function(res){
+                console.log(res);
+                Account.loginWithFacebook(res);
+            })
+        }
 
 
     }]);

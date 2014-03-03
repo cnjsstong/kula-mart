@@ -170,14 +170,14 @@ body {
   width: 100%;
 }
 .user-form input[type='text'].name {
-  background: #ffffff url('../img/user.png') no-repeat 95% 50%;
+  background: #ffffff url('../images/user.png') no-repeat 95% 50%;
 }
 .user-form input[type='email'],
 .user-form .email {
-  background: #ffffff url('../img/mail.png') no-repeat 95.5% 50%;
+  background: #ffffff url('../images/mail.png') no-repeat 95.5% 50%;
 }
 .user-form input[type='password'] {
-  background: #ffffff url('../img/lock.png') no-repeat 94.5% 50%;
+  background: #ffffff url('../images/lock.png') no-repeat 94.5% 50%;
 }
 .user-form input[type='submit'] {
   margin: 1.5em 0 0;
@@ -2994,7 +2994,7 @@ fieldset[disabled] .btn.cta.btn-info.active {
   color: #16a085;
 }
 .home.fullscreen #intro {
-  background: url('../img/bg-home23.jpg');
+  background: url('../images/bg-home23.jpg');
   background-size: cover;
   -ms-behavior: url(../extras/backgroundsize.min.htc);
   padding: 0;

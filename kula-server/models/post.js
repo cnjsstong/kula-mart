@@ -43,17 +43,34 @@ var PostSchema = new Schema({
         status: {
             type: String,
             enum: Status.enums,
-            'dafault': Status.ACTIVE
+            default: Status.ACTIVE
         },
         createDate: {
             type: Date,
-            'default': Date.now
+            default: Date.now
         },
         lastModified: {
             type: Date
         },
         replies: [String],
-        images: [String]
+        images: [String],
+        duration: {
+            type: Number
+        },
+        expire: {
+            type: Date
+        },
+        neverExpire: {
+            type: Boolean,
+            default: false
+        },
+        email: {
+            type: String
+        },
+        phone: {
+            type: String
+        },
+        delivery: [String]
     },
     {
         id: true
@@ -61,6 +78,62 @@ var PostSchema = new Schema({
 
 // Static CRUD
 PostSchema.statics = {
+    getPostByCategoryAndTag: function (category, tag, callback) {
+        this.find({
+            tags: tag,
+            category: category,
+            status: Status.ACTIVE,
+            $or: [
+                { neverExpire: true },
+                {
+                    $and: [
+                        { expire: {
+                            $gt: new Date()
+                        } },
+                        { neverExpire: false }
+                    ]
+                }
+            ]
+        }, function (err, posts) {
+//            console.log(err, posts);
+            callback(err, posts);
+        });
+    },
+
+    getTagsByCategory: function (category, area, callback) {
+        this.aggregate()
+            .match({                category: category,
+                area: area,
+                status: Status.ACTIVE,
+                $or: [
+                    { neverExpire: true },
+                    {
+                        $and: [
+                            { expire: {
+                                $gt: new Date()
+                            } },
+                            { neverExpire: {
+                                $ne: true
+                            } }
+                        ]
+                    }
+                ]
+            })
+            .unwind('tags')
+            .group({
+                _id: '$tags',
+                number: {
+                    $sum: 1
+                }
+            })
+            .sort({
+                number: -1
+            })
+            .exec(function (err, res) {
+//                console.log(err, res);
+                callback(err, res);
+            });
+    }
 };
 
 PostSchema.methods = {

@@ -8,6 +8,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Kula Mart</title>
@@ -18,10 +19,9 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
     <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
-    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css">
+    <link rel="stylesheet" href="bower_components/angular-dialog-service/dialogs.css">
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/custom.css">
@@ -49,26 +49,10 @@
                     <nav class="gn-menu-wrapper">
                         <div class="gn-scroller">
                             <ul class="gn-menu">
-                                <li class="current"><a href="#/"><i class="gn-icon icon-home"></i>Home</a>
-                                </li>
-                                <li>
-                                    <a href="#/"><i class="gn-icon linecon-bulb"></i>University</a>
-                                    <ul class="gn-submenu">
-                                        <li><a class="gn-icon" href="#/area/52f830afa80bfe4818f56654">Brandeis University</a></li>
-                                        <li><a class="gn-icon" href="#/area/52f83202a80bfe4818f56656">Boston University</a></li>
-                                        <li><a class="gn-icon" href="#/area/52f83378a80bfe4818f56660">Tufts University</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#/market"><i class="gn-icon linecon-star"></i>Market</a>
-                                    <ul class="gn-submenu">
-                                        <li><a class="gn-icon" href="#/market/textbook">Textbook</a></li>
-                                        <li><a class="gn-icon" href="#/market/housing">Housing</a></li>
-                                        <li><a class="gn-icon" href="#/market/car">Car</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#/"><i class="gn-icon linecon-user"></i>Business</a></li>
-                                <li><a href="#/"><i class="gn-icon linecon-like"></i>Info</a></li>
+                                <li class="current"><a ng-click="NavigateTo('/')"><i class="gn-icon icon-home"></i>Home</a></li>
+                                <li><a ng-click="NavigateTo('/market')"><i class="gn-icon linecon-bulb"></i>Market</a></li>
+                                <li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-user"></i>Business</a></li>
+                                <li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-like"></i>Info</a></li>
                             </ul>
                         </div>
                         <!-- /gn-scroller -->
@@ -76,13 +60,23 @@
                 </li>
 
                 <!-- logo -->
-                <li class="logo-wrapper"><a class="logo home" href="#/">KulaMart</a></li>
-                <li class="school-selector"><a>School</a></li>
+                <li class="logo-wrapper"><a class="logo home" ng-click="NavigateTo('/')">KulaMart</a></li>
+                <li class="school-selector">
+                    <a class="dropdown-toggle" ng-bind="currentArea.title"></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="area in areas" ng-click="SetCurrentArea(area)">
+                            <a ng-bind="area.title"></a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!-- top right: call to action -->
-                <li class="cta" ng-controller="LoginCtrl">
-                    <a ng-click="Logout()" ng-show="isLoggedIn">Logout</a>
-                    <a ng-click="Login()" ng-hide="isLoggedIn">Login</a>
+                <li class="cta">
+                    <a class="user-showcase" ng-click="NavigateTo('/my')" ng-show="isLoggedIn()">
+                        <span ng-bind="GetUser('email')"></span><br>
+                        <span>My Account</span>
+                    </a>
+                    <a ng-click="NavigateTo('/login')" ng-hide="isLoggedIn()">Login</a>
                 </li>
             </ul>
         </div>
@@ -93,10 +87,12 @@
     <div ng-view=""></div>
 
     <!-- Footer -->
-    <footer>
+
+    <!-- Footer -->
+    <footer class="container">
         <div class="row">
             <div class="col-lg-4 copyright">
-                <p>&copy; All Rights Reserved. 2013 - 2014 <a target="_blank">Kula Mart</a></p>
+                <p>&copy; All Rights Reserved. 2013 - 2014 <a ng-click="NavigateTo('/')">Kula Mart</a></p>
             </div>
             <div class="col-lg-8 social pull-right text-right">
                 <a href="#"><span aria-hidden="true" class="icon-facebook"></span></a>
@@ -106,7 +102,7 @@
                 <a href="#"><span aria-hidden="true" class="icon-google-plus"></span></a>
             </div>
         </div>
-    </footer> <!-- end Footer -->
+    </footer>
 </div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -136,18 +132,20 @@
 <script src="//sdk.amazonaws.com/js/aws-sdk-2.0.0-rc9.min.js"></script>
 
 <!-- build:js scripts/vendor.js -->
-<!-- bower:js -->
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-dialog-service/dialogs.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
 <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
 <script src="bower_components/angular-easyfb/angular-easyfb.js"></script>
-<!-- endbower -->
+<script src="bower_components/checklist-model/checklist-model.js"></script>
+<script src="bower_components/angular-cookie/angular-cookie.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
 <!-- endbuild -->
 
 <!-- build:js scripts/template.js -->
@@ -173,6 +171,8 @@
 <script src="scripts/resources/post.js"></script>
 <script src="scripts/resources/category.js"></script>
 <script src="scripts/resources/area.js"></script>
+<script src="scripts/resources/predefined.js"></script>
+<script src="scripts/resources/account.js"></script>
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/market.js"></script>
 <script src="scripts/controllers/area.js"></script>
@@ -184,10 +184,14 @@
 <script src="scripts/controllers/adminAreaNewEdit.js"></script>
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/postDetail.js"></script>
+<script src="scripts/controllers/adminPredefined.js"></script>
+<script src="scripts/controllers/my.js"></script>
+<script src="scripts/controllers/reply.js"></script>
 <script src="scripts/services/login.js"></script>
 <script src="scripts/services/upload.js"></script>
 <script src="scripts/services/area.js"></script>
 <script src="scripts/services/category.js"></script>
+<script src="scripts/services/security.js"></script>
 <script src="scripts/directives/fileread.js"></script>
 <script src="scripts/directives/fireCollage.js"></script>
 <script src="scripts/directives/firePortfolioImages.js"></script>

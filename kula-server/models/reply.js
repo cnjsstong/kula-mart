@@ -4,13 +4,14 @@ var mongoose = require('mongoose'),
 
 // Schema
 var ReplySchema = new Schema({
-        title: {
-            type: String
-        },
         content: {
             type: String
         },
         author: {
+            type: String,
+            index: true
+        },
+        email: {
             type: String
         },
         post: {
@@ -19,10 +20,11 @@ var ReplySchema = new Schema({
         },
         createDate: {
             type: Date,
-            'default': Date.now
+            default: Date.now
         },
         anonymous: {
-            type: Boolean
+            type: Boolean,
+            default: false
         }
     },
     {

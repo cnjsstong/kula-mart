@@ -1,13 +1,15 @@
 var role = require('../enums/role'),
     httpMethod = require('../enums/http'),
     mongoose = require('mongoose'),
-    ObjectID = require('mongodb').ObjectID;
+    ObjectID = require('mongodb').ObjectID,
+    Mail = require('../lib/mail.js');
 
 // Load configurations (default: development)
 var env = process.env.NODE_ENV || 'development',
     config = require('../conf/' + env + '.local.config');
 
 var Post = mongoose.model('Post');
+var Reply = mongoose.model('Reply');
 var Category = mongoose.model('Category');
 
 /*
@@ -17,20 +19,32 @@ function createPost(req, res) {
     var post = new Post();
     post._id = new ObjectID();
     post.title = req.body.title;
-    post.author = req.body.author;
-    post.area = req.body.area;
-    post.content = req.body.content;
-    post.category = req.body.category;
-    post.replies = [];
-    post.images = req.body.images;
     post.type = req.body.type;
-    post.price = req.body.price;
+    post.price = req.body.price || '';
+    post.author = req.account._id;
+    post.area = req.body.area;
+    post.category = req.body.category;
+    post.content = req.body.content || '';
+    post.tags = req.body.tags || [];
+    post.status = Post.Status.ACTIVE;
+    post.replies = [];
+    post.images = req.body.images || [];
+    post.duration = req.body.duration || 0;
+    post.neverExpire = req.body.neverExpire;
+    if (!post.neverExpire) {
+        var expireDate = new Date();
+        expireDate.setTime(Date.now() + parseInt(req.body.duration) * 24 * 60 * 60 * 1000);
+        post.expire = expireDate;
+    }
+    post.email = req.body.email;
+    post.phone = req.body.phone || '';
+    post.delivery = req.body.delivery || [];
 
     post.save(function (err) {
         if (err) {
             return res.send(500);
         } else {
-            return res.send(200);
+            return res.send(200, post);
         }
     });
 }
@@ -39,18 +53,30 @@ function updatePost(req, res) {
 
     var post = {};
     post.title = req.body.title;
-    post.author = req.body.author;
-    post.area = req.body.area;
-    post.content = req.body.content;
-    post.category = req.body.category;
-    post.lastModified = Date.now();
-    post.images = req.body.images;
     post.type = req.body.type;
     post.price = req.body.price;
+    post.author = req.body.author;
+    post.area = req.body.area;
+    post.category = req.body.category;
+    post.content = req.body.content;
+    post.tags = req.body.tags;
+    post.status = Post.Status.ACTIVE;
+    post.lastModified = Date.now();
+    post.images = req.body.images;
+    post.duration = req.body.duration;
+    post.neverExpire = req.body.neverExpire;
+    if (!post.neverExpire) {
+        var expireDate = new Date();
+        expireDate.setTime(Date.now() + parseInt(req.body.duration) * 24 * 60 * 60 * 1000);
+        post.expire = expireDate;
+    }
+    post.email = req.body.email;
+    post.phone = req.body.phone;
+    post.delivery = req.body.delivery;
 
     Post.update({_id: ObjectID(req.body._id)}, post, {upsert: true}, function (err) {
         if (err) {
-            console.log(err);
+//            console.log(err);
             return res.send(500);
         } else {
             return res.send(200);
@@ -59,24 +85,19 @@ function updatePost(req, res) {
 }
 
 function listPosts(req, res) {
-    if (req.params.categoryTitle) {
-        Category.findOne({title: {$regex: new RegExp(req.params.categoryTitle, 'i')}}, function (err, category) {
+    console.log(req.params);
+    if (req.params.categoryId && req.params.areaId) {
+        Post.find({category: req.params.categoryId, area: {$all: [req.params.areaId]}}, function (err, posts) {
             if (err) {
                 return res.send(500);
             } else {
-                Post.find({category: {$all: [category._id.toString()]}}, function (err, posts) {
-                    if (err) {
-                        return res.send(500);
-                    } else {
-                        return res.send(200, posts);
-                    }
-                });
+                return res.send(200, posts);
             }
         });
-    }
-    else {
-        if(req.params.areaId) {
-            Post.find({area: {$all: [req.params.areaId]}}, function(err, posts) {
+    } else {
+        console.log('aaa');
+        if (req.params.areaId) {
+            Post.find({area: {$all: [req.params.areaId]}}, function (err, posts) {
                 if (err) {
                     return res.send(500);
                 } else {
@@ -84,13 +105,7 @@ function listPosts(req, res) {
                 }
             })
         } else {
-            Post.find({}, function (err, posts) {
-                if (err) {
-                    return res.send(500);
-                } else {
-                    return res.send(200, posts);
-                }
-            });
+            return res.send(400);
         }
     }
 }
@@ -113,9 +128,84 @@ function removePost(req, res) {
             return res.send(200);
         }
     });
-
 }
 
+function getTagsByCategory(req, res) {
+    Post.getTagsByCategory(req.params.category, req.params.area, function (err, tags) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200, tags);
+        }
+    });
+}
+
+function getPostByCategoryAndTag(req, res) {
+    Post.getPostByCategoryAndTag(req.params.category, req.params.tag, function (err, posts) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200, posts);
+        }
+    })
+}
+
+function getMyPosts(req, res) {
+    Post.find({author: req.account._id}, function (err, posts) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200, posts);
+        }
+    });
+}
+
+function replyPost(req, res) {
+    var reply = Reply();
+    reply._id = new ObjectID();
+    reply.content = req.body.content;
+    if (req.account) {
+        reply.author = req.account._id;
+    }
+    reply.email = req.body.email;
+    reply.post = req.params.postId;
+
+    reply.save(function (err) {
+        if (err) {
+            return res.send(500);
+        } else {
+            Post.findOne({_id: ObjectID(reply.post)}, function (err, post) {
+                if (err) {
+                    return res.send(500);
+                } else {
+                    Mail.sendReplyMail(reply, post);
+                    return res.send(200, reply);
+                }
+            });
+        }
+    });
+}
+
+function getReply(req, res) {
+    Reply.findOne({_id: ObjectID(req.params.replyId)}, function (err, reply) {
+        if(err) {
+            return res.send(500);
+        } else {
+            return res.send(200, reply);
+        }
+    });
+}
+
+function respond(req, res) {
+    Reply.findOne({_id: ObjectID(req.params.replyId)}, function (err, reply) {
+        if(err) {
+            return res.send(500);
+        } else {
+            Mail.sendRespondMail(reply, req.body);
+            return res.send(200, reply);
+        }
+    });
+}
 
 exports.base = 'post';
 
@@ -124,6 +214,21 @@ exports.routes = [
         'path': '',
         'method': httpMethod.POST,
         'handler': createPost
+    },
+    {
+        'path': 'tags',
+        'method': httpMethod.GET,
+        'handler': getTagsByCategory
+    },
+    {
+        'path': 'my',
+        'method': httpMethod.GET,
+        'handler': getMyPosts
+    },
+    {
+        'path': 'filtered',
+        'method': httpMethod.GET,
+        'handler': getPostByCategoryAndTag
     },
     {
         'path': ':postId',
@@ -144,5 +249,20 @@ exports.routes = [
         'path': ':postId',
         'method': httpMethod.DELETE,
         'handler': removePost
+    },
+    {
+        'path': ':postId/reply',
+        'method': httpMethod.POST,
+        'handler': replyPost
+    },
+    {
+        'path': 'reply/:replyId',
+        'method': httpMethod.GET,
+        'handler': getReply
+    },
+    {
+        'path': 'reply/:replyId/respond',
+        'method': httpMethod.POST,
+        'handler': respond
     }
 ];

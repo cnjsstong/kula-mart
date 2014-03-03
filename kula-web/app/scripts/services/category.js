@@ -17,6 +17,11 @@ angular.module('services.category')
         });
 
         var service = {
+
+            getCategories: function() {
+                return categories;
+            },
+
             getCategory: function(categoryId) {
                 if(categoryMapping.hasOwnProperty(categoryId)) {
                     return categoryMapping[categoryId];

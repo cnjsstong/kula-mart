@@ -1,0 +1,44 @@
+<section id="contact" class="section">
+    <div class="container">
+        <div class="row">
+
+            <div id="chat" class="col-md-6 col-md-offset-3">
+                <div class="lead-form bounce">
+                    <h2>
+                        Login
+                        <small>with Facebook</small>
+                        <br><br>
+                        <small>You can login with your Facebook account.</small>
+                    </h2>
+
+                    <form class="user-form">
+                        <div class="controls">
+                            <input type="submit" class="submit btn cta" value="Login with Facebook" ng-click="LoginWithFacebook()">
+                        </div>
+                    </form>
+
+                    <hr>
+                    <h1 class="text-center">Or</h1>
+                    <hr>
+
+                    <h2>Login <small>KulaMart Account</small></h2>
+
+                    <form class="user-form" id="contact-form">
+                        <div class="controls">
+                            <input type="email" name="email" class="email" placeholder="Enter your email" maxlength="320" pattern="^[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required ng-model="user.email">
+                            <input type="password" name="password" class="password" maxlength="50" pattern="^.+$" required placeholder="Enter your password" ng-model="user.password">
+                            <p class="text-center"><a href="#">Forgot your password?</a></p>
+                            <input type="submit" class="submit btn cta" value="Login" ng-click="Login(user)">
+
+                            <input type="submit" class="submit btn cta" value="Sign Up" ng-click="SignUp(user)">
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

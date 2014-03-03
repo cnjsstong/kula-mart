@@ -4,45 +4,49 @@
         <div class="row">
             <div class="col-lg-12 fadeIn">
                 <h1>{{ message | areaTitle }}</h1>
-                <a class="btn btn-primary cta" href="#/admin/post/new">Post</a>
-                <p><br>Carajillo brewed mazagran crema as so, affogato irish cortado frappuccino blue mountain. Siphon as, qui java cinnamon, coffee, café au lait, black trifecta mazagran est siphon.</p>
+                <a class="btn btn-primary cta" href="/admin/post/new">Post</a>
             </div>
 
         </div>
     </div>
 </section> <!-- end Intro Section -->
 
-<!-- Projects Section -->
-<section id="projects" class="section">
-    <div id="portfolio" class="Collage effect-parent grid">
-        <div class="Image_Wrapper block-item" ng-repeat="post in posts" fire-collage>
-            <a class="link" href="#/post/{{ post._id }}">
-                <div class="hovercontent">
-                    <h1 ng-bind="post.title"></h1>
-                    <h6 ng-bind="post.category | categoryTitle"></h6>
 
-                    <p ng-bind="post.content"></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-12 padding-bottom">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <!--<div class="panel-heading">-->
+                        <!--<h4 class="panel-title">-->
+                            <!--Type-->
+                        <!--</h4>-->
+                    <!--</div>-->
+                    <div class="panel-collapse collapse in">
+                        <div class="panel-body text-center">
+                            <div class="btn-group centered">
+                                <a class="btn" ng-class="{'btn-danger':filter.type=='offer', 'btn-primary':filter.type!='offer'}" ng-click="filter.type='offer'">Offering</a>
+                                <a class="btn" ng-class="{'btn-danger':filter.type=='request', 'btn-primary':filter.type!='request'}" ng-click="filter.type='request'">Requesting</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <img class="img-responsive" ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+post.images[0] }}" alt=""/>
-            </a>
+                <div class="panel panel-default" ng-repeat="category in categories">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a ng-bind="category.title" ng-click="ShowCategory($index)"></a>
+                        </h4>
+                    </div>
+                    <div class="panel-collapse collapse" ng-class="{'in':showCategory==$index}">
+                        <div class="panel-body">
+                            <a class="category-tag btn btn-xs" ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}" ng-repeat="tag in category.tags" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
-
-
-<div class="container hidden">
-    <div class="row" ng-repeat="post in posts">
-        <div class="col-xs-6">
-            <strong>[{{post.category}}]</strong> {{post.title}}
-        </div>
-        <div class="col-xs-3">
-            {{post.author}}
-        </div>
-        <div class="col-xs-3">
-            {{post.createDate | date:'yyyy-MM-dd' }}
-        </div>
-        <div class="col-xs-12">
-            {{post.content}}
+        <div class="col-md-9 col-sm-8 col-xs-12">
+            <kl-post kl-post-id="post._id" ng-repeat="post in posts | filter:FilterPosts" class="repeat-item"></kl-post>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('kulaWebApp')
-  .controller('MainCtrl', ['$scope', 'Post', function ($scope, Post) {
-        $scope.posts = Post.query();
-  }]);
+    .controller('MainCtrl', ['$scope', 'Post', '$rootScope', function ($scope, Post, $rootScope) {
+        $scope.posts = Post.query({areaId: $rootScope.currentArea._id || '52f830afa80bfe4818f56654'});
+    }]);

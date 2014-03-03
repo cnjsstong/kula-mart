@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window) {
+    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', 'Predefined', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window, Predefined) {
 
         function loadPost(postId) {
             $scope.categories = Category.query();
             $scope.areas = Area.query();
-            $scope.post = { images: [] }
+            $scope.deliveries = Predefined.query({type: 'delivery'});
+            $scope.post = { images: [] };
+            $scope.step = 0;
             if (postId) {
                 $scope.post = Post.get({postId: postId});
             }
@@ -18,7 +20,6 @@ angular.module('kulaWebApp')
 
         $scope.Submit = function (post) {
             Post.save({postId: $routeParams.postId}, post);
-//            $location.path('/admin/post');
             $window.history.back();
         };
 
