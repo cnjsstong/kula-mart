@@ -28,7 +28,11 @@ angular.module('kulaWebApp')
         $scope.LoginWithFacebook = function() {
             LoginService.login().then(function(res){
                 console.log(res);
-                Account.loginWithFacebook(res);
+//                LoginService.getUserInfo().then(function(me){
+                    Account.loginWithFacebook({},{facebook: res.authResponse.userId}, function(res) {
+                        
+                    });
+//                })
             })
         }
 

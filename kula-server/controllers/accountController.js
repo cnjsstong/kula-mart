@@ -131,6 +131,19 @@ function signup(req, res) {
 
 }
 
+function facebook(req, res) {
+    var virtualEmail = req.body.facebook + '@facebookusers.kulamart.com';
+    Account.findOne({email: virtualEmail},function(err, account) {
+        if(err || !account) {
+            req.body.email = virtualEmail;
+            req.body.password = req.body.facebook + Date.now();
+            return signup(req, res);
+        } else {
+            return res.send(201, account.securityMapping());
+        }
+    })
+}
+
 
 exports.base = 'account';
 
@@ -152,5 +165,10 @@ exports.routes = [
         'method': httpMethod.POST,
         'handler': signup,
         'version': '0.0.1'
+    },
+    {
+        'path': 'facebook',
+        'method': httpMethod.POST,
+        'handler': facebook
     }
 ];

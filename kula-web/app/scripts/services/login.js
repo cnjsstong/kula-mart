@@ -62,6 +62,10 @@ angular.module('services.login')
                 });
 
                 return defer.promise;
+            },
+
+            getUserInfo: function() {
+                return $FB.api('/me');
             }
         };
 
