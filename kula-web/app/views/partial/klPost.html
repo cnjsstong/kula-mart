@@ -6,16 +6,21 @@
         <div class="col-xs-10 post-content">
             <div class="header">
                 <span class="type" ng-switch="post.type">
-                    <a class="btn btn-sm btn-warning" ng-switch-when="request">Requesting</a>
-                    <a class="btn btn-sm btn-danger" ng-switch-when="offer">Offering</a>
+                    <a class="btn btn-md btn-warning" ng-switch-when="request">Requesting</a>
+                    <a class="btn btn-md btn-danger" ng-switch-when="offer">Offering</a>
                 </span>
 
+                &nbsp;<span class="title" ng-bind="post.title">The Title of The POST is HERE!!!</span>
                 <span class="price pull-right">
                     for $<strong ng-bind="post.price"></strong>
                 </span>
             </div>
+            <div>
+                <span class="tags" ng-init="post.tags=['Good','Stuff','Cheap']">
+                    <span class="tag btn btn-sm btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
+                </span>
+            </div>
 
-            <div class="title" ng-bind="post.title">The Title of The POST is HERE!!!</div>
             <div class="details" ng-show="expanded">
                 <div ng-bind="post.content">Have a question you would like to ask? Or maybe a project you would like us
                     to work on? Either way,
@@ -31,16 +36,14 @@
                 <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
                 <hr>
             </div>
+
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 footer">
-                <span class="tags" ng-init="post.tags=['Good','Stuff','Cheap']">
-                    <span class="tag btn btn-xs btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
-                </span>
                 <span class="actions pull-right">
-                    <a class="btn btn-sm btn-primary">Save for later</a>
-                    <a class="btn btn-sm btn-primary" ng-click="expanded=!expanded" ng-init="expanded=false">View
+                    <a class="btn btn-md btn-primary">Save for later</a>
+                    <a class="btn btn-md btn-primary" ng-click="expanded=!expanded" ng-init="expanded=false">View
                         Details</a>
                     <!--<a class="btn btn-sm btn-primary" ng-click="expanded=!expanded">Reply</a>-->
                 </span>

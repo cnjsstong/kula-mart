@@ -53,6 +53,7 @@
                                 <li><a ng-click="NavigateTo('/market')"><i class="gn-icon linecon-bulb"></i>Market</a></li>
                                 <li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-user"></i>Business</a></li>
                                 <li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-like"></i>Info</a></li>
+                                <li><a ng-click="NavigateTo('/my')"><i class="gn-icon linecon-settings"></i>My Account</a></li>
                             </ul>
                         </div>
                         <!-- /gn-scroller -->
@@ -62,7 +63,7 @@
                 <!-- logo -->
                 <li class="logo-wrapper"><a class="logo home" ng-click="NavigateTo('/')">KulaMart</a></li>
                 <li class="school-selector">
-                    <a class="dropdown-toggle" ng-bind="currentArea.title"></a>
+                    <a class="dropdown-toggle">for <strong ng-bind="currentArea.title"></strong></a>
                     <ul class="dropdown-menu">
                         <li ng-repeat="area in areas" ng-click="SetCurrentArea(area)">
                             <a ng-bind="area.title"></a>
@@ -95,11 +96,11 @@
                 <p>&copy; All Rights Reserved. 2013 - 2014 <a ng-click="NavigateTo('/')">Kula Mart</a></p>
             </div>
             <div class="col-lg-8 social pull-right text-right">
-                <a href="#"><span aria-hidden="true" class="icon-facebook"></span></a>
-                <a href="#"><span aria-hidden="true" class="icon-twitter"></span></a>
-                <a href="#"><span aria-hidden="true" class="icon-dribbble"></span></a>
-                <a href="#"><span aria-hidden="true" class="icon-youtube-play"></span></a>
-                <a href="#"><span aria-hidden="true" class="icon-google-plus"></span></a>
+                <!--<a href="#"><span aria-hidden="true" class="icon-facebook"></span></a>-->
+                <!--<a href="#"><span aria-hidden="true" class="icon-twitter"></span></a>-->
+                <!--<a href="#"><span aria-hidden="true" class="icon-dribbble"></span></a>-->
+                <!--<a href="#"><span aria-hidden="true" class="icon-youtube-play"></span></a>-->
+                <!--<a href="#"><span aria-hidden="true" class="icon-google-plus"></span></a>-->
             </div>
         </div>
     </footer>

@@ -39,7 +39,7 @@
                     </div>
                     <div class="panel-collapse collapse" ng-class="{'in':showCategory==$index}">
                         <div class="panel-body">
-                            <a class="category-tag btn btn-xs" ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}" ng-repeat="tag in category.tags" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
+                            <a class="category-tag btn btn-sm" ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}" ng-repeat="tag in category.tags" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
                         </div>
                     </div>
                 </div>
