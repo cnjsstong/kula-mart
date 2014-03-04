@@ -93,7 +93,7 @@ function login(req, res) {
 function signup(req, res) {
     Account.createAccount(req.body, function (err, acc) {
         if (err) {
-            return res.send(404, 'Create account failed');
+            return res.send(500, err);
         }
         var toClientAccount = acc.securityMapping();
         return res.send(201, toClientAccount);
@@ -112,7 +112,7 @@ function facebook(req, res) {
             };
             Account.createAccount(virtualReq, function(err, acc){
                 if (err) {
-                    return res.send(404, 'Create account failed');
+                    return res.send(500, err);
                 }
                 var toClientAccount = acc.securityMapping();
                 return res.send(201, toClientAccount);
