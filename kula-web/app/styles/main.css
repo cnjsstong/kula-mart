@@ -172,3 +172,16 @@ a.user-showcase {
 .padding-top-lg {
     padding-top: 8em;
 }
+
+.black-mask {
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+a.carousel-link {
+    color: #16a085;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}

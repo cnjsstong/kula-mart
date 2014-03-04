@@ -84,7 +84,7 @@ AccountSchema.statics = {
             var token = buf.toString('hex');
             account.password = bcrypt.hashSync(account.password, salt);
             account.token = token;
-            Account.save(account, function (err) {
+            account.save(function (err) {
                 callback(err, account);
             });
         });
