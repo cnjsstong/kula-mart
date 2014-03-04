@@ -1,5 +1,5 @@
 angular.module('kulaWebApp')
-    .controller('LoginCtrl', ['$scope', 'SecurityService', 'LoginService', 'Account', function ($scope, SecurityService, LoginService, Account) {
+    .controller('LoginCtrl', ['$scope', 'SecurityService', 'LoginService', 'Account', '$dialogs', function ($scope, SecurityService, LoginService, Account, $dialogs) {
 //        $scope.Login = function() {
 //            console.log('Will Login...');
 //            LoginService.login();
@@ -9,30 +9,37 @@ angular.module('kulaWebApp')
 //            LoginService.logout();
 //        };
 
-        $scope.SignUp = function(user) {
-            SecurityService.signUp(user);
+        $scope.SignUp = function (user) {
+            SecurityService.signUp(user).then(function(){
+                $dialogs.notify('KulaMart','You have successfully logged in.');
+            }, function() {
+                $dialogs.notify('KulaMart','Login failed. Please retry.');
+            });
         };
 
-        $scope.Login = function(user) {
-            SecurityService.login(user);
+        $scope.Login = function (user) {
+            SecurityService.login(user).then(function(){
+                $dialogs.notify('KulaMart','You have successfully logged in.');
+            }, function() {
+                $dialogs.notify('KulaMart','Login failed. Please retry.');
+            });
         };
 
-        $scope.$on('Facebook.Connected', function(res) {
+        $scope.$on('Facebook.Connected', function (res) {
             $scope.isLoggedIn = true;
         });
 
-        $scope.$on('Facebook.NotConnected', function(res) {
+        $scope.$on('Facebook.NotConnected', function (res) {
             $scope.isLoggedIn = false;
         });
 
-        $scope.LoginWithFacebook = function() {
-            LoginService.login().then(function(res){
-                console.log(res);
-//                LoginService.getUserInfo().then(function(me){
-                    Account.loginWithFacebook({},{facebook: res.authResponse.userID}, function(res) {
-
-                    });
-//                })
+        $scope.LoginWithFacebook = function () {
+            LoginService.login().then(function (facebookResponse) {
+                SecurityService.loginWithFacebook(facebookResponse).then(function(){
+                    $dialogs.notify('KulaMart','You have successfully logged in.');
+                }, function() {
+                    $dialogs.notify('KulaMart','Login failed. Please retry.');
+                });
             })
         }
 

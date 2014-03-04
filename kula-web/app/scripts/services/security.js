@@ -152,6 +152,22 @@ angular.module('services.security')
                     defer.reject(err);
                 });
                 return defer.promise;
+            },
+
+            loginWithFacebook: function(facebookResponse) {
+                var defer = $q.defer();
+                Account.loginWithFacebook({}, {facebookId: res.authResponse.userID, name: 'Facebook User'}, function (res) {
+                    if(res.token) {
+                        service.setAuthenticationHeader(res).setLocalUser(res).confirmLogin(res).last(function(){
+                            defer.resolve();
+                        }, null);
+                    } else {
+                        defer.reject(res);
+                    }
+                }, function(err){
+                    defer.reject(err);
+                });
+                return defer.promise();
             }
         };
 
