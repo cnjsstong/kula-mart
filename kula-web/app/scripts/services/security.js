@@ -156,7 +156,7 @@ angular.module('services.security')
 
             loginWithFacebook: function(facebookResponse) {
                 var defer = $q.defer();
-                Account.loginWithFacebook({}, {facebookId: res.authResponse.userID, name: 'Facebook User'}, function (res) {
+                Account.loginWithFacebook({}, {facebookId: facebookResponse.authResponse.userID, name: 'Facebook User'}, function (res) {
                     if(res.token) {
                         service.setAuthenticationHeader(res).setLocalUser(res).confirmLogin(res).last(function(){
                             defer.resolve();
