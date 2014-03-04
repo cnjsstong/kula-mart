@@ -31,7 +31,7 @@ function login(req, res) {
 
             var query = { email: req.body.email };
 
-            var projection = { email: 1, password: 1, token: 1, status: 1, type: 1};
+            var projection = { email: 1, password: 1, username: 1, facebookId: 1, token: 1, status: 1, type: 1};
 
             Account.findOne(query, projection, function (err, account) {
 
@@ -91,54 +91,32 @@ function login(req, res) {
  * Anonymous account register
  */
 function signup(req, res) {
-
-    var account = new Account();
-
-    // Initialize id
-    account._id = new ObjectID();
-
-    // Initialize
-    account.email = req.body.email;
-    account.password = req.body.password;
-
-    account.status = Account.Status.ACTIVE;
-
-    account.type = role.CUSTOMER;
-
-    tokenGenerator.randomBytes(config.tokenLength, function (ex, buf) {
-
-        var token = buf.toString('hex');
-
-        account.password = bcrypt.hashSync(account.password, salt);
-
-        account.token = token;
-
-        // Create account        
-        Account.createAccount(account, function (err) {
-
-            if (err) {
-                return res.send(404, 'Create account failed');
-            }
-
-            // return account
-            var toClientAccount = account.securityMapping();
-
-            return res.send(201, toClientAccount);
-
-        });// end: createAccount
-
-    });// end: tokenGenerator
-
+    Account.createAccount(req.body, function (err, acc) {
+        if (err) {
+            return res.send(404, 'Create account failed');
+        }
+        var toClientAccount = acc.securityMapping();
+        return res.send(201, toClientAccount);
+    });
 }
 
 function facebook(req, res) {
-    var virtualEmail = req.body.facebook + '@facebookusers.kulamart.com';
-    Account.findOne({email: virtualEmail},function(err, account) {
-        if(err || !account) {
-            req.body.email = virtualEmail;
-            req.body.password = req.body.facebook + Date.now();
-            console.log(req.body);
-            return signup(req, res);
+    var virtualEmail = req.body.facebookId + '@facebookusers.kulamart.com';
+    Account.findOne({email: virtualEmail}, function (err, account) {
+        if (err || !account) {
+            var virtualReq = {
+                email: virtualEmail,
+                password: req.body.facebookId + Date.now(),
+                facebookId: req.body.facebookId,
+                name: req.body.name
+            };
+            Account.createAccount(virtualReq, function(err, acc){
+                if (err) {
+                    return res.send(404, 'Create account failed');
+                }
+                var toClientAccount = acc.securityMapping();
+                return res.send(201, toClientAccount);
+            });
         } else {
             return res.send(201, account.securityMapping());
         }

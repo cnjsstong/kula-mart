@@ -1,7 +1,14 @@
 var mongoose = require('mongoose'),
+    role = require('../enums/role'),
+    ObjectID = require('mongodb').ObjectID,
     Schema = mongoose.Schema,
     typeList = require('../enums/role').TYPE_LIST,
-    validator = require('../lib/validator');
+    validator = require('../lib/validator'),
+    bcrypt = require('bcrypt-nodejs'),
+    salt = bcrypt.genSaltSync(),
+    tokenGenerator = require('crypto');
+
+var config = require('../conf/' + env + '.local.config');
 
 // Constants
 var Status = {
@@ -31,6 +38,12 @@ var AccountSchema = new Schema({
         },
         password: {
             type: String
+        },
+        name: {
+            type: String
+        },
+        facebookId: {
+            type: String
         }
     },
     {
@@ -54,28 +67,36 @@ AccountSchema.statics = {
         });
     },
 
-    createAccount: function (account, callback) {
-        if (!account instanceof Account) {
-            callback('Invalid account');
-        } else {
-            account.save(function (err) {
-                if (err) {
-                    callback(err);
-                } else {
-                    callback(null);
-                }
+    createAccount: function (accountInfo, callback) {
+
+        var account = new Account();
+
+        account._id = new ObjectID();
+        account.email = accountInfo.email;
+        account.password = accountInfo.password;
+        account.name = accountInfo.name;
+        account.facebookId = accountInfo.facebookId;
+        account.status = Account.Status.ACTIVE;
+        account.type = role.CUSTOMER;
+
+        tokenGenerator.randomBytes(config.tokenLength, function (ex, buf) {
+            var token = buf.toString('hex');
+            account.password = bcrypt.hashSync(account.password, salt);
+            account.token = token;
+            Account.save(account, function (err) {
+                callback(err, account);
             });
-        }
+        });
     }
 };
 
 AccountSchema.methods = {
-    toClient: function () {
-        var account = this.toObject();
-        account.id = account._id;
-        delete account._id;
-        return account;
-    },
+//    toClient: function () {
+//        var account = this.toObject();
+//        account.id = account._id;
+//        delete account._id;
+//        return account;
+//    },
 
     securityMapping: function () {
         var account = {};
