@@ -16,7 +16,7 @@ function createPredefined(req, res) {
     var predefined = new Predefined();
     predefined._id = new ObjectID();
     predefined.title = req.body.title;
-    predefined.type = req.body.type;
+    predefined.type = req.body.type || '';
 
     predefined.save(function (err) {
         if (err) {

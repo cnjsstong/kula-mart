@@ -16,8 +16,8 @@ function createArea(req, res) {
     var area = new Area();
     area._id = new ObjectID();
     area.title = req.body.title;
-    area.description = req.body.description;
-    area.address = req.body.address;
+    area.description = req.body.description || '';
+    area.address = req.body.address || '';
     area.coords = req.body.coords;
 
     area.save(function (err) {
@@ -33,8 +33,8 @@ function updateArea(req, res) {
 
     var area = {};
     area.title = req.body.title;
-    area.description = req.body.description;
-    area.address = req.body.address;
+    area.description = req.body.description || '';
+    area.address = req.body.address || '';
     area.coords = req.body.coords;
 
     Area.update({_id: ObjectID(req.body._id)}, area, {upsert: true}, function (err) {

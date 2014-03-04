@@ -16,7 +16,7 @@ function createBusiness(req, res) {
     var business = new Business();
     business._id = new ObjectID();
     business.title = req.body.title;
-    business.description = req.body.description;
+    business.description = req.body.description || '';
     business.area = req.body.area;
 
     business.save(function (err) {

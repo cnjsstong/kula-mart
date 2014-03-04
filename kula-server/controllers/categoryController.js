@@ -16,7 +16,7 @@ function createCategory(req, res) {
     var category = new Category();
     category._id = new ObjectID();
     category.title = req.body.title;
-    category.template = req.body.template;
+    category.template = req.body.template || '';
 
     category.save(function (err) {
         if (err) {
@@ -33,7 +33,7 @@ function updateCategory(req, res) {
 
     var category = {};
     category.title = req.body.title;
-    category.template = req.body.template;
+    category.template = req.body.template || '';
 
     Category.update({_id: ObjectID(req.body._id)}, category, {upsert: true}, function (err) {
         if (err) {
