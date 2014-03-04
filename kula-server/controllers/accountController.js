@@ -137,6 +137,7 @@ function facebook(req, res) {
         if(err || !account) {
             req.body.email = virtualEmail;
             req.body.password = req.body.facebook + Date.now();
+            console.log(req.body);
             return signup(req, res);
         } else {
             return res.send(201, account.securityMapping());
