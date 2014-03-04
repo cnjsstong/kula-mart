@@ -8,7 +8,8 @@ var mongoose = require('mongoose'),
     salt = bcrypt.genSaltSync(),
     tokenGenerator = require('crypto');
 
-var config = require('../conf/' + env + '.local.config');
+var env = process.env.NODE_ENV || 'development',
+    config = require('../conf/' + env + '.local.config');
 
 // Constants
 var Status = {
