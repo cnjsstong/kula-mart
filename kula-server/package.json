@@ -1,16 +1,17 @@
 {
-  "name": "kula-server",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "mongodb": "latest",
-    "mongoose": "latest",
-    "validator": "latest",
-    "restify": "latest",
-    "bcrypt-nodejs": "latest",
-    "nodemailer": "latest"
-  }
+    "name": "kula-server",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "mongodb": "latest",
+        "mongoose": "latest",
+        "validator": "latest",
+        "restify": "latest",
+        "bcrypt-nodejs": "latest",
+        "aws-sdk": "latest",
+        "nodemailer": "latest"
+    }
 }

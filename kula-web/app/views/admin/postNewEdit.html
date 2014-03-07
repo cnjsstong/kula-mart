@@ -87,10 +87,7 @@
                                     <img ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}">
                                 </li>
                             </ul>
-                            <input type="file" fileread="upload.file" ng-model="upload.filename">
-                            <button type="button" class="btn-btn-default btn-xs cta"
-                                    ng-click="UploadImage(upload.file)">Add
-                            </button>
+                            <input ng-file-select="GetPostUploadOptions()" type="file">
                         </div>
                     </div>
                     <div class="row action-btns" ng-show="step==1">

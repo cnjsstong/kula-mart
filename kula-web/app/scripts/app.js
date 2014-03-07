@@ -15,6 +15,7 @@ angular.module('kulaWebApp', [
         'services.area',
         'services.category',
         'services.security',
+        'angularFileUpload',
         'dialogs'
     ])
     .config(['$routeProvider', function ($routeProvider) {

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', 'Predefined', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window, Predefined) {
+    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', 'Predefined', 'API', '$dialogs', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window, Predefined, API, $dialogs) {
+
 
         function loadPost(postId) {
             $scope.categories = Category.query();
@@ -23,12 +24,24 @@ angular.module('kulaWebApp')
             $window.history.back();
         };
 
-        $scope.UploadImage = function(file) {
-            console.log(file);
-            UploadService.upload(file).then(function(res) {
-                $scope.post.images.push(res);
-                console.log(res);
-            });
+        $scope.GetPostUploadOptions = function () {
+            var res = {
+                uploadInfo: {
+                    type: 'post',
+                    scope: $scope
+                },
+                url: API.UploadBase+'upload'
+            };
+            console.log(res);
+            return res;
         };
+
+        UploadService.processor('success', 'post', function (event, xhr, item, response) {
+            item.uploadInfo.scope.post.images.push(response.imageId);
+        });
+
+        UploadService.processor('error', 'post', function(event, xhr, item, response) {
+            $dialogs.error('Upload', 'Upload failed. Please retry.');
+        })
 
     }]);

@@ -10,6 +10,7 @@ angular.module('resources')
         BuildDateString: 'Jan 15, 2014',
         FeatureString: 'Ashley.',
         ResourceUrl: 'http://inori.sj.gs:3000/',//'http://localhost:3000/',
+        UploadBase: 'http://localhost:3000/',
         Method: {
             GET: 'GET',
             POST: 'POST',
