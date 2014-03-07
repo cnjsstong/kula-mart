@@ -8,8 +8,8 @@ module.exports = {
 	tokenLength : 32,
 
 	email_options : {
-		account : '',
-		password : '',
-		sendTo : ''
+		account : "kulamart.noreply@gmail.com",
+		password : "semicond",
+        sender: "KulaMart <noreply@kulamart.com>"
 	}
 };
