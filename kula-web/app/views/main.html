@@ -1,5 +1,5 @@
 <!-- Featured items -->
-<section id="featured" class="section intro carousel slide">
+<section id="featured" class="section intro carousel slide" data-interval="3000" data-ride="carousel" fire-auto-carousel>
 
     <ol class="carousel-indicators">
         <li data-target="#featured" data-slide-to="0" class="active"></li>
@@ -88,26 +88,20 @@
 
 </section> <!-- end Featured items -->
 
-
+<h2 class="text-center">Events</h2>
 <!-- Team Section -->
-<section id="team" class="team section container hidden">
+<section id="team" class="team section container">
 
     <div class="container animation-fade">
         <div class="row">
 
-            <div class="carousel-small clearfix" fire-carousel>
+            <div class="carousel-small clearfix">
 
-                <article class="content" style="background-image: url(images/team1.jpg); opacity: 1;">
+                <article class="content" style="background-image: url(images/team1.jpg); opacity: 1;" ng-repeat="post in posts" fire-carousel="$last" fire-carousel-bg="post.images[0]">
                     <div class="details">
-                        <h3>Anthony Raymond</h3>
+                        <h4 ng-bind="post.title">Event Name Here</h4>
 
-                        <p><span class="role-title">CEO</span></p>
-
-                        <p>
-                            <a href="#" class="icon-twitter twitter"></a>
-                            <a href="#" class="icon-facebook facebook"></a>
-                            <a href="#" class="icon-linkedin linkedin"></a>
-                        </p>
+                        <p><span class="role-title">3 days left</span></p>
                     </div>
                 </article>
             </div>
@@ -123,6 +117,7 @@
 </section> <!-- end Team Section -->
 
 
+<h2 class="text-center">Market</h2>
 <!-- Contact -->
 <section id="contact" class="section container post-list">
     <div class="row">

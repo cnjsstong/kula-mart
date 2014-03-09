@@ -12,8 +12,8 @@
                                     I am
                                 </div>
                                 <div class="btn-group table-cell" style="width: 160px;">
-                                    <a class="btn btn-sm" ng-class="{'btn-danger bold':post.type=='offer','btn-warning':post.type!='offer'}" ng-click="post.type='offer'">Offering</a>
-                                    <a class="btn btn-sm" ng-class="{'btn-danger bold':post.type=='request','btn-warning':post.type!='request'}" ng-click="post.type='request'">Requesting</a>
+                                    <a class="btn btn-sm" ng-class="{'btn-danger bold':post.type=='offer','btn-disabled':post.type!='offer'}" ng-click="post.type='offer'">Offering</a>
+                                    <a class="btn btn-sm" ng-class="{'btn-danger bold':post.type=='request','btn-disabled':post.type!='request'}" ng-click="post.type='request'">Requesting</a>
                                 </div>
                                 <input type="text" class="form-control table-cell" id="postTitle" placeholder="What?"
                                        ng-model="post.title" required>
@@ -42,6 +42,8 @@
                                                max-results-to-show="10">
                                 </auto-complete>
                             </tags-input>
+                            <p class="help-block">You should add at least 3 tags. Type in your tag, then press ENTER to add.</p>
+
                             Or choose from the following tags
                             <div>
                                 <a>Tag 1</a>
@@ -52,7 +54,7 @@
                         </div>
                     </div>
                     <div class="row action-btns" ng-show="step==0">
-                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid" ng-click="step=1">Next</a>
+                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !post.type || post.tags.length<3" ng-click="step=1">Next</a>
                     </div>
                 </div>
 
@@ -131,8 +133,7 @@
 
                         <div class="form-group">
                             <label>Contact Phone</label>
-                            <input type="text" class="form-control" placeholder="9999999999"
-                                   ng-model="post.phone">
+                            <input type="text" class="form-control" ng-model="post.phone">
                         </div>
                     </div>
                     <div class="row action-btns">

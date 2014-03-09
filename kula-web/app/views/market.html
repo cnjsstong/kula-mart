@@ -25,8 +25,8 @@
                     <div class="panel-collapse collapse in">
                         <div class="panel-body text-center">
                             <div class="btn-group centered">
-                                <a class="btn" ng-class="{'btn-danger':filter.type=='offer', 'btn-primary':filter.type!='offer'}" ng-click="filter.type='offer'">Offering</a>
-                                <a class="btn" ng-class="{'btn-danger':filter.type=='request', 'btn-primary':filter.type!='request'}" ng-click="filter.type='request'">Requesting</a>
+                                <a class="btn" ng-class="{'btn-danger':filter.type=='offer', 'btn-disabled':filter.type!='offer'}" ng-click="filter.type='offer'">Offering</a>
+                                <a class="btn" ng-class="{'btn-danger':filter.type=='request', 'btn-disabled':filter.type!='request'}" ng-click="filter.type='request'">Requesting</a>
                             </div>
                         </div>
                     </div>

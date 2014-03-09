@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', 'Predefined', 'API', '$dialogs', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window, Predefined, API, $dialogs) {
+    .controller('AdminPostNewEditCtrl', ['$scope', 'Post', 'Category', 'Area', '$routeParams', '$location', 'UploadService', '$window', 'Predefined', 'API', '$dialogs', '$rootScope', function ($scope, Post, Category, Area, $routeParams, $location, UploadService, $window, Predefined, API, $dialogs, $rootScope) {
 
 
         function loadPost(postId) {
             $scope.categories = Category.query();
             $scope.areas = Area.query();
             $scope.deliveries = Predefined.query({type: 'delivery'});
-            $scope.post = { images: [] };
+            $scope.post = { images: [], email: $rootScope.GetUser('email') };
             $scope.step = 0;
             if (postId) {
                 $scope.post = Post.get({postId: postId});
