@@ -10,6 +10,7 @@ Run client:
 
 2. install grunt 
 ```
+  npm config set prefix /usr/local
   npm install -g grunt-cli
 ```
 
