@@ -10,7 +10,7 @@
                     <a class="btn btn-md btn-danger" ng-switch-when="offer">Offering</a>
                 </span>
 
-                &nbsp;<span class="title" ng-bind="post.title">The Title of The POST is HERE!!!</span>
+                &nbsp;<span class="title" ng-bind="post.title">The Title of The POST is HERE!!!</span> (<b ng-bind="post.category | categoryTitle"></b>)
                 <span class="price pull-right">
                     for $<strong ng-bind="post.price"></strong>
                 </span>

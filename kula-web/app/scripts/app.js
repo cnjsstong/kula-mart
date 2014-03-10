@@ -76,7 +76,8 @@ angular.module('kulaWebApp', [
             })
             .when('/market', {
                 templateUrl: 'views/market.html',
-                controller: 'MarketCtrl'
+                controller: 'MarketCtrl',
+                reloadOnSearch: false
             })
             .when('/market/:areaId', {
                 templateUrl: 'views/market.html',
@@ -189,8 +190,12 @@ angular.module('kulaWebApp', [
             $route.reload();
         };
 
-        $rootScope.NavigateTo = function (url) {
-            $location.path(url);
+        $rootScope.NavigateTo = function (url, query) {
+            if(query) {
+                $location.path(url).search({keyword: query});
+            } else {
+                $location.path(url);
+            }
         };
 
     }]);

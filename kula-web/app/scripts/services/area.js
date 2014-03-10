@@ -23,7 +23,7 @@ angular.module('services.area')
             },
 
             getArea: function(areaId) {
-                console.log(areaMapping, areaId, areaMapping[areaId]);
+//                console.log(areaMapping, areaId, areaMapping[areaId]);
                 if(areaMapping.hasOwnProperty(areaId)) {
                     return areaMapping[areaId];
                 } else {

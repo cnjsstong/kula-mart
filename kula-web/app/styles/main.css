@@ -296,3 +296,12 @@ section h1 {
     background-color: #dddddd;
     border-color: #dddddd;
 }
+
+.kl-search form{
+    color: #000000;
+    text-align: left;
+}
+
+.kl-search input {
+    margin: 0;
+}

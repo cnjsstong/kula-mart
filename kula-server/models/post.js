@@ -79,9 +79,8 @@ var PostSchema = new Schema({
 // Static CRUD
 PostSchema.statics = {
     getPostByCategoryAndTag: function (category, tag, callback) {
-        this.find({
+        var query = {
             tags: tag,
-            category: category,
             status: Status.ACTIVE,
             $or: [
                 { neverExpire: true },
@@ -94,31 +93,39 @@ PostSchema.statics = {
                     ]
                 }
             ]
-        }, function (err, posts) {
+        };
+        if (category) {
+            query.category = category;
+        }
+        this.find(query, function (err, posts) {
 //            console.log(err, posts);
             callback(err, posts);
         });
     },
 
     getTagsByCategory: function (category, area, callback) {
+        var query = {
+            area: area,
+            status: Status.ACTIVE,
+            $or: [
+                { neverExpire: true },
+                {
+                    $and: [
+                        { expire: {
+                            $gt: new Date()
+                        } },
+                        { neverExpire: {
+                            $ne: true
+                        } }
+                    ]
+                }
+            ]
+        };
+        if (category) {
+            query.category = category;
+        }
         this.aggregate()
-            .match({                category: category,
-                area: area,
-                status: Status.ACTIVE,
-                $or: [
-                    { neverExpire: true },
-                    {
-                        $and: [
-                            { expire: {
-                                $gt: new Date()
-                            } },
-                            { neverExpire: {
-                                $ne: true
-                            } }
-                        ]
-                    }
-                ]
-            })
+            .match(query)
             .unwind('tags')
             .group({
                 _id: '$tags',
