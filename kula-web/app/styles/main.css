@@ -3,6 +3,10 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .post-image-list {
     list-style-type: none;
     padding: 0;
@@ -202,8 +206,37 @@ a.carousel-link {
     font-size: 1.3em;
 }
 
+.panel {
+    background-color: #16a085;
+    color: #ffffff;
+    border: 0;
+}
+
+.panel.kl-search.form {
+    color: #ffffff;
+}
+
+.panel-default .panel-heading{
+    background-color: #018c71;
+    border-color: #018c71;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.panel-heading:hover,
+.panel-heading:active,
+.panel-heading:focus {
+    background-color: #01628c;
+}
+
 .panel-title {
-    font-size: 22px;
+    font-size: 20px;
+}
+
+.panel-group .panel-heading + .panel-collapse .panel-body {
+    border-top: 0px;
 }
 
 body {
@@ -304,7 +337,7 @@ section h1 {
 }
 
 .kl-search form{
-    color: #000000;
+    color: #ffffff;
     text-align: left;
 }
 
