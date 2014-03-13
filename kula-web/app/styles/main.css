@@ -19,7 +19,7 @@ a {
     width: auto;
     border-radius: 5px;
 }
-
+    
 .school-selector a {
     font-weight: 200;
     font-size: 1em;
@@ -63,12 +63,14 @@ input.form-control.no-margin {
 
 .lead-form.post {
     margin-bottom: 2em;
+    font-size: 80%;
 }
 
 .post-image {
     width: 100%;
     height: auto;
     border-radius: 12px;
+    min-width: 62px;
 }
 
 .post .post-content {
@@ -90,6 +92,10 @@ input.form-control.no-margin {
 
 .post .details {
     font-size: 1.2em;
+}
+
+.post .footer {
+    margin-top: 10px;
 }
 
 .table {
@@ -193,7 +199,7 @@ a.user-showcase {
 a.carousel-link {
     color: #16a085;
     text-transform: uppercase;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .panel-title {
