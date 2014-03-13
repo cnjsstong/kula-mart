@@ -27,13 +27,13 @@
                     why not get in touch!
                 </div>
                 <br>
-                <b>Reply to this post:</b>
+                <b>Leave your message:</b>
                 <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
                           ng-model="reply.content"></textarea>
                 <b>My Email:</b>
                 <input type="email" class="form-control" ng-model="reply.email">
 
-                <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
+                <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)">Reply</a>
                 <hr>
             </div>
 
@@ -42,8 +42,8 @@
     <div class="row">
         <div class="col-xs-12 footer">
                 <span class="actions pull-right">
-                    <a class="btn btn-md btn-primary">Save for later</a>
-                    <a class="btn btn-md btn-primary" ng-click="expanded=!expanded" ng-init="expanded=false">View
+                    <a class="btn btn-sm btn-info cta">Awesome</a>
+                    <a class="btn btn-sm btn-default cta" ng-click="expanded=!expanded" ng-init="expanded=false">View
                         Details</a>
                     <!--<a class="btn btn-sm btn-primary" ng-click="expanded=!expanded">Reply</a>-->
                 </span>
