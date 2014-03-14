@@ -16,3 +16,4 @@ npm-debug.log
 **/bower_components
 **/.idea
 **/.tmp
+kula-web/.DS_Store
