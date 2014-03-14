@@ -45,7 +45,8 @@ var AccountSchema = new Schema({
         },
         facebookId: {
             type: String
-        }
+        },
+        favoritePosts: [String]
     },
     {
         id: true

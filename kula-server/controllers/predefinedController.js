@@ -47,8 +47,11 @@ function updatePredefined(req, res) {
 
 function listPredefineds(req, res) {
     var type = req.params.type;
-
-    Predefined.find({type: type}, function (err, predefineds) {
+    var query = {};
+    if(type) {
+        query={type:type};
+    }
+    Predefined.find(query, function (err, predefineds) {
         if (err) {
             return res.send(500);
         } else {

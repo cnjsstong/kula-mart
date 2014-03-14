@@ -87,7 +87,22 @@ function updatePost(req, res) {
 function listPosts(req, res) {
     console.log(req.params);
     if (req.params.categoryId && req.params.areaId) {
-        Post.find({category: req.params.categoryId, area: {$all: [req.params.areaId]}}, function (err, posts) {
+        Post.find({
+            category: req.params.categoryId,
+            area: {$all: [req.params.areaId]},
+            status: Post.Status.ACTIVE,
+            $or: [
+                { neverExpire: true },
+                {
+                    $and: [
+                        { expire: {
+                            $gt: new Date()
+                        } },
+                        { neverExpire: false }
+                    ]
+                }
+            ]
+        }, function (err, posts) {
             if (err) {
                 return res.send(500);
             } else {
@@ -97,7 +112,21 @@ function listPosts(req, res) {
     } else {
         console.log('aaa');
         if (req.params.areaId) {
-            Post.find({area: {$all: [req.params.areaId]}}, function (err, posts) {
+            Post.find({
+                area: {$all: [req.params.areaId]},
+                status: Post.Status.ACTIVE,
+                $or: [
+                    { neverExpire: true },
+                    {
+                        $and: [
+                            { expire: {
+                                $gt: new Date()
+                            } },
+                            { neverExpire: false }
+                        ]
+                    }
+                ]
+            }, function (err, posts) {
                 if (err) {
                     return res.send(500);
                 } else {
@@ -121,11 +150,17 @@ function getPost(req, res) {
 }
 
 function removePost(req, res) {
-    Post.remove({_id: ObjectID(req.params.postId)}, function (err) {
-        if (err) {
-            return res.send(500);
+    Post.findOne({_id: ObjectID(req.params.postId)}, function (err, post) {
+        if (req.account.id == post.author) {
+            Post.remove({_id: ObjectID(req.params.postId)}, function (err) {
+                if (err) {
+                    return res.send(500);
+                } else {
+                    return res.send(200);
+                }
+            });
         } else {
-            return res.send(200);
+            return res.send(403);
         }
     });
 }
@@ -188,7 +223,7 @@ function replyPost(req, res) {
 
 function getReply(req, res) {
     Reply.findOne({_id: ObjectID(req.params.replyId)}, function (err, reply) {
-        if(err) {
+        if (err) {
             return res.send(500);
         } else {
             return res.send(200, reply);
@@ -198,13 +233,23 @@ function getReply(req, res) {
 
 function respond(req, res) {
     Reply.findOne({_id: ObjectID(req.params.replyId)}, function (err, reply) {
-        if(err) {
+        if (err) {
             return res.send(500);
         } else {
             Mail.sendRespondMail(reply, req.body);
             return res.send(200, reply);
         }
     });
+}
+
+function expirePost(req, res) {
+    Post.update({_id: ObjectID(req.params.postId)}, {status: Post.Status.CLOSED}, function (err) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200);
+        }
+    })
 }
 
 exports.base = 'post';
@@ -254,6 +299,11 @@ exports.routes = [
         'path': ':postId/reply',
         'method': httpMethod.POST,
         'handler': replyPost
+    },
+    {
+        'path': ':postId/expire',
+        'method': httpMethod.PUT,
+        'handler': expirePost
     },
     {
         'path': 'reply/:replyId',

@@ -305,3 +305,40 @@ section h1 {
 .kl-search input {
     margin: 0;
 }
+
+a.kula-image {
+    display: block;
+    overflow: hidden;
+    border-radius: 5%;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    width: 100%;
+    padding-top: 100%;
+}
+
+a.kula-image.with-margin {
+    padding-top: 80%;
+    width: 80%;
+    margin: 0 10%;
+}
+
+.portfolio-item .project-description .wrapper {
+    position: static !important;
+}
+
+.portfolio-item .project-description {
+    top: 0 !important;
+}
+
+.modal.wide .modal-dialog {
+    width: 800px;
+}
+
+.modal.wide .modal-title {
+    color: #555555;
+}
+
+.modal.wide .modal-footer {
+    text-align: center;
+}

@@ -121,7 +121,7 @@
 <!-- Contact -->
 <section id="contact" class="section container post-list">
     <div class="row">
-        <kl-post kl-post-id="post._id" ng-repeat="post in posts"></kl-post>
+        <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id'"></kl-post>
     </div>
 </section> <!-- end Contact Section -->
 

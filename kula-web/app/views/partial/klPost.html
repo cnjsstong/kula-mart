@@ -1,7 +1,10 @@
 <div id="lead-form" class="col-xs-12 lead-form post">
     <div class="row">
         <div class="col-xs-2">
-            <img class="post-image" ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">
+            <!--ImageModal-->
+            <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'placeholder.png' }});"></a>
+            <!--<img class="post-image"-->
+                 <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
         </div>
         <div class="col-xs-10 post-content">
             <div class="header">
@@ -10,43 +13,59 @@
                     <a class="btn btn-md btn-danger" ng-switch-when="offer">Offering</a>
                 </span>
 
-                &nbsp;<span class="title" ng-bind="post.title">The Title of The POST is HERE!!!</span> (<b ng-bind="post.category | categoryTitle"></b>)
+                &nbsp;<span class="title"><a ng-href="/post/{{post._id}}" ng-bind="post.title"></a></span>
                 <span class="price pull-right">
-                    for $<strong ng-bind="post.price"></strong>
+                    for <strong ng-bind="post.price | price"></strong>
                 </span>
             </div>
             <div>
-                <span class="tags" ng-init="post.tags=['Good','Stuff','Cheap']">
+                <span class="tags">
+                    <span style="text-decoration: underline;" class="tag btn btn-sm btn-primary" ng-bind="post.category | categoryTitle"></span>
                     <span class="tag btn btn-sm btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
                 </span>
             </div>
 
-            <div class="details" ng-show="expanded">
+            <div class="details" ng-show="post.expanded">
                 <div ng-bind="post.content">Have a question you would like to ask? Or maybe a project you would like us
                     to work on? Either way,
                     why not get in touch!
                 </div>
+                <hr>
+                <label>Delivery:</label>
+                <ul>
+                    <li ng-repeat="delivery in post.delivery" ng-bind="delivery"></li>
+                </ul>
                 <br>
-                <b>Reply to this post:</b>
-                <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
-                          ng-model="reply.content"></textarea>
-                <b>My Email:</b>
-                <input type="email" class="form-control" ng-model="reply.email">
+                <form name="ReplyForm">
+                    <b>Reply to this post:</b>
+                    <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
+                              ng-model="reply.content" ng-minlength="10" required></textarea>
+                    <b>My Email:</b>
+                    <input type="email" class="form-control" ng-model="reply.email" required>
 
-                <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
+                    <a class="btn cta" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>
+                </form>
                 <hr>
             </div>
 
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 footer">
-                <span class="actions pull-right">
-                    <a class="btn btn-md btn-primary">Save for later</a>
-                    <a class="btn btn-md btn-primary" ng-click="expanded=!expanded" ng-init="expanded=false">View
-                        Details</a>
-                    <!--<a class="btn btn-sm btn-primary" ng-click="expanded=!expanded">Reply</a>-->
-                </span>
+        <div class="col-xs-12 footer" ng-switch="ActionsType()">
+            <span class="actions pull-right" ng-switch-when="0">
+                Expired
+            </span>
+            <span class="actions pull-right" ng-switch-when="1">
+                <a class="btn btn-md btn-primary" ng-click="SaveForLater()" ng-hide="postSaved">Save for later</a>
+                <a class="btn btn-md btn-primary" ng-click="post.expanded=!post.expanded">View
+                    Details</a>
+            </span>
+            <span class="actions pull-right" ng-switch-when="2">
+                <a class="btn btn-md btn-primary" ng-href="/admin/post/{{post._id}}">Edit</a>
+                <a class="btn btn-md btn-primary" ng-click="ExpirePost()">Mark As Expired</a>
+                <a class="btn btn-md btn-primary" ng-click="DeletePost()">Delete</a>
+            </span>
         </div>
+
     </div>
 </div>

@@ -87,9 +87,6 @@ function login(req, res) {
 }
 
 
-/*
- * Anonymous account register
- */
 function signup(req, res) {
     Account.createAccount(req.body, function (err, acc) {
         if (err) {
@@ -124,6 +121,26 @@ function facebook(req, res) {
 }
 
 
+function addFavoritePost(req, res) {
+    console.log(req.account, req.body.postId);
+    Account.update({_id: ObjectID(req.account.id)}, {$addToSet: {favoritePosts: req.body.postId}}, function(err, data) {
+        console.log(err, data);
+        if(err) {
+            return res.send(500);
+        }
+        return res.send(200);
+    })
+}
+
+function getFavoritePost(req, res) {
+    Account.findOne({_id: ObjectID(req.account.id)}, function(err, data) {
+        if(err) {
+            return res.send(500);
+        }
+        return res.send(200, {favoritePosts: data.favoritePosts});
+    });
+}
+
 exports.base = 'account';
 
 exports.routes = [
@@ -149,5 +166,15 @@ exports.routes = [
         'path': 'facebook',
         'method': httpMethod.POST,
         'handler': facebook
+    },
+    {
+        'path': 'favorite',
+        'method': httpMethod.POST,
+        'handler': addFavoritePost
+    },
+    {
+        'path': 'favorite',
+        'method': httpMethod.GET,
+        'handler': getFavoritePost
     }
 ];

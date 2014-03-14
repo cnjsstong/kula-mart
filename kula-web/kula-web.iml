@@ -5,8 +5,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Node.js Dependencies for kula-web" level="project" />
-    <orderEntry type="library" name="aws-sdk-2.0.0-rc9" level="application" />
   </component>
 </module>
 

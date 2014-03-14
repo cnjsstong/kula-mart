@@ -51,6 +51,7 @@ angular.module('services.security')
                 ipCookie('email', user.email, options);
                 ipCookie('token', user.token, options);
                 ipCookie('type', user.type, options);
+                ipCookie('id', user.id, options);
                 console.log(ipCookie());
                 return this;
             },
@@ -64,6 +65,7 @@ angular.module('services.security')
                 ipCookie.remove('email');
                 ipCookie.remove('token');
                 ipCookie.remove('type');
+                ipCookie.remove('id');
                 return this;
             },
 
@@ -80,14 +82,14 @@ angular.module('services.security')
 
             loadUserFromCookie: function () {
                 if (ipCookie('email') && ipCookie('token') && ipCookie('type')) {
-                    $user = {email: ipCookie('email'), token: ipCookie('token'), type: ipCookie('type')};
+                    $user = {email: ipCookie('email'), token: ipCookie('token'), type: ipCookie('type'), id: ipCookie('id')};
                 }
             },
 
             checkLocalUser: function (callback) {
                 if (!service.isAuthenticated()) {
                     if (ipCookie('email') && ipCookie('token') && ipCookie('type')) {
-                        $user = {email: ipCookie('email'), token: ipCookie('token'), type: ipCookie('type')};
+                        $user = {email: ipCookie('email'), token: ipCookie('token'), type: ipCookie('type'), id: ipCookie('id')};
                     } else {
                         service.requireLogin();
                         return;

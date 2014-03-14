@@ -15,7 +15,7 @@ angular.module('kulaWebApp')
             console.log(res);
             $scope.ShowCategory = function ($index) {
                 $scope.filter.tag = null;
-                if ($index) {
+                if ($index>=0) {
                     if (!$scope.categories[$index]['tags']) {
                         Post.getTagsByCategory({category: $scope.categories[$index]._id, area: $rootScope.currentArea._id }, function (res) {
                             $scope.categories[$index]['tags'] = res;
@@ -36,7 +36,7 @@ angular.module('kulaWebApp')
                 }
                 $scope.showCategory = $index;
             };
-            $scope.ShowCategory();
+            $scope.ShowCategory(-1);
         });
 
         $scope.FilterPosts = function (item) {

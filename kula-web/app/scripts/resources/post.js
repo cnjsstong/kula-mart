@@ -8,6 +8,11 @@ angular.module('resources').factory('Post', ['$resource', 'API', function ($reso
             method: API.Method.POST
         },
 
+        expire: {
+            url: url + ':postId/expire',
+            method: API.Method.PUT
+        },
+
         getReply: {
             url: url + ':postId/reply/:replyId',
             method: API.Method.GET

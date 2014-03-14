@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('MyCtrl', ['$scope', 'Post', '$rootScope', 'CategoryService', 'Category', function ($scope, Post, $rootScope, CategoryService, Category) {
+    .controller('MyCtrl', ['$scope', 'Post', '$rootScope', 'CategoryService', 'Category', 'SecurityService', 'Account', function ($scope, Post, $rootScope, CategoryService, Category, SecurityService, Account) {
 
         $scope.filter = {type: 'offer'};
 
+        $scope.me = SecurityService.getUser();
+        console.log($scope.me);
+
         Post.myPosts({}, function (res) {
             $scope.posts = res;
-        })
+        });
+
+        Account.getFavorite({}, function(res) {
+            $scope.favorites = res.favoritePosts;
+        });
 
         $scope.FilterPosts = function (item) {
             if ($scope.filter.type != item.type) {

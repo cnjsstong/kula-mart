@@ -7,6 +7,7 @@ angular.module('kulaWebApp')
         function loadPost(postId) {
             $scope.categories = Category.query();
             $scope.areas = Area.query();
+            $scope.tags = Predefined.query({type:'tag'});
             $scope.deliveries = Predefined.query({type: 'delivery'});
             $scope.post = { images: [], email: $rootScope.GetUser('email') };
             $scope.step = 0;
@@ -34,6 +35,12 @@ angular.module('kulaWebApp')
             };
             console.log(res);
             return res;
+        };
+
+        $scope.AddTag = function(tag) {
+            if($scope.post.tags.indexOf(tag.title)<0) {
+                $scope.post.tags.push(tag.title);
+            }
         };
 
         UploadService.processor('success', 'post', function (event, xhr, item, response) {

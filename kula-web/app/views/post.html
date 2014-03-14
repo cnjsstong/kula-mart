@@ -16,21 +16,19 @@
     <div class="">
         <div class="row">
 
-            <div class="col-lg-6 images grid">
-                <div class="row" ng-repeat="image in post.images" fire-portfolio-images>
-                    <div class="col-lg-12 block-item section" ng-class="{'animation-fade':!$first, 'first':$first}">
-                        <!-- zoom effect -->
-                        <div class="hovercontent"></div>
-                        <img class="img-responsive" ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}"/>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a class="kula-image with-margin" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'placeholder.png' }});"></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-sm-12 col-xs-12 project-description" data-spy="affix" data-offset-top="200">
+            <div class="col-lg-6 project-description">
                 <div class="wrapper">
 
                     <!-- about project -->
                     <div class="project-about">
-                        <h3>Content</h3>
+                        <h3>Description</h3>
                         <p ng-bind="post.content"></p>
                     </div>
 
@@ -38,10 +36,8 @@
                     <div class="project-details clearfix">
                         <h3>Tags</h3>
                         <ul>
-                            <li><i class="icon-li icon-ok"></i>Creative Execution</li>
-                            <li><i class="icon-li icon-ok"></i>Design</li>
-                            <li><i class="icon-li icon-ok"></i>Development</li>
-                            <li><i class="icon-li icon-ok"></i>Marketing</li>
+                            <li><i class="icon-li icon-star"></i><span ng-bind="post.category | categoryTitle"></span></li>
+                            <li><i class="icon-li icon-ok"></i><span ng-bind="tag" ng-repeat="tag in post.tags"></span></li>
                         </ul>
                     </div>
 
@@ -56,13 +52,7 @@
                             <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
                         </div>
                         <div class="col-lg-6 social-sharing">
-                            <!-- social sharing -->
-                            <div class="social-links">
-                                <a href="#" class="icon-facebook facebook"></a>
-                                <a href="#" class="icon-twitter twitter"></a>
-                                <a href="#" class="icon-google-plus google"></a>
-                                <a href="#" class="icon-pinterest pinterest"></a>
-                            </div>
+                            <a class="btn">Save for Later</a>
                         </div>
                     </div>
                 </div>

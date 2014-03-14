@@ -45,11 +45,8 @@
                             <p class="help-block">You should add at least 3 tags. Type in your tag, then press ENTER to add.</p>
 
                             Or choose from the following tags
-                            <div>
-                                <a>Tag 1</a>
-                                <a>Tag 1</a>
-                                <a>Tag 1</a>
-                                <a>Tag 1</a>
+                            <div class="tags">
+                                <a ng-repeat="tag in tags" ng-bind="tag.title" class="category-tag btn btn-sm btn-warning" ng-click="AddTag(tag)"></a>
                             </div>
                         </div>
                     </div>
@@ -68,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label for="postPrice">Price</label>
-                            <input type="text" class="form-control" id="postPrice" placeholder="$"
+                            <input type="text" class="form-control" id="postPrice" placeholder="Blank means FREE!"
                                    ng-model="post.price">
                         </div>
                         <div class="form-inline">
