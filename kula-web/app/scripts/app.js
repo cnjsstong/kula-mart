@@ -74,6 +74,11 @@ angular.module('kulaWebApp', [
                 controller: 'AdminPredefinedCtrl',
                 requireLogin: true
             })
+            .when('/admin/account', {
+                templateUrl: 'views/admin/account.html',
+                controller: 'AdminAccountCtrl',
+                requireLogin: true
+            })
             .when('/market', {
                 templateUrl: 'views/market.html',
                 controller: 'MarketCtrl',
@@ -89,6 +94,10 @@ angular.module('kulaWebApp', [
             })
             .when('/login', {
                 templateUrl: 'views/login.html',
+                controller: 'LoginCtrl'
+            })
+            .when('/signup', {
+                templateUrl: 'views/signup.html',
                 controller: 'LoginCtrl'
             })
             .when('/my', {

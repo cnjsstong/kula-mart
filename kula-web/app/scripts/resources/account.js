@@ -26,6 +26,22 @@ angular.module('resources').factory('Account', ['$resource', 'API', function ($r
         getFavorite: {
             method: API.Method.GET,
             url: url + 'favorite'
+        },
+
+        adminQuery: {
+            method: API.Method.GET,
+            url: url + 'admin',
+            isArray: true
+        },
+
+        adminPut: {
+            method: API.Method.PUT,
+            url: url + 'admin/:accountId'
+        },
+
+        adminDelete: {
+            method: API.Method.DELETE,
+            url: url + 'admin/:accountId'
         }
     });
 }]);

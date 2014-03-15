@@ -81,8 +81,9 @@ angular.module('services.security')
             },
 
             loadUserFromCookie: function () {
-                if (ipCookie('email') && ipCookie('token') && ipCookie('type')) {
+                if (ipCookie('email') && ipCookie('token')) {
                     $user = {email: ipCookie('email'), token: ipCookie('token'), type: ipCookie('type'), id: ipCookie('id')};
+                    service.setAuthenticationHeader($user);
                 }
             },
 

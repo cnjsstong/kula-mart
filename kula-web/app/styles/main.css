@@ -348,3 +348,32 @@ a.kula-image.with-margin {
 .modal.wide .modal-footer {
     text-align: center;
 }
+
+.lead-form p {
+    margin-top: 2em;
+}
+
+.btn.cta.mean-margin {
+    margin: 1em;
+}
+
+form.ng-dirty input.ng-invalid {
+    box-shadow: 0 0 10px #ff7777;
+}
+
+.lead-form p.invalid-message {
+    color: #ff0000;
+}
+
+form input.invalid {
+    box-shadow: 0 0 10px #ff7777;
+}
+
+.user-actions {
+    margin-bottom: 1em;
+}
+
+.user-admin-actions {
+    display: inline-block;
+    margin-left: 1em;
+}

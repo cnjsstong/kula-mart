@@ -141,6 +141,37 @@ function getFavoritePost(req, res) {
     });
 }
 
+function getAccountList(req, res) {
+    var query = {};
+    if(req.params.type) {
+        query = {type: req.params.type};
+    }
+    Account.find(query, {type:1, status:1 , email:1, name:1}, function(err, accounts) {
+        if(err) {
+            return res.send(500);
+        }
+        return res.send(200, accounts);
+    });
+}
+
+function setAccountType(req, res) {
+    Account.update({_id: req.params.accountId}, {type: req.body.type}, function(err, account){
+        if(err) {
+            return res.send(500);
+        }
+        return res.send(200, account);
+    });
+}
+
+function deleteAccount(req, res) {
+    Account.delete({_id: req.params.accountId}, function(err){
+        if(err) {
+            return res.send(500);
+        }
+        return res.send(200);
+    });
+}
+
 exports.base = 'account';
 
 exports.routes = [
@@ -176,5 +207,23 @@ exports.routes = [
         'path': 'favorite',
         'method': httpMethod.GET,
         'handler': getFavoritePost
+    },
+    {
+        'path': 'admin',
+        'method': httpMethod.GET,
+        'roles': [role.ADMIN],
+        'handler': getAccountList
+    },
+    {
+        'path': 'admin/:accountId',
+        'method': httpMethod.PUT,
+        'roles': [role.ADMIN],
+        'handler': setAccountType
+    },
+    {
+        'path': 'admin/:accountId',
+        'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
+        'handler': deleteAccount
     }
 ];
