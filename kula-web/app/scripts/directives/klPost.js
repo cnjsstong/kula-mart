@@ -27,7 +27,7 @@ angular.module('kulaWebApp')
                 };
 
                 scope.ActionsType = function() {
-                    if(scope.post.status != 'active') {
+                    if(scope.post && scope.post.status != 'active') {
                         return 0;
                     }
                     if (scope.currentUser && scope.post && scope.post.author && scope.post.author == scope.currentUser) {

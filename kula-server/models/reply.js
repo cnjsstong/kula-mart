@@ -11,6 +11,9 @@ var ReplySchema = new Schema({
             type: String,
             index: true
         },
+        name: {
+            type: String
+        },
         email: {
             type: String
         },

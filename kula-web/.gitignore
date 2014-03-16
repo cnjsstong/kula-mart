@@ -4,3 +4,4 @@ dist
 .sass-cache
 app/bower_components
 app/template
+app/scripts/resources/constants.js

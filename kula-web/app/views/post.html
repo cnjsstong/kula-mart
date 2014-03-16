@@ -44,12 +44,20 @@
                     <!-- project links -->
                     <div class="row">
                         <div class="col-xs-12">
-                            <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control" ng-model="reply"></textarea>
+                            <form name="ReplyForm">
+                                <b>Reply to this post:</b>
+                                <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
+                                          ng-model="reply.content" ng-minlength="10" required></textarea>
+                                <b>My Email:</b>
+                                <input type="email" class="form-control" ng-model="reply.email" required>
+
+                                <a class="btn cta" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>
+                            </form>
                         </div>
                     </div>
                     <div class="row project-links clearfix">
                         <div class="col-lg-6 view-project">
-                            <a class="btn cta" ng-click="Reply(post,reply)">Reply</a>
+                            <!--<a class="btn cta" ng-click="Reply(post,reply)">Reply</a>-->
                         </div>
                         <div class="col-lg-6 social-sharing">
                             <a class="btn">Save for Later</a>

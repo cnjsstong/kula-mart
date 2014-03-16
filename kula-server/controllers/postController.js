@@ -196,20 +196,24 @@ function getMyPosts(req, res) {
 }
 
 function replyPost(req, res) {
+    console.log(req.params);
     var reply = Reply();
     reply._id = new ObjectID();
     reply.content = req.body.content;
     if (req.account) {
         reply.author = req.account._id;
     }
+    reply.name = req.body.name;
     reply.email = req.body.email;
     reply.post = req.params.postId;
 
-    reply.save(function (err) {
+    console.log(reply);
+
+    Post.findOne({_id: ObjectID(reply.post)}, function (err, post) {
         if (err) {
             return res.send(500);
         } else {
-            Post.findOne({_id: ObjectID(reply.post)}, function (err, post) {
+            reply.save(function (err) {
                 if (err) {
                     return res.send(500);
                 } else {

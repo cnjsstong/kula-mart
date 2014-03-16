@@ -1,5 +1,6 @@
 
 var nodemailer = require("nodemailer");
+var fs = require("fs");
 
 // Load configurations (default: development)
 var env = process.env.NODE_ENV || 'development',
@@ -17,21 +18,33 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
 
 exports.sendReplyMail = function (reply, post) {
     console.log('sending', reply, post);
-    var mailOptions = {
-        from: config.email_options.sender, // sender address
-        to: post.email, // list of receivers
-        subject: "[KulaMart]You have a new reply for your post [" + post.title + "]", // Subject line
-        text: "Your Post:\n"+post.content+"\n\nReply:\n"+reply.content + "\n\nClick the link below to view and respond to this reply:\nhttp://kula.sj.gs/reply/"+reply._id // plaintext body
-    };
 
-    smtpTransport.sendMail(mailOptions, function(error, response){
-        if (error) {
-            console.log(error);
-        }
-        else {
-            console.log("Message sent: " + response.message);
+    fs.readFile('templates/reply.html', function(err, data) {
+        console.log(err, data.toString());
+        if(!err) {
+            var mailOptions = {
+                from: config.email_options.sender, // sender address
+                to: post.email, // list of receivers
+                subject: "You have a reply of your listing from Kulamart.com", // Subject line
+                html: data.toString().replace('{{ post.title }}', post.title).replace('{{ reply.author.name }}', reply.name || 'Anonymous').replace('{{ reply.content }}', reply.content).replace('{{ reply._id }}', reply._id),
+                generateTextFromHTML: true
+            };
+
+            console.log(mailOptions);
+
+            smtpTransport.sendMail(mailOptions, function(error, response){
+                if (error) {
+                    console.log(error);
+                }
+                else {
+                    console.log("Message sent: " + response.message);
+                }
+            });
+        } else {
+            console.log(err);
         }
     });
+
 };
 
 exports.sendRespondMail = function (reply, respond) {
