@@ -15,7 +15,7 @@
                 <div class="carousel-caption">
                     <h1 class="black-shadow">Shop, trade and fun</h1>
 
-                    <p class="black-shadow">enter <a class="carousel-link" ng-click="NavigateTo('/')">market</a> / info / business.</p>
+                    <p class="black-shadow">enter <a class="carousel-link" ng-click="NavigateTo('/market')">market</a> / info / business.</p>
 
                     <p>
 
@@ -24,7 +24,7 @@
                             <a class="btn btn-primary" ng-click="NavigateTo('/admin/post/new')">Post</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                         <div class="form-group">
-                            <input class="form-control no-margin" type="text" ng-model="searchKeyword">
+                            <input class="form-control no-margin" type="text" placeholder="looking for?" ng-model="searchKeyword">
                         </div>
                         <div class="form-group">
                             &nbsp;<a class="btn btn-primary" ng-click="NavigateTo('/market',searchKeyword)">Search</a>
@@ -51,7 +51,7 @@
                             <a class="btn btn-primary" ng-click="NavigateTo('/admin/post/new')">Post</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                         <div class="form-group">
-                            <input class="form-control no-margin" type="text" ng-model="searchKeyword">
+                            <input class="form-control no-margin" type="text" placeholder="looking for?" ng-model="searchKeyword">
                         </div>
                         <div class="form-group">
                             &nbsp;<a class="btn btn-primary" ng-click="NavigateTo('/market',searchKeyword)">Search</a>
@@ -80,7 +80,7 @@
 <!-- Team Section -->
 <section id="team" class="team section container">
 
-    <div class="container animation-slideup">
+    <div class="container">
         <div class="row">
 
             <div class="carousel-small clearfix">
