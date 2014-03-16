@@ -16,13 +16,29 @@ angular.module('kulaWebApp', [
         'services.category',
         'services.security',
         'angularFileUpload',
-        'dialogs'
+        'dialogs',
+        'ui.bootstrap.datetimepicker'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
+            })
+            .when('/admin/event', {
+                templateUrl: 'views/admin/eventList.html',
+                controller: 'AdminEventListCtrl',
+                requireLogin: true
+            })
+            .when('/admin/event/new', {
+                templateUrl: 'views/admin/eventNewEdit.html',
+                controller: 'AdminEventNewEditCtrl',
+                requireLogin: true
+            })
+            .when('/admin/event/:eventId', {
+                templateUrl: 'views/admin/eventNewEdit.html',
+                controller: 'AdminEventNewEditCtrl',
+                requireLogin: true
             })
             .when('/admin/post', {
                 templateUrl: 'views/admin/postList.html',

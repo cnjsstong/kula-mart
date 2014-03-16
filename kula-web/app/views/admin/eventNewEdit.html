@@ -1,0 +1,95 @@
+<section id="adminEventNewEdit" class="section">
+    <div class="container">
+        <div class="row">
+            <form role="form" name="eventForm">
+                <input type="hidden" ng-model="event._id">
+
+                <div class="col-xs-12 lead-form event-form">
+                    <div class="form-group">
+                        <label>Event Name</label>
+
+                        <input type="text" class="form-control" id="eventTitle" placeholder="What?"
+                               ng-model="event.title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Add Tags</label>
+                        <tags-input id="eventTags" ng-model="event.tags"
+                                    custom-class="kl-tags"
+                                    placeholder="Add tags here."
+                                    replace-spaces-with-dashes="false"
+                                    add-on-comma="false"
+                                    add-on-space="false"
+                                    add-on-enter="true"
+                                    add-on-blur="true">
+                            <!--<auto-complete source="QueryTagsForAutocomplete($query)"-->
+                                           <!--max-results-to-show="10">-->
+                            <!--</auto-complete>-->
+                        </tags-input>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventContent">Description</label>
+                        <textarea class="form-control" id="eventContent" placeholder="Tell us something more."
+                                  rows="3"
+                                  ng-model="event.content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>From</label>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle my-toggle-select" role="button" data-toggle="dropdown" data-target="#" href="">
+                                <div class="input-append"><input type="text" class="input-sm" ng-model="event.start"><span class="add-on"><i
+                                        class="icon-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="event.start"></datetimepicker>
+                            </ul>
+                        </div>
+                        <label>To</label>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle my-toggle-select" role="button" data-toggle="dropdown" data-target="#" href="">
+                                <div class="input-append"><input type="text" class="input-sm" ng-model="event.expire"><span class="add-on"><i
+                                        class="icon-calendar"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="event.expire"></datetimepicker>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Images</label>
+                        <ul class="post-image-list">
+                            <li class="image" ng-repeat="image in event.images">
+                                <img ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+image }}">
+                            </li>
+                        </ul>
+                        <input ng-file-select="GetEventUploadOptions()" type="file">
+                    </div>
+                    <div class="form-group">
+                        <label>Event for</label>
+                        <br>
+                        <label ng-repeat="a in areas">
+                            <input type="checkbox" checklist-model="event.area" checklist-value="a._id"> {{a.title}}
+                            &nbsp;&nbsp;&nbsp;
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="text" class="form-control" placeholder="..@...edu"
+                               ng-model="event.email" ng-required="step>=3">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact Phone</label>
+                        <input type="text" class="form-control" ng-model="event.phone">
+                    </div>
+                    <div class="action-btns">
+                        <a class="btn btn-primary cta" ng-disabled="eventForm.$invalid"
+                           ng-click="Submit(event)">Post</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

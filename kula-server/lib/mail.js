@@ -26,7 +26,12 @@ exports.sendReplyMail = function (reply, post) {
                 from: config.email_options.sender, // sender address
                 to: post.email, // list of receivers
                 subject: "You have a reply of your listing from Kulamart.com", // Subject line
-                html: data.toString().replace('{{ post.title }}', post.title).replace('{{ reply.author.name }}', reply.name || 'Anonymous').replace('{{ reply.content }}', reply.content).replace('{{ reply._id }}', reply._id),
+                html: data.toString()
+                    .replace('{{ post.title }}', post.title)
+                    .replace('{{ reply.author.name }}', reply.name || 'Anonymous')
+                    .replace('{{ reply.content }}', reply.content)
+                    .replace('{{ reply._id }}', reply._id)
+                    .replace('{{ post.images[0] }}', post.images[0] || 'placeholder.png'),
                 generateTextFromHTML: true
             };
 

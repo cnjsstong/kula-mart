@@ -40,8 +40,10 @@
                     <b>Leave your message:</b>
                     <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
                               ng-model="reply.content" ng-minlength="10" required></textarea>
-                    <b>My Email:</b>
+                    <b>Your Email:</b>
                     <input type="email" class="form-control" ng-model="reply.email" required>
+                    <b>Your Name:</b>
+                    <input type="text" class="form-control" ng-model="reply.name">
 
                     <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>
                 </form>

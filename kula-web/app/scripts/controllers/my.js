@@ -16,6 +16,12 @@ angular.module('kulaWebApp')
             $scope.favorites = res.favoritePosts;
         });
 
+        $scope.Logout = function() {
+            SecurityService.logout(function() {
+                $rootScope.NavigateTo('/');
+            });
+        };
+
         $scope.FilterPosts = function (item) {
             if ($scope.filter.type != item.type) {
                 return false;

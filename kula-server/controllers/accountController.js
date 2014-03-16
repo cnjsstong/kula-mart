@@ -164,7 +164,7 @@ function setAccountType(req, res) {
 }
 
 function deleteAccount(req, res) {
-    Account.delete({_id: req.params.accountId}, function(err){
+    Account.remove({_id: req.params.accountId}, function(err){
         if(err) {
             return res.send(500);
         }

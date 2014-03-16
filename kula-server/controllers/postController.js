@@ -30,7 +30,7 @@ function createPost(req, res) {
     post.replies = [];
     post.images = req.body.images || [];
     post.duration = req.body.duration || 0;
-    post.neverExpire = req.body.neverExpire;
+    post.neverExpire = !!req.body.neverExpire;
     if (!post.neverExpire) {
         var expireDate = new Date();
         expireDate.setTime(Date.now() + parseInt(req.body.duration) * 24 * 60 * 60 * 1000);
@@ -64,7 +64,7 @@ function updatePost(req, res) {
     post.lastModified = Date.now();
     post.images = req.body.images;
     post.duration = req.body.duration;
-    post.neverExpire = req.body.neverExpire;
+    post.neverExpire = !!req.body.neverExpire;
     if (!post.neverExpire) {
         var expireDate = new Date();
         expireDate.setTime(Date.now() + parseInt(req.body.duration) * 24 * 60 * 60 * 1000);
@@ -110,10 +110,10 @@ function listPosts(req, res) {
             }
         });
     } else {
-        console.log('aaa');
+//        console.log('aaa');
         if (req.params.areaId) {
             Post.find({
-                area: {$all: [req.params.areaId]},
+                area: req.params.areaId,
                 status: Post.Status.ACTIVE,
                 $or: [
                     { neverExpire: true },
@@ -203,7 +203,7 @@ function replyPost(req, res) {
     if (req.account) {
         reply.author = req.account._id;
     }
-    reply.name = req.body.name;
+    reply.displayName = req.body.displayName;
     reply.email = req.body.email;
     reply.post = req.params.postId;
 

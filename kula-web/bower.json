@@ -19,7 +19,8 @@
     "angular-cookie": "*",
     "angular-animate": "~1.2.14",
     "angular-bootstrap": "~0.10.0",
-    "angular-dialog-service": "~3.1.0"
+    "angular-dialog-service": "~3.1.0",
+    "angular-bootstrap-datetimepicker": "~0.2.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

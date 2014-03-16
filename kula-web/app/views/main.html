@@ -85,11 +85,15 @@
 
             <div class="carousel-small clearfix">
 
-                <article class="content" style="background-image: url(images/team1.jpg); opacity: 0.9;" ng-repeat="post in posts" fire-carousel="$last" fire-carousel-bg="post.images[0]">
+                <article class="content" style="opacity: 0.9;" ng-repeat="event in events" fire-carousel="$last" fire-carousel-bg="event.images[0]">
                     <div class="details">
-                        <h4 ng-bind="post.title">Event Name Here</h4>
+                        <h4 ng-bind="event.title"></h4>
 
-                        <p><span class="role-title">3 days left</span></p>
+                        <p>
+                            <b>From:</b>&nbsp;&nbsp;&nbsp;<span ng-bind="event.start | date:'MM/dd/yyyy @ h:mma'"></span>
+                            <br>
+                            <b>To:</b>&nbsp;&nbsp;&nbsp;<span ng-bind="event.expire | date:'MM/dd/yyyy @ h:mma'"></span>
+                        </p>
                     </div>
                 </article>
             </div>
@@ -109,8 +113,8 @@
 <!-- Contact -->
 <section id="contact" class="section container post-list">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#">Newest Items</a></li>
-      <li><a href="#">more</a></li>
+      <li class="active"><a>Newest Items</a></li>
+      <li><a ng-click="NavigateTo('/market')">More...</a></li>
     </ul>
 
     <div class="row">

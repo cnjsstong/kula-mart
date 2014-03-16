@@ -1,6 +1,6 @@
 <div class="container padding-top-lg">
     <div class="user-actions">
-        <a class="btn btn-primary btn-sm">Log Out</a>
+        <a class="btn btn-primary btn-sm" ng-click="Logout()">Log Out</a>
         <span ng-show="me.type==0" class="pull-right">
             <label>Manage</label>
             <a class="btn btn-primary btn-sm" ng-click="NavigateTo('/admin/account')">Accounts</a>
@@ -8,6 +8,7 @@
             <a class="btn btn-primary btn-sm" ng-click="NavigateTo('/admin/category')">Primary Tags</a>
             <a class="btn btn-primary btn-sm" ng-click="NavigateTo('/admin/predefined')">Tags & Deliveries</a>
             <a class="btn btn-primary btn-sm" ng-click="NavigateTo('/admin/post')">Posts</a>
+            <a class="btn btn-primary btn-sm" ng-click="NavigateTo('/admin/event')">Events</a>
         </span>
     </div>
     <tabset>
