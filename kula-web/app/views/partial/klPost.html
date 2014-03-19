@@ -1,12 +1,12 @@
 <div id="lead-form" class="col-xs-12 lead-form post">
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-xs-3">
             <!--ImageModal-->
             <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'placeholder.png' }});"></a>
             <!--<img class="post-image"-->
                  <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
         </div>
-        <div class="col-xs-10 post-content">
+        <div class="col-xs-9 post-content">
             <div class="header">
                 <span class="type" ng-switch="post.type">
                     <a class="btn btn-md btn-warning" ng-switch-when="request">Requesting</a>
@@ -43,9 +43,9 @@
                     <b>My Email:</b>
                     <input type="email" class="form-control" ng-model="reply.email" required>
 
-                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>
+                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>
                 </form>
-                <hr>
+
             </div>
 
         </div>

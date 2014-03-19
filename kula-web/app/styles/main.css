@@ -16,6 +16,12 @@
   }
 }
 
+@media (min-width: 1200px) {
+    section.container {
+        max-width: 970px;
+    }
+}
+
 a {
     cursor: pointer;
     text-decoration: none;
@@ -44,7 +50,7 @@ a:hover {
     
 .btn>i{
     font-size:120%;
-    margin-right: 3px;
+    margin-right: 5px;
 }
 
 .school-selector a {
@@ -121,6 +127,12 @@ input.form-control.no-margin {
 
 .post .details {
     font-size: 1.2em;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #e1e1e1;
+    padding-bottom: 65px;
 }
 
 .post .footer {
@@ -383,8 +395,8 @@ a.kula-image {
     margin: 0;
     width: 100%;
     padding-top: 100%;
-    min-width: 62px;
-    min-height: 62px;
+    min-width: 90px;
+    min-height: 90px;
 }
 
 a.kula-image.with-margin {
