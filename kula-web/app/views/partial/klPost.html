@@ -1,12 +1,12 @@
 <div id="lead-form" class="col-xs-12 lead-form post">
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-xs-3">
             <!--ImageModal-->
             <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'placeholder.png' }});"></a>
             <!--<img class="post-image"-->
                  <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
         </div>
-        <div class="col-xs-10 post-content">
+        <div class="col-xs-9 post-content">
             <div class="header">
                 <span class="type" ng-switch="post.type">
                     <a class="btn btn-md btn-warning" ng-switch-when="request">Requesting</a>
@@ -20,8 +20,8 @@
             </div>
             <div>
                 <span class="tags">
-                    <span style="text-decoration: underline;" class="tag btn btn-sm btn-primary" ng-bind="post.category | categoryTitle"></span>
-                    <span class="tag btn btn-sm btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
+                    <span style="font-weight:bold;" class="tag btn btn-md btn-primary" ng-bind="post.category | categoryTitle"></span>
+                    <span class="tag btn btn-md btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
                 </span>
             </div>
 
@@ -45,9 +45,9 @@
                     <b>Your Name:</b>
                     <input type="text" class="form-control" ng-model="reply.name">
 
-                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>
+                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>
                 </form>
-                <hr>
+
             </div>
 
         </div>
@@ -58,9 +58,8 @@
                 Expired
             </span>
             <span class="actions pull-right" ng-switch-when="1">
-                <a class="btn btn-md btn-primary" ng-click="SaveForLater()" ng-hide="postSaved">Awesome</a>
-                <a class="btn btn-md btn-primary" ng-click="post.expanded=!post.expanded">View
-                    Details</a>
+                <a class="btn btn-sm btn-info cta" ng-click="SaveForLater()" ng-hide="postSaved"><i class="linecon-star"></i>Awesome</a>
+                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i class="linecon-eye"></i>Quick View</a>
             </span>
             <span class="actions pull-right" ng-switch-when="2">
                 <a class="btn btn-md btn-primary" ng-href="/admin/post/{{post._id}}">Edit</a>

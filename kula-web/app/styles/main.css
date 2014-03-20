@@ -1,3 +1,27 @@
+@media (max-width: 767px) {
+  .hide-in-mobile {
+    display: none !important;
+  }
+
+  .carousel-inner h1 {
+    font-size: 3em
+  }
+
+  .post.kula-image{
+    min-width: 60px;
+  }
+
+  .post {
+    font-size: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+    section.container {
+        max-width: 970px;
+    }
+}
+
 a {
     cursor: pointer;
     text-decoration: none;
@@ -24,6 +48,11 @@ a:hover {
     border-radius: 5px;
 }
     
+.btn>i{
+    font-size:120%;
+    margin-right: 5px;
+}
+
 .school-selector a {
     font-weight: 200;
     font-size: 1em;
@@ -81,9 +110,11 @@ input.form-control.no-margin {
     position: relative;
 }
 
-.post .tags .tag {
-    margin-right: 3px;
+.post .tags .tag ,.post .tags .tag:hover{
+    margin-right: 4px;
     margin-top: 5px;
+    padding: 3px;
+    background-color: #226998;
 }
 
 .post .title {
@@ -96,6 +127,12 @@ input.form-control.no-margin {
 
 .post .details {
     font-size: 1.2em;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #e1e1e1;
+    padding-bottom: 65px;
 }
 
 .post .footer {
@@ -247,6 +284,10 @@ section h1 {
     font-size: 3.5em;
 }
 
+section#intro {
+    margin-bottom: 20px;
+}
+
 .black-shadow {
     text-shadow: 0 0 40px #000000;
 }
@@ -354,6 +395,8 @@ a.kula-image {
     margin: 0;
     width: 100%;
     padding-top: 100%;
+    min-width: 90px;
+    min-height: 90px;
 }
 
 a.kula-image.with-margin {
@@ -371,7 +414,7 @@ a.kula-image.with-margin {
 }
 
 .modal.wide .modal-dialog {
-    width: 800px;
+    max-width: 90%;
 }
 
 .modal.wide .modal-title {
@@ -410,3 +453,4 @@ form input.invalid {
     display: inline-block;
     margin-left: 1em;
 }
+
