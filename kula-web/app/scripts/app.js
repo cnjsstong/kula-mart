@@ -125,6 +125,18 @@ angular.module('kulaWebApp', [
                 templateUrl: 'views/reply.html',
                 controller: 'ReplyCtrl'
             })
+            .when('/privacy', {
+                templateUrl: 'views/static/privacy.html'
+            })
+            .when('/terms', {
+                templateUrl: 'views/static/terms.html'
+            })
+            .when('/about', {
+                templateUrl: 'views/static/about.html'
+            })
+            .when('/contact', {
+                templateUrl: 'views/static/contact.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });
