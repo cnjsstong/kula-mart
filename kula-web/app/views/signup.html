@@ -14,9 +14,10 @@
                             <input type="password" name="password" class="password" maxlength="50" pattern="^.+$" required placeholder="Enter your password" ng-model="user.password" ng-class="{'invalid':user.password!=user.password2}">
                             <input type="password" name="password2" class="password" maxlength="50" pattern="^.+$" required placeholder="Enter your password again" ng-model="user.password2" ng-class="{'invalid':user.password!=user.password2}">
                             <p class="invalid-message" ng-show="user.password!=user.password2">Your password doesn't match.</p>
+                            <label> &nbsp; <input type="checkbox" ng-model="agreed"> &nbsp;I agree to KulaMart <a href="/terms">Terms and Conditions</a> and <a href="/privacy">Privacy Policy</a>.</label>
                             <!--<p class="text-center"><a href="#">Forgot your password?</a></p>-->
 
-                            <input type="submit" class="submit btn cta" value="Sign Up" ng-click="SignUp(user)" ng-disabled="SignUpForm.$invalid || user.password!=user.password2">
+                            <input type="submit" class="submit btn cta" value="Sign Up" ng-click="SignUp(user)" ng-disabled="!agreed || SignUpForm.$invalid || user.password!=user.password2">
                         </div>
 
                     </form>
