@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB) {
+    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope) {
         $scope.post = Post.get({postId: $routeParams.postId});
         $scope.Reply = function (post, reply) {
             Post.reply({postId: post._id}, reply, function () {
@@ -21,10 +21,10 @@ angular.module('kulaWebApp')
             $FB.ui(
                 {
                     method: 'feed',
-                    name: 'This is the content of the "name" field.',
+                    name: $scope.post.title,
                     link: 'http://kulamart.com/post/' + $scope.post._id,
                     picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.post.images[0] || 'category/' + $scope.post.category,
-                    caption: $scope.post.title,
+                    caption: 'KulaMart.com - '+ $rootScope.currentArea.title,
                     description: $scope.post.description,
                     message: ''
                 });
