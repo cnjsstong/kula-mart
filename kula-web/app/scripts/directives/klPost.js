@@ -58,7 +58,9 @@ angular.module('kulaWebApp')
                 };
 
                 scope.ImageModal = function () {
-                    var dlg = $dialogs.create('views/partial/klImages.html', 'PostDetailImageModalCtrl', {post: scope.post}, {windowClass: 'wide', backdrop: 'static'});
+                    if(scope.post.images.length>0) {
+                        var dlg = $dialogs.create('views/partial/klImages.html', 'PostDetailImageModalCtrl', {post: scope.post}, {windowClass: 'wide', backdrop: 'static'});
+                    }
                 };
             }
         };

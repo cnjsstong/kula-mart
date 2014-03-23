@@ -146,7 +146,10 @@ angular.module('kulaWebApp', [
     }])
     .config(['$FBProvider', 'API', function ($FBProvider, API) {
         $FBProvider.setInitParams({
-            appId: API.FB.AppId
+            appId: API.FB.AppId,
+            status: true,
+            cookie: true,
+            xfbml: true
         });
     }])
     .factory('SecurityInterceptor', ['$q', '$rootScope', function ($q, scope) {

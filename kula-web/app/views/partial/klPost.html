@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-3">
             <!--ImageModal-->
-            <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'placeholder.png' }});"></a>
+            <a class="kula-image" ng-class="{'no-click':post.images.length==0}" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'category/'+post.category }});"></a>
             <!--<img class="post-image"-->
                  <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
         </div>

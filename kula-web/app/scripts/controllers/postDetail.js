@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account) {
+    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB) {
         $scope.post = Post.get({postId: $routeParams.postId});
         $scope.Reply = function (post, reply) {
             Post.reply({postId: post._id}, reply, function () {
@@ -17,23 +17,36 @@ angular.module('kulaWebApp')
             });
         };
 
+        $scope.ShareFacebook = function () {
+            $FB.ui(
+                {
+                    method: 'feed',
+                    name: 'This is the content of the "name" field.',
+                    link: 'http://kulamart.com/post/' + $scope.post._id,
+                    picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.post.images[0] || 'category/' + $scope.post.category,
+                    caption: $scope.post.title,
+                    description: $scope.post.description,
+                    message: ''
+                });
+        };
+
         $scope.ImageModal = function () {
             var dlg = $dialogs.create('views/partial/klImages.html', 'PostDetailImageModalCtrl', {post: $scope.post}, {windowClass: 'wide', backdrop: 'static'});
         };
     }])
-    .controller('PostDetailImageModalCtrl',['$scope', '$modalInstance', 'data', '$timeout', function ($scope, $modalInstance, data, $timeout){
+    .controller('PostDetailImageModalCtrl', ['$scope', '$modalInstance', 'data', '$timeout', function ($scope, $modalInstance, data, $timeout) {
         $scope.post = data.post;
         $scope.index = 0;
 
-        $scope.Previous = function() {
-            if($scope.index>0) $scope.index--;
+        $scope.Previous = function () {
+            if ($scope.index > 0) $scope.index--;
         };
 
-        $scope.Next = function() {
-            if($scope.index<$scope.post.images.length-1) $scope.index++;
+        $scope.Next = function () {
+            if ($scope.index < $scope.post.images.length - 1) $scope.index++;
         };
 
-        $scope.CloseModal = function() {
+        $scope.CloseModal = function () {
             $modalInstance.close();
         }
     }]);

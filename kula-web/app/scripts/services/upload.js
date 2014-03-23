@@ -3,7 +3,7 @@ angular.module('services.upload', [
 ]);
 
 angular.module('services.upload')
-    .factory('UploadService', ['$fileUploader', 'API', '$rootScope', 'SecurityService', function ($fileUploader, API, $rootScope, SecurityService) {
+    .factory('UploadService', ['$fileUploader', 'API', '$rootScope', 'SecurityService', '$dialogs', function ($fileUploader, API, $rootScope, SecurityService, $dialogs) {
 
 
         var processors = {
@@ -24,12 +24,21 @@ angular.module('services.upload')
                 autoUpload: true,
                 filters: [
                     function (item) {
-                        console.log(item);
-                        console.log(item.type);
-                        return (service.allowedExtensions.indexOf(item.type) != -1);
+                        if(service.allowedExtensions.indexOf(item.type) == -1) {
+                            $dialogs.error('Upload', 'Only *.jpg and *.png files are allowed.')
+                            console.log("Only *.jpg and *.png files are allowed.");
+                            return false;
+                        }
+                        if(item.size>service.maxSize) {
+                            $dialogs.error('Upload', 'File oversize. Max size: 2MB.')
+                            console.log("File oversize. Max size: 2MB.");
+                            return false;
+                        }
+                        return true;
                     }
                 ]}),
             allowedExtensions: ['image/jpeg', 'image/png'],
+            maxSize: 2000000,
             processor: function (event, type, processor) {
                 if (processor) {
                     processors[event][type] = processor;

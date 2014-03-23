@@ -399,6 +399,10 @@ a.kula-image {
     min-height: 90px;
 }
 
+a.kula-image.no-click {
+    cursor: not-allowed !important;
+}
+
 a.kula-image.with-margin {
     padding-top: 80%;
     width: 80%;
