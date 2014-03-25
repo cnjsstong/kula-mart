@@ -63,7 +63,7 @@
 
                 <!-- logo -->
                 <li class="logo-wrapper"><a class="logo home" ng-click="NavigateTo('/')">KulaMart</a></li>
-                <li class="hide-in-mobile school-selector" fire-dropdown-animation>
+                <li class="hide-in-mobile school-selector" fire-dropdown-animation ng-show="ifShowAreaDropdown">
                     <a class="dropdown-toggle">for <strong ng-bind="currentArea.title"></strong></a>
                     <ul class="dropdown-menu">
                         <li ng-repeat="area in areas" ng-click="SetCurrentArea(area)">
@@ -101,33 +101,10 @@
                 <a ng-click="NavigateTo('/terms')">Terms</a> &middot;
                 <a ng-click="NavigateTo('/about')">About</a> &middot;
                 <a ng-click="NavigateTo('/contact')">Contact</a>
-                <!--<a href="#"><span aria-hidden="true" class="icon-facebook"></span></a>-->
-                <!--<a href="#"><span aria-hidden="true" class="icon-twitter"></span></a>-->
-                <!--<a href="#"><span aria-hidden="true" class="icon-dribbble"></span></a>-->
-                <!--<a href="#"><span aria-hidden="true" class="icon-youtube-play"></span></a>-->
-                <!--<a href="#"><span aria-hidden="true" class="icon-google-plus"></span></a>-->
             </div>
         </div>
     </footer>
 </div>
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-</script>
 
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -199,6 +176,7 @@
 <script src="scripts/controllers/adminEventList.js"></script>
 <script src="scripts/controllers/my.js"></script>
 <script src="scripts/controllers/reply.js"></script>
+<script src="scripts/controllers/chooseSchool.js"></script>
 <script src="scripts/services/login.js"></script>
 <script src="scripts/services/upload.js"></script>
 <script src="scripts/services/area.js"></script>

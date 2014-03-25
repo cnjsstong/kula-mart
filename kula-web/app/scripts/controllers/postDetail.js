@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope) {
+    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', '$window', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope, $window) {
         $scope.post = Post.get({postId: $routeParams.postId});
         $scope.Reply = function (post, reply) {
             Post.reply({postId: post._id}, reply, function () {
@@ -28,6 +28,20 @@ angular.module('kulaWebApp')
                     description: $scope.post.description,
                     message: ''
                 });
+        };
+
+        $scope.ShareFacebook2= function(post) {
+            var title = encodeURIComponent(post.title);
+            var summary = encodeURIComponent(post.description);
+            var url = encodeURIComponent('http://kulamart.com/post/' + post._id);
+            var share = 'http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + summary + '&p[url]=' + url;
+            for(var i in post.images) {
+                share += '&p[images]['+i+']='+encodeURIComponent('http://img.kulamart.com.s3.amazonaws.com/' + post.images[i]);
+            }
+            if(post.images.length==0) {
+                share += '&p[images]['+i+']='+encodeURIComponent('http://img.kulamart.com.s3.amazonaws.com/category/' + post.category);
+            }
+            $window.open(share,'sharer','toolbar=0,status=0,width=548,height=325');
         };
 
         $scope.ImageModal = function () {

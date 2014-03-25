@@ -137,6 +137,10 @@ angular.module('kulaWebApp', [
             .when('/contact', {
                 templateUrl: 'views/static/contact.html'
             })
+            .when('/schools', {
+                templateUrl: 'views/chooseSchool.html',
+                controller: 'ChooseSchoolCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -223,7 +227,13 @@ angular.module('kulaWebApp', [
 
         $rootScope.areas = AreaService.getAreas();
 
-        $rootScope.currentArea = Area.get({areaId: '52f830afa80bfe4818f56654'});
+
+        var defArea = AreaService.getDefault();
+        $rootScope.currentArea = Area.get({areaId: defArea || '52f830afa80bfe4818f56654'});
+
+        if(!defArea) {
+            $location.path('/schools');
+        }
 
         $rootScope.SetCurrentArea = function (area) {
             $rootScope.currentArea = area;
@@ -237,5 +247,13 @@ angular.module('kulaWebApp', [
                 $location.path(url);
             }
         };
+
+        $rootScope.ifShowAreaDropdown = true;
+        $rootScope.HideAreaDropdown = function() {
+            $rootScope.ifShowAreaDropdown = false;
+        }
+        $rootScope.ShowAreaDropdown = function() {
+            $rootScope.ifShowAreaDropdown = true;
+        }
 
     }]);

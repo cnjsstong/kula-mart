@@ -1,0 +1,21 @@
+<section id="contact" class="section">
+    <div class="container">
+        <div class="row">
+
+            <div id="chat" class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 col-lg-8 col-lg-offset-2">
+                <div class="lead-form bounce">
+
+                    <h2><small>Welcome to KulaMart.com!</small></h2>
+                    <p>Please choose your school.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 text-center" ng-repeat="area in areas">
+                            <a ng-bind="area.title" ng-click="SetCurrentAreaAndGoToHome(area)" class="btn btn-md btn-primary cta"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

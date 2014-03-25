@@ -1,9 +1,10 @@
 angular.module('services.area', [
-    'resources'
+    'resources',
+    'ivpusic.cookie'
 ]);
 
 angular.module('services.area')
-    .factory('AreaService', ['Area', function (Area) {
+    .factory('AreaService', ['Area', 'ipCookie', function (Area, ipCookie) {
         var areaMapping = {};
         var areaTitleMapping = {};
         var areas = Area.query({},function(){
@@ -37,6 +38,14 @@ angular.module('services.area')
                 } else {
                     return null;
                 }
+            },
+
+            setDefault: function(area) {
+                ipCookie('area', area._id);
+            },
+
+            getDefault: function() {
+                return ipCookie('area');
             }
         };
 
