@@ -251,9 +251,9 @@ angular.module('kulaWebApp', [
         $rootScope.ifShowAreaDropdown = true;
         $rootScope.HideAreaDropdown = function() {
             $rootScope.ifShowAreaDropdown = false;
-        }
+        };
         $rootScope.ShowAreaDropdown = function() {
             $rootScope.ifShowAreaDropdown = true;
-        }
+        };
 
     }]);
