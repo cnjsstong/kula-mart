@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('kulaWebApp')
-    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', '$window', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope, $window) {
+    .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', '$window', '$filter', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope, $window, $filter) {
         $scope.post = Post.get({postId: $routeParams.postId});
         $scope.Reply = function (post, reply) {
             Post.reply({postId: post._id}, reply, function () {
@@ -21,7 +21,7 @@ angular.module('kulaWebApp')
             $FB.ui(
                 {
                     method: 'feed',
-                    name: $scope.post.title,
+                    name: ($scope.post.type=='request'?'Requesting':'Offering') + $scope.post.title + 'for ' + $filter('price')($scope.post.price),
                     link: 'http://kulamart.com/post/' + $scope.post._id,
                     picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.post.images[0] || 'category/' + $scope.post.category,
                     caption: 'KulaMart.com - '+ $rootScope.currentArea.title,
