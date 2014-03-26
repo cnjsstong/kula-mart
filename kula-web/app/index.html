@@ -52,11 +52,11 @@
                         <div class="gn-scroller">
                             <ul class="gn-menu">
                                 <li class="current"><a ng-click="NavigateTo('/')"><i class="gn-icon icon-home"></i>Home</a></li>
-                                <li><a ng-click="NavigateTo('/market')"><i class="gn-icon linecon-bulb"></i>Market</a></li>
+                                <li><a ng-click="NavigateTo('/market')"><i class="gn-icon linecon-banknote"></i>Market</a></li>
                                 <!--<li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-user"></i>Business</a></li>-->
-                                <li><a ng-click="NavigateTo('/info')"><i class="gn-icon linecon-like"></i>Info</a></li>
-                                <li><a ng-click="NavigateTo('/my')"><i class="gn-icon linecon-settings"></i>My Account</a></li>
-                                <li><a ng-click="NavigateTo('/schools')"><i class="gn-icon linecon-settings"></i>Select School</a></li>
+                                <li><a ng-click="NavigateTo('/info')"><i class="gn-icon linecon-calendar"></i>Info</a></li>
+                                <li><a ng-click="NavigateTo('/my')"><i class="gn-icon linecon-user"></i>My Account</a></li>
+                                <li><a ng-click="NavigateTo('/schools')"><i class="gn-icon linecon-study"></i>Select School</a></li>
                             </ul>
                         </div>
                         <!-- /gn-scroller -->
@@ -76,10 +76,8 @@
 
                 <!-- top right: call to action -->
                 <li class="cta">
-                    <a class="user-showcase" ng-click="NavigateTo('/my')" ng-show="isLoggedIn()">
-                        <span ng-bind="GetUser('email')"></span><br>
-                        <span>My Account</span>
-                    </a>
+                    <a ng-click="NavigateTo('/my')" ng-show="isLoggedIn()">
+                       <!-- <span ng-bind="GetUser('email')"></span <br>--><i class="linecon-user"></i><span class="hide-in-mobile">&nbsp;my account</span> </a>
                     <a ng-click="NavigateTo('/login')" ng-hide="isLoggedIn()">Login</a>
                 </li>
             </ul>
