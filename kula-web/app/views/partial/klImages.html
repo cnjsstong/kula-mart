@@ -1,14 +1,14 @@
 <div class="modal-header">
     <h4 class="modal-title">
         <i class="icon-li icon-star"></i>
-        <b ng-bind="post.title"></b>
+        <b ng-bind="title"></b>
         <a class="pull-right" ng-click="CloseModal()"><i class="icon-remove"></i></a>
     </h4>
 </div>
 <div class="modal-body">
-    <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[index]||'placeholder.png' }});"></a>
+    <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ images[index]||'placeholder.png' }});"></a>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" ng-click="Previous()" ng-disabled="index==0">Previous</button>
-    <button type="button" class="btn btn-primary" ng-click="Next()" ng-disabled="index==post.images.length-1">Next</button>
+    <button type="button" class="btn btn-primary" ng-click="Next()" ng-disabled="index==images.length-1">Next</button>
 </div>

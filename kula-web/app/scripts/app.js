@@ -100,9 +100,15 @@ angular.module('kulaWebApp', [
                 controller: 'MarketCtrl',
                 reloadOnSearch: false
             })
-            .when('/market/:areaId', {
-                templateUrl: 'views/market.html',
-                controller: 'MarketCtrl'
+            .when('/info', {
+                templateUrl: 'views/info.html',
+                controller: 'InfoCtrl',
+                reloadOnSearch: false
+            })
+            .when('/event/:eventId', {
+                templateUrl: 'views/event.html',
+                controller: 'EventCtrl',
+                reloadOnSearch: false
             })
             .when('/post/:postId', {
                 templateUrl: 'views/post.html',
@@ -146,7 +152,7 @@ angular.module('kulaWebApp', [
             });
     }])
     .config(['$locationProvider', function ($locationProvider) {
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(false);
     }])
     .config(['$FBProvider', 'API', function ($FBProvider, API) {
         $FBProvider.setInitParams({

@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('kulaWebApp')
     .controller('PostDetailCtrl', ['$scope', 'Post', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', '$window', '$filter', function ($scope, Post, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope, $window, $filter) {
         $scope.post = Post.get({postId: $routeParams.postId});
@@ -49,7 +47,8 @@ angular.module('kulaWebApp')
         };
     }])
     .controller('PostDetailImageModalCtrl', ['$scope', '$modalInstance', 'data', '$timeout', function ($scope, $modalInstance, data, $timeout) {
-        $scope.post = data.post;
+        $scope.images = data.post.images;
+        $scope.title = data.post.title;
         $scope.index = 0;
 
         $scope.Previous = function () {
@@ -57,7 +56,7 @@ angular.module('kulaWebApp')
         };
 
         $scope.Next = function () {
-            if ($scope.index < $scope.post.images.length - 1) $scope.index++;
+            if ($scope.index < $scope.images.length - 1) $scope.index++;
         };
 
         $scope.CloseModal = function () {

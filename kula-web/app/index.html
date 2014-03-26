@@ -8,7 +8,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
-    <base href="/">
+    <!--<base href="/">-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Kula Mart</title>
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="styles/magnific-popup.css">
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/jquery.countdown.css">
 
     <!-- endbuild -->
 </head>
@@ -52,8 +53,8 @@
                             <ul class="gn-menu">
                                 <li class="current"><a ng-click="NavigateTo('/')"><i class="gn-icon icon-home"></i>Home</a></li>
                                 <li><a ng-click="NavigateTo('/market')"><i class="gn-icon linecon-bulb"></i>Market</a></li>
-                                <li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-user"></i>Business</a></li>
-                                <li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-like"></i>Info</a></li>
+                                <!--<li><a ng-click="NavigateTo('/')"><i class="gn-icon linecon-user"></i>Business</a></li>-->
+                                <li><a ng-click="NavigateTo('/info')"><i class="gn-icon linecon-like"></i>Info</a></li>
                                 <li><a ng-click="NavigateTo('/my')"><i class="gn-icon linecon-settings"></i>My Account</a></li>
                                 <li><a ng-click="NavigateTo('/schools')"><i class="gn-icon linecon-settings"></i>Select School</a></li>
                             </ul>
@@ -146,6 +147,8 @@
 <script src="scripts/lib/jquery.caroufredsel.js"></script>
 <script src="scripts/lib/classie.js"></script>
 <script src="scripts/lib/jquery.gnmenu.js"></script>
+<script src="scripts/lib/jquery.plugin.js"></script>
+<script src="scripts/lib/jquery.countdown.js"></script>
 
 <script src="scripts/lib/custom.js"></script>
 <!-- endbuild -->
@@ -178,6 +181,8 @@
 <script src="scripts/controllers/my.js"></script>
 <script src="scripts/controllers/reply.js"></script>
 <script src="scripts/controllers/chooseSchool.js"></script>
+<script src="scripts/controllers/info.js"></script>
+<script src="scripts/controllers/event.js"></script>
 <script src="scripts/services/login.js"></script>
 <script src="scripts/services/upload.js"></script>
 <script src="scripts/services/area.js"></script>
@@ -190,6 +195,7 @@
 <script src="scripts/directives/fireAutoCarousel.js"></script>
 <script src="scripts/directives/fireDropdownAnimation.js"></script>
 <script src="scripts/directives/klPost.js"></script>
+<script src="scripts/directives/klTimer.js"></script>
 <script src="scripts/filters/area.js"></script>
 <script src="scripts/filters/category.js"></script>
 <script src="scripts/filters/price.js"></script>

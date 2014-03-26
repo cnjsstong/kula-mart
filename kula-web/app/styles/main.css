@@ -458,3 +458,21 @@ form input.invalid {
     margin-left: 1em;
 }
 
+.events .grid .block-item img.img-responsive {
+    padding-top: 100%;
+    min-width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.countdown-indicator {
+    line-height: 55px;
+    font-size: 2em;
+}
+
+.countdown-indicator.later {
+    color: #ffffff;
+}
+.countdown-indicator.left {
+    color: #ff0000;
+}
