@@ -476,3 +476,14 @@ form input.invalid {
 .countdown-indicator.left {
     color: #ff0000;
 }
+
+html {
+    overflow-x: hidden;
+}
+
+.home-event-tag {
+    margin: 0 5px;
+    padding: 0 5px 2px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}

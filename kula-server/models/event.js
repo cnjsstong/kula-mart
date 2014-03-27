@@ -74,6 +74,9 @@ var ActivitySchema = new Schema({
         email: {
             type: String
         },
+        url: {
+            type: String
+        },
         phone: {
             type: String
         },

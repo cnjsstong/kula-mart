@@ -49,6 +49,7 @@
 				this.trigger.addEventListener( 'mouseover', function(ev) { self._openIconMenu(); } );
 				this.trigger.addEventListener( 'mouseout', function(ev) { self._closeIconMenu(); } );
 				this.menu.addEventListener( 'mouseout', function(ev) { self._closeMenu(); } );
+                this.menu.addEventListener( 'click', function(ev) { self._closeMenu(); } );
 			
 				this.menu.addEventListener( 'mouseover', function(ev) {
 					self._openMenu(); 

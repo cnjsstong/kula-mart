@@ -84,18 +84,16 @@
         <div class="row">
 
             <div class="carousel-small clearfix">
-
-                <article class="content" style="opacity: 0.9;" ng-repeat="event in events" fire-carousel="$last" fire-carousel-bg="event.images[0]">
+                <a href="{{event.url}}" target="_blank" ng-repeat="event in events">
+                <article class="content" style="opacity: 0.9;" fire-carousel="$last" fire-carousel-bg="event.images[0]">
                     <div class="details">
                         <h4 ng-bind="event.title"></h4>
 
                         <p>
-                            <b>From:</b>&nbsp;&nbsp;&nbsp;<span ng-bind="event.start | date:'MM/dd/yyyy @ h:mma'"></span>
-                            <br>
-                            <b>To:</b>&nbsp;&nbsp;&nbsp;<span ng-bind="event.expire | date:'MM/dd/yyyy @ h:mma'"></span>
+                            <span ng-bind="GetTiming(event)" class="home-event-tag time-left"></span> <span class="home-event-tag" ng-repeat="tag in event.tags" ng-bind="tag"></span>
                         </p>
                     </div>
-                </article>
+                </article></a>
             </div>
 
    <!--     <div class="carousel-controls">
@@ -118,7 +116,7 @@
     </ul>
 
     <div class="row">
-        <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id'"></kl-post>
+        <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id' | limitTo:10"></kl-post>
     </div>
 </section> <!-- end Contact Section -->
 

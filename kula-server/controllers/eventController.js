@@ -35,7 +35,8 @@ function createActivity(req, res) {
     event.images = req.body.images || [];
     event.start = req.body.start;
     event.expire = req.body.expire;
-    event.email = req.body.email;
+    event.email = req.body.email || '';
+    event.url = req.body.url || '';
     event.phone = req.body.phone || '';
     event.delivery = req.body.delivery || [];
 
@@ -66,7 +67,8 @@ function updateActivity(req, res) {
     event.images = req.body.images || [];
     event.start = req.body.start;
     event.expire = req.body.expire;
-    event.email = req.body.email;
+    event.email = req.body.email || '';
+    event.url = req.body.url || '';
     event.phone = req.body.phone || '';
     event.delivery = req.body.delivery || [];
 

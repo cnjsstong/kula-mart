@@ -21,8 +21,10 @@ angular.module('kulaWebApp')
         });
 
         $scope.Submit = function (post) {
-            Post.save({postId: $routeParams.postId}, post);
-            $window.history.back();
+            Post.save({postId: $routeParams.postId}, post, function(res) {
+//                console.log('DDDDDDDDDDDDDDD', res);
+                $location.path('/post/'+res._id);
+            });
         };
 
         $scope.GetPostUploadOptions = function () {

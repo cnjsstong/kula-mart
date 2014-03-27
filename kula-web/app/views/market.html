@@ -46,7 +46,7 @@
                         <div class="panel-body">
                             <a class="category-tag btn btn-sm"
                                ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}"
-                               ng-repeat="tag in allTags" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
+                               ng-repeat="tag in allTags | limitTo:15" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         <div class="panel-body">
                             <a class="category-tag btn btn-sm"
                                ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}"
-                               ng-repeat="tag in category.tags" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
+                               ng-repeat="tag in category.tags | limitTo:15" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
                         </div>
                     </div>
                 </div>

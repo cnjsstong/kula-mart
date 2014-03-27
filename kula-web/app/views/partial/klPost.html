@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-3">
             <!--ImageModal-->
-            <a class="kula-image" ng-class="{'no-click':post.images.length==0}" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'category/'+post.category }});"></a>
+            <a class="kula-image" ng-class="{'no-click':post.images.length==0}" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||(post.category?'category/'+post.category:false)||'placeholder.png' }});"></a>
             <!--<img class="post-image"-->
                  <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
         </div>
@@ -65,6 +65,9 @@
                 <a class="btn btn-md btn-primary" ng-href="/admin/post/{{post._id}}">Edit</a>
                 <a class="btn btn-md btn-primary" ng-click="ExpirePost()">Mark As Expired</a>
                 <a class="btn btn-md btn-primary" ng-click="DeletePost()">Delete</a>
+            </span>
+            <span class="actions pull-right" ng-switch-when="4">
+                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i class="linecon-eye"></i>Quick View</a>
             </span>
         </div>
 
