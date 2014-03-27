@@ -15,7 +15,7 @@ Run client under Mac:
   ```
 3. install bower  
   ```
-  npm install -g bower@1.2.6
+  npm install -g bower
   ```
 4. npm install  
   ```
