@@ -152,7 +152,7 @@ angular.module('kulaWebApp', [
             });
     }])
     .config(['$locationProvider', function ($locationProvider) {
-        $locationProvider.html5Mode(false);
+        $locationProvider.html5Mode(true);
     }])
     .config(['$FBProvider', 'API', function ($FBProvider, API) {
         $FBProvider.setInitParams({
