@@ -1,7 +1,7 @@
 KulaMart
 ========
 
-Run client:
+Run client under Mac:
 
 1. install node.js  
   ```
@@ -10,6 +10,7 @@ Run client:
 2. install grunt   
   ```
   npm config set prefix /usr/local
+
   npm install -g grunt-cli
   ```
 3. install bower  
