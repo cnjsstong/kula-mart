@@ -1,27 +1,14 @@
 angular.module('kulaWebApp')
     .controller('EventCtrl', ['$scope', 'Event', '$routeParams', 'CategoryService', '$dialogs', 'Account', '$FB', '$rootScope', '$window', '$filter', function ($scope, Event, $routeParams, CategoryService, $dialogs, Account, $FB, $rootScope, $window, $filter) {
         $scope.event = Event.get({eventId: $routeParams.eventId});
-//        $scope.Reply = function (event, reply) {
-//            Event.reply({eventId: event._id}, reply, function () {
-//                $dialogs.notify('Confirm', 'Your reply has been sent.');
-//            }, function () {
-//                $dialogs.notify('Failed', 'Sending failed. Please retry.');
-//            });
-//        };
-//
-//        $scope.SaveForLater = function () {
-//            Account.addFavorite({}, {eventId: scope.event._id}, function () {
-//                $dialogs.notify('Confirm', 'Saved.')
-//            });
-//        };
 
         $scope.ShareFacebook = function () {
             $FB.ui(
                 {
                     method: 'feed',
-                    name: ($scope.event.type=='request'?'Requesting':'Offering') + $scope.event.title + 'for ' + $filter('price')($scope.event.price),
+                    name: $scope.event.title,
                     link: 'http://kulamart.com/event/' + $scope.event._id,
-                    picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.event.images[0] || 'category/' + $scope.event.category,
+                    picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.event.images[0] || 'placeholder.png',
                     caption: 'KulaMart.com - '+ $rootScope.currentArea.title,
                     description: $scope.event.description,
                     message: ''
