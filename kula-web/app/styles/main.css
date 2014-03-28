@@ -140,6 +140,21 @@ input.form-control.no-margin {
     margin-top: 5px;
     padding: 3px;
     background-color: #226998;
+    cursor: default;
+}
+
+.tag-primary,.tag-primary:hover{
+    padding: 3px 6px;
+    background-color: #d9534f;
+    color: #ffffff;
+    border-radius: 3px;
+    font-size: 1.1em;
+    font-weight: 400;
+    cursor: default;
+}
+
+.tag-primary.tag-request,.tag-primary.tag-request:hover{
+    background-color: #f0ad4e;
 }
 
 .post .title {
