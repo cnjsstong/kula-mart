@@ -88,32 +88,8 @@ function listPosts(req, res) {
     console.log(req.params);
     if (req.params.categoryId && req.params.areaId) {
         Post.find({
-            category: req.params.categoryId,
-            area: {$all: [req.params.areaId]},
-            status: Post.Status.ACTIVE,
-            $or: [
-                { neverExpire: true },
-                {
-                    $and: [
-                        { expire: {
-                            $gt: new Date()
-                        } },
-                        { neverExpire: false }
-                    ]
-                }
-            ]
-        }, function (err, posts) {
-            if (err) {
-                return res.send(500);
-            } else {
-                return res.send(200, posts);
-            }
-        });
-    } else {
-//        console.log('aaa');
-        if (req.params.areaId) {
-            Post.find({
-                area: req.params.areaId,
+                category: req.params.categoryId,
+                area: {$all: [req.params.areaId]},
                 status: Post.Status.ACTIVE,
                 $or: [
                     { neverExpire: true },
@@ -126,13 +102,49 @@ function listPosts(req, res) {
                         ]
                     }
                 ]
+            },
+            {title: 1, content: 1, tags: 1, type: 1}, // Columns to Return
+            {
+                sort: {
+                    _id: -1 //Sort by Date Added DESC
+                }
             }, function (err, posts) {
                 if (err) {
                     return res.send(500);
                 } else {
                     return res.send(200, posts);
                 }
-            })
+            });
+    } else {
+//        console.log('aaa');
+        if (req.params.areaId) {
+            Post.find({
+                    area: req.params.areaId,
+                    status: Post.Status.ACTIVE,
+                    $or: [
+                        { neverExpire: true },
+                        {
+                            $and: [
+                                { expire: {
+                                    $gt: new Date()
+                                } },
+                                { neverExpire: false }
+                            ]
+                        }
+                    ]
+                },
+                {title: 1, content: 1, tags: 1, type: 1}, // Columns to Return
+                {
+                    sort: {
+                        _id: -1 //Sort by Date Added DESC
+                    }
+                }, function (err, posts) {
+                    if (err) {
+                        return res.send(500);
+                    } else {
+                        return res.send(200, posts);
+                    }
+                })
         } else {
             return res.send(400);
         }

@@ -28,16 +28,16 @@
                             <div class="btn-group centered">
                                 <a class="btn"
                                    ng-class="{'btn-danger':filter.type=='offer', 'btn-disabled':filter.type!='offer'}"
-                                   ng-click="filter.type='offer'">Offering</a>
+                                   ng-click="SetFilterType('offer')">Offering</a>
                                 <a class="btn"
                                    ng-class="{'btn-danger':filter.type=='request', 'btn-disabled':filter.type!='request'}"
-                                   ng-click="filter.type='request'">Requesting</a>
+                                   ng-click="SetFilterType('request')">Requesting</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" ng-class="{'highlighted':showCategory==-1}">
                         <h4 class="panel-title">
                             <a ng-click="ShowCategory(-1)">All</a>
                         </h4>
@@ -46,12 +46,12 @@
                         <div class="panel-body">
                             <a class="category-tag btn btn-sm"
                                ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}"
-                               ng-repeat="tag in allTags | limitTo:15" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
+                               ng-repeat="tag in allTags" ng-bind="tag._id" ng-click="SetFilterTag(tag._id)"></a>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default" ng-repeat="category in categories">
-                    <div class="panel-heading">
+                    <div class="panel-heading" ng-class="{'highlighted':showCategory==$index}">
                         <h4 class="panel-title">
                             <a ng-bind="category.title" ng-click="ShowCategory($index)"></a>
                         </h4>
@@ -60,14 +60,14 @@
                         <div class="panel-body">
                             <a class="category-tag btn btn-sm"
                                ng-class="{'btn-danger':filter.tag==tag._id, 'btn-primary':filter.tag!=tag._id}"
-                               ng-repeat="tag in category.tags | limitTo:15" ng-bind="tag._id" ng-click="filter.tag=tag._id"></a>
+                               ng-repeat="tag in category.tags" ng-bind="tag._id" ng-click="SetFilterTag(tag._id)"></a>
                         </div>
                     </div>
                 </div>
             </div>
             </div>
         </div>
-        <div class="col-md-9 col-sm-8 col-xs-12">
+        <div class="col-md-9 col-sm-8 col-xs-12" kl-scroll-more="loadMore()">
             <div class="panel panel-default kl-search">
                 <div class="panel-collapse collapse in">
                     <div class="panel-body text-center">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <kl-post kl-post-id="post._id" ng-repeat="post in posts | filter:FilterPosts | orderBy:'-_id'" class="repeat-item"></kl-post>
+            <kl-post kl-post-id="post" ng-repeat="post in showingPosts" class="repeat-item"></kl-post>
         </div>
     </div>
 </div>

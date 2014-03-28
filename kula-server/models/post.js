@@ -136,6 +136,7 @@ PostSchema.statics = {
             .sort({
                 number: -1
             })
+            .limit(15)
             .exec(function (err, res) {
 //                console.log(err, res);
                 callback(err, res);

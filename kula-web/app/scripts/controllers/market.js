@@ -23,6 +23,7 @@ angular.module('kulaWebApp')
                     }
                     Post.query({areaId: $rootScope.currentArea._id, categoryId: $scope.categories[$index]._id}, function (res) {
                         $scope.posts = res;
+                        $scope.reloadAll();
                     });
                 } else {
                     if (!$scope.allTags) {
@@ -32,12 +33,38 @@ angular.module('kulaWebApp')
                     }
                     Post.query({areaId: $rootScope.currentArea._id}, function (res) {
                         $scope.posts = res;
+                        $scope.reloadAll();
                     });
                 }
                 $scope.showCategory = $index;
             };
             $scope.ShowCategory(-1);
         });
+
+        $scope.reloadAll = function() {
+            $scope.filteredPosts = $scope.getFilteredPosts();
+            $scope.loadMore(true);
+        };
+
+        $scope.loadMore = function(refresh) {
+            if(refresh) {
+                $scope.showingPosts = [];
+            }
+            var from = $scope.showingPosts.length;
+            for(var i=from; i<from+10 && i<$scope.filteredPosts.length; i++) {
+                $scope.showingPosts.push($scope.filteredPosts[i]);
+            }
+        };
+
+        $scope.getFilteredPosts = function() {
+            var filteredPosts = [];
+            for(var i in $scope.posts) {
+                if($scope.FilterPosts($scope.posts[i])) {
+                    filteredPosts.push($scope.posts[i]._id);
+                }
+            }
+            return filteredPosts;
+        };
 
         $scope.FilterPosts = function (item) {
             if ($scope.filter.keyword && (!item.title || item.title.toLowerCase().indexOf($scope.filter.lowerKeyword) == -1) && (!item.description || item.description.toLowerCase().indexOf($scope.filter.lowerKeyword) == -1) && (item.tags.length == 0 || item.tags.join().toLowerCase().indexOf($scope.filter.lowerKeyword) == -1)) {
@@ -58,5 +85,16 @@ angular.module('kulaWebApp')
         $scope.UpdateSearch = function(keyword) {
             $location.search({keyword: keyword});
             $scope.filter.lowerKeyword = keyword.toLowerCase();
-        }
+            $scope.reloadAll();
+        };
+
+        $scope.SetFilterTag = function(tag) {
+            $scope.filter.tag=tag;
+            $scope.reloadAll();
+        };
+
+        $scope.SetFilterType = function(type) {
+            $scope.filter.type = type;
+            $scope.reloadAll();
+        };
     }]);
