@@ -41,11 +41,13 @@ angular.module('services.area')
             },
 
             setDefault: function(area) {
-                ipCookie('area', area._id);
+                ipCookie('area', area._id, { expires: 365, path: '/' });
             },
 
             getDefault: function() {
-                return ipCookie('area');
+                var id = ipCookie('area');
+                ipCookie('area', id, { expires: 365, path: '/' });
+                return id;
             }
         };
 

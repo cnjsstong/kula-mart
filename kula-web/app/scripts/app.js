@@ -243,6 +243,7 @@ angular.module('kulaWebApp', [
 
         $rootScope.SetCurrentArea = function (area) {
             $rootScope.currentArea = area;
+            AreaService.setDefault(area);
             $route.reload();
         };
 

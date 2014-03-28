@@ -12,7 +12,6 @@ angular.module('kulaWebApp')
 
         $scope.SetCurrentAreaAndGoToHome = function(area) {
             var psuedo = $rootScope.SetCurrentArea(area);
-            AreaService.setDefault(area);
             $rootScope.NavigateTo('/');
         }
     }]);

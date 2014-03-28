@@ -1,5 +1,6 @@
 <!-- Featured items -->
-<section id="featured" class="section intro carousel slide" data-interval="3000" data-ride="carousel" fire-auto-carousel>
+<section id="featured" class="section intro carousel slide" data-interval="3000" data-ride="carousel"
+         fire-auto-carousel>
 
     <ol class="carousel-indicators">
         <li data-target="#featured" data-slide-to="0" class="active"></li>
@@ -15,7 +16,8 @@
                 <div class="carousel-caption">
                     <h1 class="black-shadow">Shop, trade and fun</h1>
 
-                    <p class="black-shadow">enter <a class="carousel-link" ng-click="NavigateTo('/market')">market</a> / info / business.</p>
+                    <p class="black-shadow">enter <a class="carousel-link" ng-click="NavigateTo('/market')">market</a> /
+                        info / business.</p>
 
                     <p>
 
@@ -24,7 +26,8 @@
                             <a class="btn btn-primary" ng-click="NavigateTo('/admin/post/new')">Post</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                         <div class="form-group">
-                            <input class="form-control no-margin" type="text" placeholder="looking for?" ng-model="searchKeyword">
+                            <input class="form-control no-margin" type="text" placeholder="looking for?"
+                                   ng-model="searchKeyword">
                         </div>
                         <div class="form-group">
                             &nbsp;<a class="btn btn-primary" ng-click="NavigateTo('/market',searchKeyword)">Search</a>
@@ -42,7 +45,8 @@
                 <div class="carousel-caption">
                     <h1 class="black-shadow">See what's happening</h1>
 
-                    <p class="black-shadow">enter market / <a class="carousel-link" ng-click="NavigateTo('/')">info</a> / business.</p>
+                    <p class="black-shadow">enter market / <a class="carousel-link" ng-click="NavigateTo('/')">info</a>
+                        / business.</p>
 
                     <p>
 
@@ -51,7 +55,8 @@
                             <a class="btn btn-primary" ng-click="NavigateTo('/admin/post/new')">Post</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                         <div class="form-group">
-                            <input class="form-control no-margin" type="text" placeholder="looking for?" ng-model="searchKeyword">
+                            <input class="form-control no-margin" type="text" placeholder="looking for?"
+                                   ng-model="searchKeyword">
                         </div>
                         <div class="form-group">
                             &nbsp;<a class="btn btn-primary" ng-click="NavigateTo('/market',searchKeyword)">Search</a>
@@ -80,30 +85,32 @@
 <!-- Team Section -->
 <section id="team" class="team section container">
 
-    <div class="container">
+    <!--<div class="container">-->
         <div class="row">
 
             <div class="carousel-small clearfix">
-                <a href="{{event.url}}" target="_blank" ng-repeat="event in events">
-                <article class="content" style="opacity: 0.9;" fire-carousel="$last" fire-carousel-bg="event.images[0]">
+                <article class="content" style="opacity: 0.9; cursor: pointer;" fire-carousel="$last"
+                         fire-carousel-bg="event.images[0]" ng-click="GoToExternalUrl(event.url)"
+                         ng-repeat="event in events">
                     <div class="details">
                         <h4 ng-bind="event.title"></h4>
 
                         <p>
-                            <span ng-bind="GetTiming(event)" class="home-event-tag time-left"></span> <span class="home-event-tag" ng-repeat="tag in event.tags" ng-bind="tag"></span>
+                            <span ng-bind="GetTiming(event)" class="home-event-tag time-left"></span> <span
+                                class="home-event-tag" ng-repeat="tag in event.tags" ng-bind="tag"></span>
                         </p>
                     </div>
-                </article></a>
+                </article>
             </div>
 
-   <!--     <div class="carousel-controls">
+            <div class="carousel-controls">
                 <a class="prev" id="carousel-prev" href="#"><span aria-hidden="true" class="icon-angle-left"></span></a>
                 <a class="next" id="carousel-next" href="#"><span aria-hidden="true"
-                                                                class="icon-angle-right"></span></a>
+                                                                  class="icon-angle-right"></span></a>
             </div>
-            -->  
+
         </div>
-    </div>
+    <!--</div>-->
 
 </section> <!-- end Team Section -->
 
@@ -111,8 +118,8 @@
 <!-- Contact -->
 <section id="contact" class="section container post-list">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#">Newest Items</a></li>
-      <li><a ng-click="NavigateTo('/market')">Go to Market</a></li>
+        <li class="active"><a href="#">Newest Items</a></li>
+        <li><a ng-click="NavigateTo('/market')">Go to Market</a></li>
     </ul>
 
     <div class="row">

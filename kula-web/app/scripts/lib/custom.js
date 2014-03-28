@@ -105,7 +105,7 @@ $("a.home").click(function () {
  ---------------------------- */
 
 function fireCarouFredSel(element) {
-
+    console.log(element);
     $(element).carouFredSel({
         responsive: true,
         width: '100%',
