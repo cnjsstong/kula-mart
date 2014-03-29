@@ -33,6 +33,7 @@ exports.sendReplyMail = function (reply, post) {
                     .replace('{{ reply.content }}', reply.content)
                     .replace('{{ reply._id }}', reply._id)
                     .replace('{{ post.images[0] }}', post.images[0] || 'placeholder.png')
+                    .replace('{{ reply.email }}', reply.email)
                     .replace('{{ reply.email }}', reply.email),
                 generateTextFromHTML: true
             };
