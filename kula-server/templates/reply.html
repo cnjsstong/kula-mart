@@ -61,10 +61,10 @@
                                                     <td valign="top" class="mcnTextContent"
                                                         style="padding-top: 9px;padding-right: 18px;padding-bottom: 9px;padding-left: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;font-family: Helvetica;font-size: 11px;line-height: 125%;text-align: left;">
 
-                                                        <a href="http://us3.campaign-archive1.com/?u=74fb23d72ba8e034b0e7b3a10&amp;id=f50f42ee97&amp;e=[UNIQID]"
-                                                           target="_blank"
-                                                           style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;font-weight: normal;text-decoration: underline;">View
-                                                            this email in your browser</a>
+                                                        <!--<a href="http://us3.campaign-archive1.com/?u=74fb23d72ba8e034b0e7b3a10&amp;id=f50f42ee97&amp;e=[UNIQID]"-->
+                                                           <!--target="_blank"-->
+                                                           <!--style="word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;font-weight: normal;text-decoration: underline;">View-->
+                                                            <!--this email in your browser</a>-->
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -230,7 +230,7 @@
                                                     <td valign="top" class="mcnTextContent"
                                                         style="padding-top: 9px;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: center;">
                                                         His/Her message:
-                                                        <br>"{{ reply.content }}"<br><br>
+                                                        <br><span style="font-size: 22px;">"{{ reply.content }}"</span><br><br>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -255,10 +255,8 @@
                                                     <td align="center" valign="middle"
                                                         class="mcnButtonContent"
                                                         style="font-family: Arial;font-size: 18px;padding: 14px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-                                                        <a class="mcnButton " title="VIEW ON KULA"
-                                                           href="http://kulamart.com/reply/{{ reply._id }}" target="_self"
-                                                           style="font-weight: bold;letter-spacing: -0.5px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: block;">VIEW
-                                                            ON KULA</a>
+                                                        <a class="mcnButton" title="REPLY"
+                                                           href="mailto:{{ reply.email }}" style="font-weight: bold;letter-spacing: -0.5px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: block;">REPLY</a>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -279,8 +277,9 @@
                                                    style="border-top-width: 1px;border-top-style: solid;border-top-color: #000000;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                                 <tbody>
                                                 <tr>
-                                                    <td style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-                                                        <span></span>
+                                                    <td style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%; text-align: center;" >
+                                                        <span>
+                                                        Or send email to: {{ reply.email }}</span>
                                                     </td>
                                                 </tr>
                                                 </tbody>
