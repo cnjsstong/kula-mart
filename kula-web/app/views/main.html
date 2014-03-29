@@ -40,24 +40,9 @@
             <div class="black-mask">
                 <!-- Featured Copy -->
                 <div class="carousel-caption">
-                    <h1 class="black-shadow">See what's happening</h1>
+                    <h1 class="black-shadow">Today's Event & Sale</h1>
 
                     <p class="black-shadow">enter market / <a class="carousel-link" "NavigateTo('/info')">info</a> / business.</p>
-
-                    <p>
-
-                    <form class="form-inline hide-in-mobile">
-                        <div class="form-group">
-                            <a class="btn btn-primary" ng-click="NavigateTo('/admin/post/new')">Post</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control no-margin" type="text" placeholder="looking for?" ng-model="searchKeyword">
-                        </div>
-                        <div class="form-group">
-                            &nbsp;<a class="btn btn-primary" ng-click="NavigateTo('/market',searchKeyword)">Search</a>
-                        </div>
-                    </form>
-                    </p>
 
                 </div>
             </div>
@@ -120,7 +105,7 @@
 
     <div class="row">
         <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id'"></kl-post>
-        <a ng-click="NavigateTo('/market')" class="pull-right">see more in <i class="linecon-banknote"></i>Market!&nbsp;</a>
+        <a ng-click="NavigateTo('/market')" class="btn full-width">see more in <i class="linecon-banknote"></i>Market!&nbsp;</a>
     </div>
 </section> <!-- end Contact Section -->
 
