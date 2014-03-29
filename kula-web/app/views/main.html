@@ -118,11 +118,14 @@
 <!-- Contact -->
 <section id="contact" class="section container post-list">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Newest Items</a></li>
-        <li><a ng-click="NavigateTo('/market')">Go to Market</a></li>
+      <li class="active"><a href="#">Newest</a></li>
+      <li><a ng-click="NavigateTo('/market')">Goto Market</a></li>
+      <li><a ng-click="NavigateTo('/admin/post/new')"><i class="linecon-pen"></i></a></li>
     </ul>
 
     <div class="row">
+        <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id'"></kl-post>
+        <a ng-click="NavigateTo('/market')" class="pull-right">see more in <i class="linecon-banknote"></i>Market!&nbsp;</a>
         <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id' | limitTo:10"></kl-post>
     </div>
 </section> <!-- end Contact Section -->

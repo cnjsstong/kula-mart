@@ -11,7 +11,7 @@
             <div class="header">
                 <span class="type" ng-switch="post.type">
                     <a class="tag-primary tag-request" ng-switch-when="request">Requesting</a>
-                    <a class="tag-primary tag-offer" ng-switch-when="offer">Offering</a>
+                    <a class="tag-primary" ng-switch-when="offer">Offering</a>
                 </span>
 
                 &nbsp;<span class="title"><a ng-href="/post/{{post._id}}" ng-bind="post.title"></a></span>
