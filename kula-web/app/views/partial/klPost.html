@@ -9,8 +9,8 @@
         <div class="col-xs-9 post-content">
             <div class="header">
                 <span class="type" ng-switch="post.type">
-                    <a class="btn btn-md btn-warning" ng-switch-when="request">Requesting</a>
-                    <a class="btn btn-md btn-danger" ng-switch-when="offer">Offering</a>
+                    <a class="tag-primary tag-request" ng-switch-when="request">Requesting</a>
+                    <a class="tag-primary tag-offer" ng-switch-when="offer">Offering</a>
                 </span>
 
                 &nbsp;<span class="title"><a ng-href="/post/{{post._id}}" ng-bind="post.title"></a></span>
