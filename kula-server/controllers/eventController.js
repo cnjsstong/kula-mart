@@ -89,10 +89,10 @@ function listActivitys(req, res) {
     if (req.params.areaId) {
         Activity.find({
             area: {$all: [req.params.areaId]},
-            status: Activity.Status.ACTIVE,
-            expire: {
-                $gt: new Date()
-            }
+            status: Activity.Status.ACTIVE//,
+//            expire: {
+//                $gt: new Date()
+//            }
         }, function (err, events) {
             if (err) {
                 return res.send(500);
