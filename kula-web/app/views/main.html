@@ -86,30 +86,30 @@
 <section id="team" class="team section container">
 
     <!--<div class="container">-->
-        <div class="row">
+    <div class="row">
 
-            <div class="carousel-small clearfix">
-                <article class="content" style="opacity: 0.9; cursor: pointer;" fire-carousel="$last"
-                         fire-carousel-bg="event.images[0]" ng-click="GoToExternalUrl(event.url)"
-                         ng-repeat="event in events">
-                    <div class="details">
-                        <h4 ng-bind="event.title"></h4>
+        <div class="carousel-small clearfix">
+            <article class="content" style="opacity: 0.9; cursor: pointer;" fire-carousel="$last"
+                     fire-carousel-bg="event.images[0]" ng-click="GoToExternalUrl(event.url)"
+                     ng-repeat="event in events">
+                <div class="details">
+                    <h4 ng-bind="event.title"></h4>
 
-                        <p>
-                            <span ng-bind="GetTiming(event)" class="home-event-tag time-left"></span> <span
-                                class="home-event-tag" ng-repeat="tag in event.tags" ng-bind="tag"></span>
-                        </p>
-                    </div>
-                </article>
-            </div>
-
-            <div class="carousel-controls">
-                <a class="prev" id="carousel-prev" href="#"><span aria-hidden="true" class="icon-angle-left"></span></a>
-                <a class="next" id="carousel-next" href="#"><span aria-hidden="true"
-                                                                  class="icon-angle-right"></span></a>
-            </div>
-
+                    <p>
+                        <span ng-bind="GetTiming(event)" class="home-event-tag time-left"></span> <span
+                            class="home-event-tag" ng-repeat="tag in event.tags" ng-bind="tag"></span>
+                    </p>
+                </div>
+            </article>
         </div>
+
+        <div class="carousel-controls">
+            <a class="prev" id="carousel-prev" href="#"><span aria-hidden="true" class="icon-angle-left"></span></a>
+            <a class="next" id="carousel-next" href="#"><span aria-hidden="true"
+                                                              class="icon-angle-right"></span></a>
+        </div>
+
+    </div>
     <!--</div>-->
 
 </section> <!-- end Team Section -->

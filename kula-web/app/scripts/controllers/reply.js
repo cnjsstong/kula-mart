@@ -7,7 +7,7 @@ angular.module('kulaWebApp')
             Post.respond({replyId: $routeParams.replyId}, respond, function () {
                 $dialogs.notify('Confirm', 'You respond have been sent.');
                 $location.path('/');
-            }, function(){
+            }, function () {
                 $dialogs.notify('Failed', 'Sending failed. Please retry.');
             });
         }

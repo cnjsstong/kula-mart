@@ -1,26 +1,27 @@
 @media (max-width: 767px) {
-  .hide-in-mobile {
-    display: none !important;
-  }
+    .hide-in-mobile {
+        display: none !important;
+    }
 
-  .carousel-inner h1 {
-    font-size: 2.5em
-  }
+    .carousel-inner h1 {
+        font-size: 2.5em
+    }
 
-  .carousel-inner p {
-    font-size: 1.2em !important;
-  }
+    .carousel-inner p {
+        font-size: 1.2em !important;
+    }
 
-  .post.title {
-    font-size: 1.2em !important;
-  }
-  .post.price {
-    font-size: 1.1em !important;
-  }
+    .post.title {
+        font-size: 1.2em !important;
+    }
 
-  a.btn.banner {
-    font-size: 1.5em !important;
-  }
+    .post.price {
+        font-size: 1.1em !important;
+    }
+
+    a.btn.banner {
+        font-size: 1.5em !important;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -54,9 +55,9 @@ a:hover {
     width: auto;
     border-radius: 5px;
 }
-    
-.btn>i{
-    font-size:120%;
+
+.btn > i {
+    font-size: 120%;
     margin-right: 5px;
 }
 
@@ -100,7 +101,6 @@ a.btn.banner:hover {
     border-color: #107360;
 }
 
-
 input.form-control.no-margin {
     margin: 0;
 }
@@ -135,7 +135,7 @@ input.form-control.no-margin {
     position: relative;
 }
 
-.post .tags .tag ,.post .tags .tag:hover{
+.post .tags .tag, .post .tags .tag:hover {
     margin-right: 4px;
     margin-top: 5px;
     padding: 3px;
@@ -143,11 +143,11 @@ input.form-control.no-margin {
     cursor: default;
 }
 
-.post.tag-primary{
+.post.tag-primary {
     padding: 0 5px;
     color: #ffffff;
     background-color: #d9534f;
-    
+
 }
 
 .post .title {
@@ -296,7 +296,7 @@ a.carousel-link:hover {
     color: #ffffff;
 }
 
-.panel-default .panel-heading{
+.panel-default .panel-heading {
     background-color: #018c71;
     border-color: #018c71;
     color: #ffffff;
@@ -373,9 +373,6 @@ section#intro {
     }
 }
 
-
-
-
 .dropdown-menu {
     animation-name: slidenavAnimationR;
     animation-duration: 0.4s;
@@ -420,7 +417,7 @@ section#intro {
     border-color: #dddddd;
 }
 
-.kl-search form{
+.kl-search form {
     color: #ffffff;
     text-align: left;
 }
@@ -516,6 +513,7 @@ form input.invalid {
 .countdown-indicator.later {
     color: #ffffff;
 }
+
 .countdown-indicator.left {
     color: #ff0000;
 }
@@ -532,6 +530,7 @@ html {
     display: inline-block;
     font-size: 0.8em;
 }
+
 .panel-heading.highlighted {
     background-color: #00ccff;
 }

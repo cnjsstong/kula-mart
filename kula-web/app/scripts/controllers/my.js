@@ -12,12 +12,12 @@ angular.module('kulaWebApp')
             $scope.posts = res;
         });
 
-        Account.getFavorite({}, function(res) {
+        Account.getFavorite({}, function (res) {
             $scope.favorites = res.favoritePosts;
         });
 
-        $scope.Logout = function() {
-            SecurityService.logout(function() {
+        $scope.Logout = function () {
+            SecurityService.logout(function () {
                 $rootScope.NavigateTo('/');
             });
         };

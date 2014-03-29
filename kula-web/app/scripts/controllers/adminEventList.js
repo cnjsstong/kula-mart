@@ -7,19 +7,19 @@ angular.module('kulaWebApp')
             $scope.events = Event.adminQuery();
         }
 
-        $scope.$on('$routeChangeSuccess', function() {
+        $scope.$on('$routeChangeSuccess', function () {
             loadEvents();
         });
 
-        $scope.RemoveEvent = function(event, $index) {
+        $scope.RemoveEvent = function (event, $index) {
             console.log(event);
-            Event.adminDelete({eventId: event._id}, function(){
-                $scope.events.splice($index,1);
+            Event.delete({eventId: event._id}, function () {
+                $scope.events.splice($index, 1);
             })
         };
 
-        $scope.EditEvent = function(event, $index) {
+        $scope.EditEvent = function (event, $index) {
             console.log(event);
-            $location.path('/admin/event/'+event._id);
+            $location.path('/admin/event/' + event._id);
         };
     }]);

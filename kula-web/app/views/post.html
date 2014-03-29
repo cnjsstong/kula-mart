@@ -1,10 +1,10 @@
-
 <!-- Intro Section -->
 <section id="intro" class="intro-heading section current">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <h1 ng-bind="post.category | categoryTitle"></h1>
+
                 <p ng-bind="post.title"></p>
             </div>
         </div>
@@ -19,7 +19,8 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12 block-item section">
-                        <a class="kula-image with-margin" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'category/'+post.category }});"></a>
+                        <a class="kula-image with-margin" ng-click="ImageModal()"
+                           style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'category/'+post.category }});"></a>
                     </div>
                 </div>
             </div>
@@ -29,6 +30,7 @@
                     <!-- about project -->
                     <div class="project-about">
                         <h3>Description</h3>
+
                         <p ng-bind="post.content"></p>
                     </div>
 
@@ -36,8 +38,10 @@
                     <div class="project-details clearfix">
                         <h3>Tags</h3>
                         <ul>
-                            <li><i class="icon-li icon-star"></i><span ng-bind="post.category | categoryTitle"></span></li>
-                            <li ng-repeat="tag in post.tags"><i class="icon-li icon-ok"></i><span ng-bind="tag"></span></li>
+                            <li><i class="icon-li icon-star"></i><span ng-bind="post.category | categoryTitle"></span>
+                            </li>
+                            <li ng-repeat="tag in post.tags"><i class="icon-li icon-ok"></i><span ng-bind="tag"></span>
+                            </li>
                         </ul>
                         <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()">Share on Facebook</a>
 
@@ -56,7 +60,8 @@
                                 <b>Your Name:</b>
                                 <input type="text" class="form-control" ng-model="reply.displayName">
 
-                                <a class="btn cta" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>
+                                <a class="btn cta" ng-click="Reply(post,reply)"
+                                   ng-disabled="ReplyForm.$invalid">Reply</a>
                             </form>
                         </div>
                     </div>

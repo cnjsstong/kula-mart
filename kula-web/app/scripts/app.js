@@ -1,24 +1,24 @@
 'use strict';
 
 angular.module('kulaWebApp', [
-        'ngResource',
-        'ngSanitize',
-        'ngRoute',
-        'ngTagsInput',
-        'ngAnimate',
-        'ui.bootstrap',
-        'ezfb',
-        'checklist-model',
-        'resources',
-        'services.login',
-        'services.upload',
-        'services.area',
-        'services.category',
-        'services.security',
-        'angularFileUpload',
-        'dialogs',
-        'ui.bootstrap.datetimepicker'
-    ])
+    'ngResource',
+    'ngSanitize',
+    'ngRoute',
+    'ngTagsInput',
+    'ngAnimate',
+    'ui.bootstrap',
+    'ezfb',
+    'checklist-model',
+    'resources',
+    'services.login',
+    'services.upload',
+    'services.area',
+    'services.category',
+    'services.security',
+    'angularFileUpload',
+    'dialogs',
+    'ui.bootstrap.datetimepicker'
+])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -237,7 +237,7 @@ angular.module('kulaWebApp', [
         var defArea = AreaService.getDefault();
         $rootScope.currentArea = Area.get({areaId: defArea || '52f830afa80bfe4818f56654'});
 
-        if(!defArea) {
+        if (!defArea) {
             $location.path('/schools');
         }
 
@@ -248,7 +248,7 @@ angular.module('kulaWebApp', [
         };
 
         $rootScope.NavigateTo = function (url, query) {
-            if(query) {
+            if (query) {
                 $location.path(url).search({keyword: query});
             } else {
                 $location.path(url);
@@ -256,10 +256,10 @@ angular.module('kulaWebApp', [
         };
 
         $rootScope.ifShowAreaDropdown = true;
-        $rootScope.HideAreaDropdown = function() {
+        $rootScope.HideAreaDropdown = function () {
             $rootScope.ifShowAreaDropdown = false;
         };
-        $rootScope.ShowAreaDropdown = function() {
+        $rootScope.ShowAreaDropdown = function () {
             $rootScope.ifShowAreaDropdown = true;
         };
 

@@ -11,26 +11,26 @@ angular.module('kulaWebApp')
             },
             templateUrl: 'views/partial/klPost.html',
             link: function (scope, element, attrs) {
-                scope.$watch('postId',function(newValue) {
-                    if(newValue) {
+                scope.$watch('postId', function (newValue) {
+                    if (newValue) {
                         scope.post = Post.get({postId: scope.postId});
                         scope.post.expanded = false;
                     }
                 });
 
-                scope.Reply = function(post, reply) {
-                    Post.reply({postId: post._id}, reply, function(){
+                scope.Reply = function (post, reply) {
+                    Post.reply({postId: post._id}, reply, function () {
                         $dialogs.notify('Confirm', 'Your reply has been sent.');
-                    }, function(){
+                    }, function () {
                         $dialogs.notify('Failed', 'Sending failed. Please retry.');
                     });
                 };
 
-                scope.ActionsType = function() {
-                    if(scope.post && scope.post.status != 'active') {
+                scope.ActionsType = function () {
+                    if (scope.post && scope.post.status != 'active') {
                         return 0;
                     }
-                    if(!scope.currentUser) {
+                    if (!scope.currentUser) {
                         return 4;
                     }
                     if (scope.currentUser && scope.post && scope.post.author && scope.post.author == scope.currentUser) {
@@ -40,28 +40,28 @@ angular.module('kulaWebApp')
                     }
                 };
 
-                scope.DeletePost = function() {
-                    Post.delete({postId: scope.post._id},function() {
+                scope.DeletePost = function () {
+                    Post.delete({postId: scope.post._id}, function () {
                         $dialogs.notify('Confirm', 'Deleted.');
                         scope.postList.splice(scope.postIndex, 1);
                     })
                 };
 
-                scope.ExpirePost = function() {
-                    Post.expire({postId: scope.post._id},{},function() {
+                scope.ExpirePost = function () {
+                    Post.expire({postId: scope.post._id}, {}, function () {
                         $dialogs.notify('Confirm', 'Set as expired.');
                         scope.post.status = 'closed';
                     })
                 };
 
-                scope.SaveForLater = function() {
-                    Account.addFavorite({},{postId: scope.post._id}, function() {
+                scope.SaveForLater = function () {
+                    Account.addFavorite({}, {postId: scope.post._id}, function () {
                         $dialogs.notify('Confirm', 'Saved.')
                     });
                 };
 
                 scope.ImageModal = function () {
-                    if(scope.post.images.length>0) {
+                    if (scope.post.images.length > 0) {
                         var dlg = $dialogs.create('views/partial/klImages.html', 'PostDetailImageModalCtrl', {post: scope.post}, {windowClass: 'wide', backdrop: 'static'});
                     }
                 };

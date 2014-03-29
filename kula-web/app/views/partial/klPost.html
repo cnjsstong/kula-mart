@@ -2,9 +2,10 @@
     <div class="row">
         <div class="col-xs-3">
             <!--ImageModal-->
-            <a class="kula-image" ng-class="{'no-click':post.images.length==0}" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||(post.category?'category/'+post.category:false)||'placeholder.png' }});"></a>
+            <a class="kula-image" ng-class="{'no-click':post.images.length==0}" ng-click="ImageModal()"
+               style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||(post.category?'category/'+post.category:false)||'placeholder.png' }});"></a>
             <!--<img class="post-image"-->
-                 <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
+            <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
         </div>
         <div class="col-xs-9 post-content">
             <div class="header">
@@ -20,7 +21,8 @@
             </div>
             <div>
                 <span class="tags">
-                    <span style="font-weight:bold;" class="tag btn btn-md btn-primary" ng-bind="post.category | categoryTitle"></span>
+                    <span style="font-weight:bold;" class="tag btn btn-md btn-primary"
+                          ng-bind="post.category | categoryTitle"></span>
                     <span class="tag btn btn-md btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
                 </span>
             </div>
@@ -36,6 +38,7 @@
                     <li ng-repeat="delivery in post.delivery" ng-bind="delivery"></li>
                 </ul>
                 <br>
+
                 <form name="ReplyForm">
                     <b>Leave your message:</b>
                     <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
@@ -45,7 +48,8 @@
                     <b>Your Name:</b>
                     <input type="text" class="form-control" ng-model="reply.displayName">
 
-                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)" ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>
+                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)"
+                       ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>
                 </form>
 
             </div>
@@ -58,8 +62,10 @@
                 Expired
             </span>
             <span class="actions pull-right" ng-switch-when="1">
-                <a class="btn btn-sm btn-info cta" ng-click="SaveForLater()" ng-hide="postSaved"><i class="linecon-star"></i>Awesome</a>
-                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i class="linecon-eye"></i>Quick View</a>
+                <a class="btn btn-sm btn-info cta" ng-click="SaveForLater()" ng-hide="postSaved"><i
+                        class="linecon-star"></i>Awesome</a>
+                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i
+                        class="linecon-eye"></i>Quick View</a>
             </span>
             <span class="actions pull-right" ng-switch-when="2">
                 <a class="btn btn-md btn-primary" ng-href="/admin/post/{{post._id}}">Edit</a>
@@ -67,7 +73,8 @@
                 <a class="btn btn-md btn-primary" ng-click="DeletePost()">Delete</a>
             </span>
             <span class="actions pull-right" ng-switch-when="4">
-                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i class="linecon-eye"></i>Quick View</a>
+                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i
+                        class="linecon-eye"></i>Quick View</a>
             </span>
         </div>
 

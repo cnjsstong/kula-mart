@@ -24,12 +24,12 @@ angular.module('services.upload')
                 autoUpload: true,
                 filters: [
                     function (item) {
-                        if(service.allowedExtensions.indexOf(item.type) == -1) {
+                        if (service.allowedExtensions.indexOf(item.type) == -1) {
                             $dialogs.error('Upload', 'Only *.jpg and *.png files are allowed.')
                             console.log("Only *.jpg and *.png files are allowed.");
                             return false;
                         }
-                        if(item.size>service.maxSize) {
+                        if (item.size > service.maxSize) {
                             $dialogs.error('Upload', 'File oversize. Max size: 2MB.')
                             console.log("File oversize. Max size: 2MB.");
                             return false;

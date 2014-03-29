@@ -7,7 +7,7 @@ angular.module('kulaWebApp')
         function loadPost(postId) {
             $scope.categories = Category.query();
             $scope.areas = Area.query();
-            $scope.tags = Predefined.query({type:'tag'});
+            $scope.tags = Predefined.query({type: 'tag'});
             $scope.deliveries = Predefined.query({type: 'delivery'});
             $scope.post = { images: [], email: $rootScope.GetUser('email') };
             $scope.step = 0;
@@ -21,9 +21,9 @@ angular.module('kulaWebApp')
         });
 
         $scope.Submit = function (post) {
-            Post.save({postId: $routeParams.postId}, post, function(res) {
+            Post.save({postId: $routeParams.postId}, post, function (res) {
 //                console.log('DDDDDDDDDDDDDDD', res);
-                $location.path('/post/'+res._id);
+                $location.path('/post/' + res._id);
             });
         };
 
@@ -33,14 +33,14 @@ angular.module('kulaWebApp')
                     type: 'post',
                     scope: $scope
                 },
-                url: API.UploadBase+'upload'
+                url: API.UploadBase + 'upload'
             };
             console.log(res);
             return res;
         };
 
-        $scope.AddTag = function(tag) {
-            if($scope.post.tags.indexOf(tag.title)<0) {
+        $scope.AddTag = function (tag) {
+            if ($scope.post.tags.indexOf(tag.title) < 0) {
                 $scope.post.tags.push(tag.title);
             }
         };
@@ -49,7 +49,7 @@ angular.module('kulaWebApp')
             item.uploadInfo.scope.post.images.push(response.imageId);
         });
 
-        UploadService.processor('error', 'post', function(event, xhr, item, response) {
+        UploadService.processor('error', 'post', function (event, xhr, item, response) {
             $dialogs.error('Upload', 'Upload failed. Please retry.');
         })
 

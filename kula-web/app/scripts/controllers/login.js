@@ -10,18 +10,18 @@ angular.module('kulaWebApp')
 //        };
 
         $scope.SignUp = function (user) {
-            SecurityService.signUp(user).then(function(){
-                $dialogs.notify('KulaMart','You have successfully logged in.');
-            }, function() {
-                $dialogs.notify('KulaMart','Login failed. Please retry.');
+            SecurityService.signUp(user).then(function () {
+                $dialogs.notify('KulaMart', 'You have successfully logged in.');
+            }, function () {
+                $dialogs.notify('KulaMart', 'Login failed. Please retry.');
             });
         };
 
         $scope.Login = function (user) {
-            SecurityService.login(user).then(function(){
-                $dialogs.notify('KulaMart','You have successfully logged in.');
-            }, function() {
-                $dialogs.notify('KulaMart','Login failed. Please retry.');
+            SecurityService.login(user).then(function () {
+                $dialogs.notify('KulaMart', 'You have successfully logged in.');
+            }, function () {
+                $dialogs.notify('KulaMart', 'Login failed. Please retry.');
             });
         };
 
@@ -35,10 +35,10 @@ angular.module('kulaWebApp')
 
         $scope.LoginWithFacebook = function () {
             LoginService.login().then(function (facebookResponse) {
-                SecurityService.loginWithFacebook(facebookResponse).then(function(){
-                    $dialogs.notify('KulaMart','You have successfully logged in.');
-                }, function() {
-                    $dialogs.notify('KulaMart','Login failed. Please retry.');
+                SecurityService.loginWithFacebook(facebookResponse).then(function () {
+                    $dialogs.notify('KulaMart', 'You have successfully logged in.');
+                }, function () {
+                    $dialogs.notify('KulaMart', 'Login failed. Please retry.');
                 });
             })
         }

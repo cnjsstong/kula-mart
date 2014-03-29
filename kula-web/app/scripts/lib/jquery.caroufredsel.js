@@ -1092,7 +1092,7 @@
         }, FN._bind_buttons = function () {
             if (FN._unbind_buttons(), nv_showNavi(opts, itms.total, conf), nv_enableNavi(opts, itms.first, conf), opts.auto.pauseOnHover) {
                 var a = bt_pauseOnHoverConfig(opts.auto.pauseOnHover);
-                $wrp.bind(cf_e("mouseenter", conf, !1),function () {
+                $wrp.bind(cf_e("mouseenter", conf, !1), function () {
                     $cfs.trigger(cf_e("pause", conf), a)
                 }).bind(cf_e("mouseleave", conf, !1), function () {
                     $cfs.trigger(cf_e("resume", conf))
@@ -1106,7 +1106,7 @@
                 a.preventDefault(), $cfs.trigger(cf_e("prev", conf))
             }), opts.prev.pauseOnHover)) {
                 var a = bt_pauseOnHoverConfig(opts.prev.pauseOnHover);
-                opts.prev.button.bind(cf_e("mouseenter", conf, !1),function () {
+                opts.prev.button.bind(cf_e("mouseenter", conf, !1), function () {
                     $cfs.trigger(cf_e("pause", conf), a)
                 }).bind(cf_e("mouseleave", conf, !1), function () {
                     $cfs.trigger(cf_e("resume", conf))
@@ -1116,7 +1116,7 @@
                 a.preventDefault(), $cfs.trigger(cf_e("next", conf))
             }), opts.next.pauseOnHover)) {
                 var a = bt_pauseOnHoverConfig(opts.next.pauseOnHover);
-                opts.next.button.bind(cf_e("mouseenter", conf, !1),function () {
+                opts.next.button.bind(cf_e("mouseenter", conf, !1), function () {
                     $cfs.trigger(cf_e("pause", conf), a)
                 }).bind(cf_e("mouseleave", conf, !1), function () {
                     $cfs.trigger(cf_e("resume", conf))
@@ -1124,7 +1124,7 @@
             }
             if (opts.pagination.container && opts.pagination.pauseOnHover) {
                 var a = bt_pauseOnHoverConfig(opts.pagination.pauseOnHover);
-                opts.pagination.container.bind(cf_e("mouseenter", conf, !1),function () {
+                opts.pagination.container.bind(cf_e("mouseenter", conf, !1), function () {
                     $cfs.trigger(cf_e("pause", conf), a)
                 }).bind(cf_e("mouseleave", conf, !1), function () {
                     $cfs.trigger(cf_e("resume", conf))

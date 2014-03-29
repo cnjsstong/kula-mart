@@ -7,20 +7,20 @@ angular.module('kulaWebApp')
             $scope.categories = Category.query();
         }
 
-        $scope.$on('$routeChangeSuccess', function() {
+        $scope.$on('$routeChangeSuccess', function () {
             loadCategories();
         });
 
-        $scope.RemoveCategory = function(category, $index) {
+        $scope.RemoveCategory = function (category, $index) {
             console.log(category);
-            Category.delete({categoryId: category._id}, function(){
-                $scope.categories.splice($index,1);
+            Category.delete({categoryId: category._id}, function () {
+                $scope.categories.splice($index, 1);
             })
         };
 
-        $scope.EditCategory = function(category, $index) {
+        $scope.EditCategory = function (category, $index) {
             console.log(category);
-            $location.path('/admin/category/'+category._id);
+            $location.path('/admin/category/' + category._id);
         };
 
     }]);

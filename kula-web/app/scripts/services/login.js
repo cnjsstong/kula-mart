@@ -26,7 +26,7 @@ angular.module('services.login')
                 return defer.promise;
             },
 
-            login: function() {
+            login: function () {
                 var defer = $q.defer();
 
                 $FB.login(function (res) {
@@ -45,7 +45,7 @@ angular.module('services.login')
                 return defer.promise;
             },
 
-            logout: function() {
+            logout: function () {
                 var defer = $q.defer();
 
                 $FB.logout(function (res) {
@@ -64,7 +64,7 @@ angular.module('services.login')
                 return defer.promise;
             },
 
-            getUserInfo: function() {
+            getUserInfo: function () {
                 return $FB.api('/me');
             }
         };

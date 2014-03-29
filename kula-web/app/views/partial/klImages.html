@@ -6,7 +6,8 @@
     </h4>
 </div>
 <div class="modal-body">
-    <a class="kula-image" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ images[index]||'placeholder.png' }});"></a>
+    <a class="kula-image" ng-click="ImageModal()"
+       style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ images[index]||'placeholder.png' }});"></a>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" ng-click="Previous()" ng-disabled="index==0">Previous</button>

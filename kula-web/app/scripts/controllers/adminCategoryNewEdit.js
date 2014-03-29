@@ -9,7 +9,7 @@ angular.module('kulaWebApp')
             }
         }
 
-        $scope.$on('$routeChangeSuccess', function() {
+        $scope.$on('$routeChangeSuccess', function () {
             loadCategory($routeParams.categoryId);
         });
 

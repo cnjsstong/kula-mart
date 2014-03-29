@@ -83,11 +83,13 @@ exports.routes = [
     {
         'path': '',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': createCategory
     },
     {
         'path': ':categoryId',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': updateCategory
     },
     {
@@ -103,6 +105,7 @@ exports.routes = [
     {
         'path': ':categoryId',
         'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
         'handler': removeCategory
     }
 ];

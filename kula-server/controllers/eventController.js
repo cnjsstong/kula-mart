@@ -198,11 +198,13 @@ exports.routes = [
     {
         'path': '',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': createActivity
     },
     {
         'path': ':eventId',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': updateActivity
     },
     {
@@ -224,6 +226,7 @@ exports.routes = [
     {
         'path': ':eventId',
         'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
         'handler': removeActivity
     },
     {
@@ -234,6 +237,7 @@ exports.routes = [
     {
         'path': ':eventId/expire',
         'method': httpMethod.PUT,
+        'roles': [role.ADMIN],
         'handler': expireActivity
     },
     {

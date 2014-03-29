@@ -157,17 +157,17 @@ angular.module('services.security')
                 return defer.promise;
             },
 
-            loginWithFacebook: function(facebookResponse) {
+            loginWithFacebook: function (facebookResponse) {
                 var defer = $q.defer();
                 Account.loginWithFacebook({}, {facebookId: facebookResponse.authResponse.userID, name: 'Facebook User'}, function (res) {
-                    if(res.token) {
-                        service.setAuthenticationHeader(res).setLocalUser(res).confirmLogin(res).last(function(){
+                    if (res.token) {
+                        service.setAuthenticationHeader(res).setLocalUser(res).confirmLogin(res).last(function () {
                             defer.resolve();
                         }, null);
                     } else {
                         defer.reject(res);
                     }
-                }, function(err){
+                }, function (err) {
                     defer.reject(err);
                 });
                 return defer.promise();

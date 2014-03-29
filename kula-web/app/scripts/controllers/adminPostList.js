@@ -7,19 +7,19 @@ angular.module('kulaWebApp')
             $scope.posts = Post.query();
         }
 
-        $scope.$on('$routeChangeSuccess', function() {
+        $scope.$on('$routeChangeSuccess', function () {
             loadPosts();
         });
 
-        $scope.RemovePost = function(post, $index) {
+        $scope.RemovePost = function (post, $index) {
             console.log(post);
-            Post.delete({postId: post._id}, function(){
-                $scope.posts.splice($index,1);
+            Post.delete({postId: post._id}, function () {
+                $scope.posts.splice($index, 1);
             })
         };
 
-        $scope.EditPost = function(post, $index) {
+        $scope.EditPost = function (post, $index) {
             console.log(post);
-            $location.path('/admin/post/'+post._id);
+            $location.path('/admin/post/' + post._id);
         };
     }]);

@@ -1,10 +1,10 @@
-
 <!-- Intro Section -->
 <section id="intro" class="intro-heading section current">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <h1 ng-bind="event.title"></h1>
+
                 <p>
                     <b>From:</b>&nbsp;&nbsp;&nbsp;<span ng-bind="event.start | date:'MM/dd/yyyy @ h:mma'"></span>
                     <br>
@@ -23,7 +23,8 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12 block-item section">
-                        <a class="kula-image with-margin" ng-click="ImageModal()" style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ event.images[0]||'category/'+event.category }});"></a>
+                        <a class="kula-image with-margin" ng-click="ImageModal()"
+                           style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ event.images[0]||'category/'+event.category }});"></a>
                     </div>
                 </div>
             </div>
@@ -33,13 +34,17 @@
                     <!-- about project -->
                     <div class="project-about">
                         <h3>Description</h3>
+
                         <p ng-bind="event.content"></p>
                     </div>
 
                     <!-- about project -->
                     <div class="project-about">
                         <h3>Time</h3>
-                        <p><kl-timer start="event.start" expire="event.expire"></kl-timer></p>
+
+                        <p>
+                            <kl-timer start="event.start" expire="event.expire"></kl-timer>
+                        </p>
                     </div>
 
                     <!-- project details -->
@@ -47,7 +52,8 @@
                         <h3>Tags</h3>
                         <ul>
                             <!--<li><i class="icon-li icon-star"></i><span ng-bind="event.category | categoryTitle"></span></li>-->
-                            <li ng-repeat="tag in event.tags"><i class="icon-li icon-ok"></i><span ng-bind="tag"></span></li>
+                            <li ng-repeat="tag in event.tags"><i class="icon-li icon-ok"></i><span ng-bind="tag"></span>
+                            </li>
                         </ul>
                         <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()">Share on Facebook</a>
 
@@ -58,36 +64,39 @@
                     <div class="project-details clearfix">
                         <h3>Go</h3>
                         <ul>
-                            <li ng-show="event.url"><i class="icon-li icon-external-link-sign"></i><a href="{{event.url}}" ng-bind="event.url"></a></li>
-                            <li ng-show="event.phone"><i class="icon-li icon-phone-sign"></i><a href="tel:{{event.phone}}" ng-bind="event.phone"></a></li>
-                            <li ng-show="event.email"><i class="icon-li icon-envelope"></i><a href="mailto:{{event.email}}" ng-bind="event.email"></a></li>
+                            <li ng-show="event.url"><i class="icon-li icon-external-link-sign"></i><a
+                                    href="{{event.url}}" ng-bind="event.url"></a></li>
+                            <li ng-show="event.phone"><i class="icon-li icon-phone-sign"></i><a
+                                    href="tel:{{event.phone}}" ng-bind="event.phone"></a></li>
+                            <li ng-show="event.email"><i class="icon-li icon-envelope"></i><a
+                                    href="mailto:{{event.email}}" ng-bind="event.email"></a></li>
                         </ul>
 
                         <!--<a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook2(event)">Share on Facebook</a>-->
                     </div>
                     <!-- project links -->
                     <!--<div class="row">-->
-                        <!--<div class="col-xs-12">-->
-                            <!--<form name="ReplyForm">-->
-                                <!--<b>Leave your message:</b>-->
-                                <!--<textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"-->
-                                          <!--ng-model="reply.content" ng-minlength="10" required></textarea>-->
-                                <!--<b>Your Email:</b>-->
-                                <!--<input type="email" class="form-control" ng-model="reply.email" required>-->
-                                <!--<b>Your Name:</b>-->
-                                <!--<input type="text" class="form-control" ng-model="reply.name">-->
+                    <!--<div class="col-xs-12">-->
+                    <!--<form name="ReplyForm">-->
+                    <!--<b>Leave your message:</b>-->
+                    <!--<textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"-->
+                    <!--ng-model="reply.content" ng-minlength="10" required></textarea>-->
+                    <!--<b>Your Email:</b>-->
+                    <!--<input type="email" class="form-control" ng-model="reply.email" required>-->
+                    <!--<b>Your Name:</b>-->
+                    <!--<input type="text" class="form-control" ng-model="reply.name">-->
 
-                                <!--<a class="btn cta" ng-click="Reply(event,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>-->
-                            <!--</form>-->
-                        <!--</div>-->
+                    <!--<a class="btn cta" ng-click="Reply(event,reply)" ng-disabled="ReplyForm.$invalid">Reply</a>-->
+                    <!--</form>-->
+                    <!--</div>-->
                     <!--</div>-->
                     <!--<div class="row project-links clearfix">-->
-                        <!--<div class="col-lg-6 view-project">-->
-                            <!--&lt;!&ndash;<a class="btn cta" ng-click="Reply(event,reply)">Reply</a>&ndash;&gt;-->
-                        <!--</div>-->
-                        <!--<div class="col-lg-6 social-sharing">-->
-                            <!--<a class="btn">Save for Later</a>-->
-                        <!--</div>-->
+                    <!--<div class="col-lg-6 view-project">-->
+                    <!--&lt;!&ndash;<a class="btn cta" ng-click="Reply(event,reply)">Reply</a>&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-6 social-sharing">-->
+                    <!--<a class="btn">Save for Later</a>-->
+                    <!--</div>-->
                     <!--</div>-->
                 </div>
             </div>

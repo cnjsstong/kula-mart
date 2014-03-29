@@ -9,7 +9,7 @@ angular.module('kulaWebApp')
                     name: $scope.event.title,
                     link: 'http://kulamart.com/event/' + $scope.event._id,
                     picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.event.images[0] || 'placeholder.png',
-                    caption: 'KulaMart.com - '+ $rootScope.currentArea.title,
+                    caption: 'KulaMart.com - ' + $rootScope.currentArea.title,
                     description: $scope.event.description,
                     message: ''
                 });

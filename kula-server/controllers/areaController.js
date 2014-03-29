@@ -85,11 +85,13 @@ exports.routes = [
     {
         'path': '',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': createArea
     },
     {
         'path': ':areaId',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': updateArea
     },
     {
@@ -105,6 +107,7 @@ exports.routes = [
     {
         'path': ':areaId',
         'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
         'handler': removeArea
     }
 ];

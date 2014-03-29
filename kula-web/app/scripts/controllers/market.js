@@ -5,7 +5,7 @@ angular.module('kulaWebApp')
 
         $scope.filter = {type: 'offer', keyword: $routeParams.keyword};
 
-        $scope.$on('$locationChangeStart', function() {
+        $scope.$on('$locationChangeStart', function () {
             console.log('Removing search...');
             $location.search({});
         });
@@ -15,7 +15,7 @@ angular.module('kulaWebApp')
             console.log(res);
             $scope.ShowCategory = function ($index) {
                 $scope.filter.tag = null;
-                if ($index>=0) {
+                if ($index >= 0) {
                     if (!$scope.categories[$index]['tags']) {
                         Post.getTagsByCategory({category: $scope.categories[$index]._id, area: $rootScope.currentArea._id }, function (res) {
                             $scope.categories[$index]['tags'] = res;
@@ -41,25 +41,25 @@ angular.module('kulaWebApp')
             $scope.ShowCategory(-1);
         });
 
-        $scope.reloadAll = function() {
+        $scope.reloadAll = function () {
             $scope.filteredPosts = $scope.getFilteredPosts();
             $scope.loadMore(true);
         };
 
-        $scope.loadMore = function(refresh) {
-            if(refresh) {
+        $scope.loadMore = function (refresh) {
+            if (refresh) {
                 $scope.showingPosts = [];
             }
             var from = $scope.showingPosts.length;
-            for(var i=from; i<from+10 && i<$scope.filteredPosts.length; i++) {
+            for (var i = from; i < from + 10 && i < $scope.filteredPosts.length; i++) {
                 $scope.showingPosts.push($scope.filteredPosts[i]);
             }
         };
 
-        $scope.getFilteredPosts = function() {
+        $scope.getFilteredPosts = function () {
             var filteredPosts = [];
-            for(var i in $scope.posts) {
-                if($scope.FilterPosts($scope.posts[i])) {
+            for (var i in $scope.posts) {
+                if ($scope.FilterPosts($scope.posts[i])) {
                     filteredPosts.push($scope.posts[i]._id);
                 }
             }
@@ -82,18 +82,18 @@ angular.module('kulaWebApp')
             return false;
         };
 
-        $scope.UpdateSearch = function(keyword) {
+        $scope.UpdateSearch = function (keyword) {
             $location.search({keyword: keyword});
             $scope.filter.lowerKeyword = keyword.toLowerCase();
             $scope.reloadAll();
         };
 
-        $scope.SetFilterTag = function(tag) {
-            $scope.filter.tag=tag;
+        $scope.SetFilterTag = function (tag) {
+            $scope.filter.tag = tag;
             $scope.reloadAll();
         };
 
-        $scope.SetFilterType = function(type) {
+        $scope.SetFilterType = function (type) {
             $scope.filter.type = type;
             $scope.reloadAll();
         };

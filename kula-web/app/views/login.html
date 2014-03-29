@@ -6,15 +6,23 @@
                 <div class="lead-form bounce">
 
                     <h2>Sign in</h2>
+
                     <p>with your KULA-account</p>
+
                     <form class="user-form" id="contact-form">
                         <div class="controls">
-                            <input type="email" name="email" class="email" placeholder="Enter your email" maxlength="320" pattern="^[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required ng-model="user.email">
-                            <input type="password" name="password" class="password" maxlength="50" pattern="^.+$" required placeholder="Enter your password" ng-model="user.password">
+                            <input type="email" name="email" class="email" placeholder="Enter your email"
+                                   maxlength="320"
+                                   pattern="^[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+                                   required ng-model="user.email">
+                            <input type="password" name="password" class="password" maxlength="50" pattern="^.+$"
+                                   required placeholder="Enter your password" ng-model="user.password">
                             <!--<p class="text-center"><a href="#">Forgot your password?</a></p>-->
                             <input type="submit" class="submit btn cta" value="Login" ng-click="Login(user)">
 
-                            <p class="text-center">Don't have an account yet? <a class="submit btn cta mean-margin" ng-click="NavigateTo('/signup')">Sign Up</a></p>
+                            <p class="text-center">Don't have an account yet? <a class="submit btn cta mean-margin"
+                                                                                 ng-click="NavigateTo('/signup')">Sign
+                                Up</a></p>
                         </div>
 
                     </form>
@@ -25,7 +33,8 @@
 
                     <form class="user-form">
                         <div class="controls">
-                            <input type="submit" class="submit btn cta" value="Login with Facebook" ng-click="LoginWithFacebook()">
+                            <input type="submit" class="submit btn cta" value="Login with Facebook"
+                                   ng-click="LoginWithFacebook()">
                         </div>
                     </form>
 

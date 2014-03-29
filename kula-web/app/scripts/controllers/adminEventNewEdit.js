@@ -6,7 +6,7 @@ angular.module('kulaWebApp')
 
         function loadEvent(eventId) {
             $scope.areas = Area.query();
-            $scope.tags = Predefined.query({type:'tag'});
+            $scope.tags = Predefined.query({type: 'tag'});
             $scope.event = { images: [], email: $rootScope.GetUser('email') };
             if (eventId) {
                 $scope.event = Event.get({eventId: eventId});
@@ -28,7 +28,7 @@ angular.module('kulaWebApp')
                     type: 'event',
                     scope: $scope
                 },
-                url: API.UploadBase+'upload'
+                url: API.UploadBase + 'upload'
             };
             console.log(res);
             return res;
@@ -44,7 +44,7 @@ angular.module('kulaWebApp')
             item.uploadInfo.scope.event.images.push(response.imageId);
         });
 
-        UploadService.processor('error', 'event', function(event, xhr, item, response) {
+        UploadService.processor('error', 'event', function (event, xhr, item, response) {
             $dialogs.error('Upload', 'Upload failed. Please retry.');
         })
 

@@ -88,11 +88,13 @@ exports.routes = [
     {
         'path': '',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': createPredefined
     },
     {
         'path': ':predefinedId',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': updatePredefined
     },
     {
@@ -108,6 +110,7 @@ exports.routes = [
     {
         'path': ':predefinedId',
         'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
         'handler': removePredefined
     }
 ];

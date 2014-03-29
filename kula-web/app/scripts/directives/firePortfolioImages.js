@@ -3,7 +3,7 @@ angular.module('kulaWebApp')
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                if(scope.$first) {
+                if (scope.$first) {
                     InitPortfolioImages();
                 }
             }

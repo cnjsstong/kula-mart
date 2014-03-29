@@ -19,27 +19,27 @@ angular.module('kulaWebApp')
             $FB.ui(
                 {
                     method: 'feed',
-                    name: ($scope.post.type=='request'?'Requesting':'Offering') + $scope.post.title + 'for ' + $filter('price')($scope.post.price),
+                    name: ($scope.post.type == 'request' ? 'Requesting' : 'Offering') + $scope.post.title + 'for ' + $filter('price')($scope.post.price),
                     link: 'http://kulamart.com/post/' + $scope.post._id,
                     picture: 'http://img.kulamart.com.s3.amazonaws.com/' + $scope.post.images[0] || 'category/' + $scope.post.category,
-                    caption: 'KulaMart.com - '+ $rootScope.currentArea.title,
+                    caption: 'KulaMart.com - ' + $rootScope.currentArea.title,
                     description: $scope.post.description,
                     message: ''
                 });
         };
 
-        $scope.ShareFacebook2= function(post) {
+        $scope.ShareFacebook2 = function (post) {
             var title = encodeURIComponent(post.title);
             var summary = encodeURIComponent(post.description);
             var url = encodeURIComponent('http://kulamart.com/post/' + post._id);
             var share = 'http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + summary + '&p[url]=' + url;
-            for(var i in post.images) {
-                share += '&p[images]['+i+']='+encodeURIComponent('http://img.kulamart.com.s3.amazonaws.com/' + post.images[i]);
+            for (var i in post.images) {
+                share += '&p[images][' + i + ']=' + encodeURIComponent('http://img.kulamart.com.s3.amazonaws.com/' + post.images[i]);
             }
-            if(post.images.length==0) {
-                share += '&p[images]['+i+']='+encodeURIComponent('http://img.kulamart.com.s3.amazonaws.com/category/' + post.category);
+            if (post.images.length == 0) {
+                share += '&p[images][' + i + ']=' + encodeURIComponent('http://img.kulamart.com.s3.amazonaws.com/category/' + post.category);
             }
-            $window.open(share,'sharer','toolbar=0,status=0,width=548,height=325');
+            $window.open(share, 'sharer', 'toolbar=0,status=0,width=548,height=325');
         };
 
         $scope.ImageModal = function () {

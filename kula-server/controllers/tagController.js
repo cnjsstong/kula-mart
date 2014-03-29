@@ -79,11 +79,13 @@ exports.routes = [
     {
         'path': '',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': createTag
     },
     {
         'path': ':tagId',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN],
         'handler': updateTag
     },
     {
@@ -99,6 +101,7 @@ exports.routes = [
     {
         'path': ':tagId',
         'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
         'handler': removeTag
     }
 ];
