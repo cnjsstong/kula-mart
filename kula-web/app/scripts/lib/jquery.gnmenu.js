@@ -81,6 +81,7 @@
             });
             this.menu.addEventListener(this.eventtype, function (ev) {
                 ev.stopPropagation();
+                self._closeMenu();
             });
         },
         _openIconMenu: function () {
