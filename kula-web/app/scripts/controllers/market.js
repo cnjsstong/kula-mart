@@ -4,7 +4,9 @@ angular.module('kulaWebApp')
     .controller('MarketCtrl', ['$scope', 'Post', '$rootScope', 'CategoryService', 'Category', '$routeParams', '$location', function ($scope, Post, $rootScope, CategoryService, Category, $routeParams, $location) {
 
         $scope.filter = {type: 'offer', keyword: $routeParams.keyword};
-        $scope.filter.lowerKeyword = $scope.keyword.toLowerCase();
+        if($scope.filter.keyword) {
+            $scope.filter.lowerKeyword = $scope.keyword.toLowerCase();
+        }
 
         $scope.$on('$locationChangeStart', function () {
             console.log('Removing search...');
@@ -84,8 +86,13 @@ angular.module('kulaWebApp')
         };
 
         $scope.UpdateSearch = function (keyword) {
-            $location.search({keyword: keyword});
-            $scope.filter.lowerKeyword = keyword.toLowerCase();
+            if(keyword) {
+                $scope.filter.lowerKeyword = keyword.toLowerCase();
+                $location.search({keyword: keyword});
+            } else {
+                $scope.filter.lowerKeyword = '';
+                $location.search({});
+            }
             $scope.reloadAll();
         };
 
