@@ -29,7 +29,7 @@ exports.sendReplyMail = function (reply, post) {
                 subject: "You have a reply of your listing from Kulamart.com", // Subject line
                 html: data.toString()
                     .replace('{{ post.title }}', post.title)
-                    .replace('{{ reply.author.name }}', reply.name || 'Anonymous')
+                    .replace('{{ reply.author.name }}', reply.displayName || 'Anonymous')
                     .replace('{{ reply.content }}', reply.content)
                     .replace('{{ reply._id }}', reply._id)
                     .replace('{{ post.images[0] }}', post.images[0] || 'placeholder.png')
