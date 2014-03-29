@@ -67,7 +67,7 @@ angular.module('kulaWebApp')
         };
 
         $scope.FilterPosts = function (item) {
-            if ($scope.filter.keyword && (!item.title || item.title.toLowerCase().indexOf($scope.filter.lowerKeyword) == -1) && (!item.description || item.description.toLowerCase().indexOf($scope.filter.lowerKeyword) == -1) && (item.tags.length == 0 || item.tags.join().toLowerCase().indexOf($scope.filter.lowerKeyword) == -1)) {
+            if ($scope.filter.keyword && (!item.title || item.title.toLowerCase().indexOf($scope.filter.lowerKeyword) == -1) && (!item.description || item.description.toLowerCase().indexOf($scope.filter.lowerKeyword) == -1) && (!item.tags || item.tags.length == 0 || item.tags.join().toLowerCase().indexOf($scope.filter.lowerKeyword) == -1)) {
                 return false;
             }
             if ($scope.filter.type != item.type) {
