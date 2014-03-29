@@ -10,6 +10,8 @@ angular.module('kulaWebApp')
                 return parseInt((new Date(event.start) - now) / 86400000) + ' days later';
             } else if (event.expire && now < new Date(event.expire)) {
                 return parseInt((new Date(event.expire) - now) / 86400000) + ' days left';
+            } else {
+                return 'Expired';
             }
         };
 
