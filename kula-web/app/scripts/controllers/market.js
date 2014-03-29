@@ -4,6 +4,7 @@ angular.module('kulaWebApp')
     .controller('MarketCtrl', ['$scope', 'Post', '$rootScope', 'CategoryService', 'Category', '$routeParams', '$location', function ($scope, Post, $rootScope, CategoryService, Category, $routeParams, $location) {
 
         $scope.filter = {type: 'offer', keyword: $routeParams.keyword};
+        $scope.filter.lowerKeyword = $scope.keyword.toLowerCase();
 
         $scope.$on('$locationChangeStart', function () {
             console.log('Removing search...');
