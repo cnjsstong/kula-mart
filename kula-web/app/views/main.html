@@ -124,9 +124,8 @@
     </ul>
 
     <div class="row">
-        <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id'"></kl-post>
-        <a ng-click="NavigateTo('/market')" class="pull-right">see more in <i class="linecon-banknote"></i>Market!&nbsp;</a>
         <kl-post kl-post-id="post._id" ng-repeat="post in posts | orderBy:'-_id' | limitTo:10"></kl-post>
+        <a ng-click="NavigateTo('/market')" class="pull-right">see more in <i class="linecon-banknote"></i>Market!&nbsp;</a>
     </div>
 </section> <!-- end Contact Section -->
 
