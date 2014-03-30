@@ -20,10 +20,14 @@
     "angular-animate": "~1.2.14",
     "angular-bootstrap": "~0.10.0",
     "angular-dialog-service": "~3.1.0",
-    "angular-bootstrap-datetimepicker": "~0.2.2"
+    "angular-bootstrap-datetimepicker": "~0.2.2",
+    "angular-touch": "~1.2.15"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
     "angular-scenario": "1.2.6"
+  },
+  "resolutions": {
+    "angular": "1.2.15"
   }
 }

@@ -40,10 +40,11 @@
                 self._closeMenu();
                 this.removeEventListener(self.eventtype, self.bodyClickFn);
             };
-
-            $('#main-nav li a').click(function () {
-                self._closeMenu();
-            });
+////
+//            $('#main-nav li a').bind('touchstart click',function () {
+//                console.log(1212);
+//                self._closeMenu();
+//            });
         },
         _initEvents: function () {
             var self = this;
@@ -59,12 +60,21 @@
                     self._closeMenu();
                 });
                 this.menu.addEventListener('click', function (ev) {
+                    console.log("CCCCCCCCCCCCCCCCCCC");
                     self._closeMenu();
                 });
-
                 this.menu.addEventListener('mouseover', function (ev) {
                     self._openMenu();
                     document.addEventListener(self.eventtype, self.bodyClickFn);
+                });
+            }
+
+            if (mobilecheck()) {
+                this.menu.addEventListener('touchstart', function (ev) {
+                    console.log("EEEEEEEEEEEEEEEEEEE");
+                    setTimeout(function() {
+                        self._closeMenu();
+                    }, 500);
                 });
             }
             this.trigger.addEventListener(this.eventtype, function (ev) {
@@ -80,8 +90,9 @@
                 }
             });
             this.menu.addEventListener(this.eventtype, function (ev) {
+                console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+//                self._closeMenu();
                 ev.stopPropagation();
-                self._closeMenu();
             });
         },
         _openIconMenu: function () {
@@ -104,7 +115,7 @@
             classie.remove(this.menu, 'gn-open-all');
             this._closeIconMenu();
         }
-    }
+    };
 
     // add to global namespace
     window.gnMenu = gnMenu;

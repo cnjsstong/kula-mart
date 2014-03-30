@@ -6,6 +6,7 @@ angular.module('kulaWebApp', [
     'ngRoute',
     'ngTagsInput',
     'ngAnimate',
+    'ngTouch',
     'ui.bootstrap',
     'ezfb',
     'checklist-model',
