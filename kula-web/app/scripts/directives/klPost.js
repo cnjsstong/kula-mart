@@ -1,5 +1,5 @@
 angular.module('kulaWebApp')
-    .directive('klPost', ['Post', '$dialogs', 'Account', function (Post, $dialogs, Account) {
+    .directive('klPost', ['Post', '$dialogs', 'Account', 'SecurityService', function (Post, $dialogs, Account, SecurityService) {
         return {
             restrict: 'E',
             scope: {
@@ -30,7 +30,7 @@ angular.module('kulaWebApp')
                     if (scope.post && scope.post.status != 'active') {
                         return 0;
                     }
-                    if (!scope.currentUser) {
+                    if (!SecurityService.isAuthenticated()) {
                         return 4;
                     }
                     if (scope.currentUser && scope.post && scope.post.author && scope.post.author == scope.currentUser) {

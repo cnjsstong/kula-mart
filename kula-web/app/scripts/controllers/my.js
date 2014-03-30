@@ -5,9 +5,6 @@ angular.module('kulaWebApp')
 
         $scope.filter = {type: 'offer'};
 
-        $scope.me = SecurityService.getUser();
-        console.log($scope.me);
-
         Post.myPosts({}, function (res) {
             $scope.posts = res;
         });

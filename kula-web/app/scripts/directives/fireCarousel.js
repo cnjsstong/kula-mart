@@ -8,7 +8,6 @@ angular.module('kulaWebApp')
             },
             link: function (scope, element, attrs) {
                 element.css('background-image', "url(http://img.kulamart.com.s3.amazonaws.com/" + (scope.bg || 'placeholder.png') + ")");
-                console.log(scope.last);
                 if (scope.last) {
                     fireCarouFredSel(element.parent());
                 }

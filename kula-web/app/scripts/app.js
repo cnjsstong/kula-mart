@@ -264,4 +264,8 @@ angular.module('kulaWebApp', [
             $rootScope.ifShowAreaDropdown = true;
         };
 
+        $rootScope.$on('Security:LoginChecked', function() {
+            $rootScope.me = SecurityService.getUser();
+        });
+
     }]);
