@@ -10,6 +10,9 @@ angular.module('kulaWebApp')
             $scope.tags = Predefined.query({type: 'tag'});
             $scope.deliveries = Predefined.query({type: 'delivery'});
             $scope.post = { images: [], email: $rootScope.GetUser('email') };
+            if($scope.post.email.indexOf('@facebookusers.kulamart.com')!=-1) {
+                $scope.post.email = '';
+            }
             $scope.step = 0;
             if (postId) {
                 $scope.post = Post.get({postId: postId});
