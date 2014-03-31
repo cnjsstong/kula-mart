@@ -209,6 +209,10 @@ angular.module('kulaWebApp', [
             if (current.requireLogin) {
                 SecurityService.checkLogin();
             }
+            ga('send', {
+  'hitType': 'pageview',
+  'page': $location.absUrl(),
+});
         });
 
         $rootScope.$on('Security:LoggedOut', function (event) {
