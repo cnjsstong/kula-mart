@@ -125,7 +125,7 @@ function fireCarouFredSel(element) {
         items: {
             visible: {
                 min: 1,
-                max: 6
+                max: 4
             },
             width: 160,
             height: 'auto'
