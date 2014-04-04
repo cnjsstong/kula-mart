@@ -2202,7 +2202,7 @@ input[readonly].dial {
 .carousel-controls {
     text-align: center;
     font-size: 3em;
-    position: absolute;
+    /*position: absolute;*/
     left: 0;
     right: 0;
     margin: 0.5em auto 0;

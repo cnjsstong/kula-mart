@@ -38,6 +38,7 @@
                     <li ng-repeat="delivery in post.delivery" ng-bind="delivery"></li>
                 </ul>
                 <br>
+
                 <form name="ReplyForm">
                     <b>Leave your message:</b>
                     <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
@@ -61,6 +62,7 @@
                 Expired
             </span>
             <span class="actions pull-right" ng-switch-when="1">
+                <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()"><i class="icon icon-facebook"></i> Share</a>
                 <a class="btn btn-sm btn-info cta" ng-click="SaveForLater()" ng-hide="postSaved"><i
                         class="linecon-star"></i>Awesome</a>
                 <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i
@@ -72,6 +74,7 @@
                 <a class="btn btn-md btn-primary" ng-click="DeletePost()">Delete</a>
             </span>
             <span class="actions pull-right" ng-switch-when="4">
+                <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()"><i class="icon icon-facebook"></i> Share</a>
                 <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i
                         class="linecon-eye"></i>Quick View</a>
             </span>

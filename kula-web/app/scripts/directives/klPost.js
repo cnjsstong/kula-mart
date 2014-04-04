@@ -1,5 +1,5 @@
 angular.module('kulaWebApp')
-    .directive('klPost', ['Post', '$dialogs', 'Account', 'SecurityService', function (Post, $dialogs, Account, SecurityService) {
+    .directive('klPost', ['Post', '$dialogs', 'Account', 'SecurityService', '$FB', '$rootScope', '$filter', function (Post, $dialogs, Account, SecurityService, $FB, $rootScope, $filter) {
         return {
             restrict: 'E',
             scope: {
@@ -64,6 +64,20 @@ angular.module('kulaWebApp')
                     if (scope.post.images.length > 0) {
                         var dlg = $dialogs.create('views/partial/klImages.html', 'PostDetailImageModalCtrl', {post: scope.post}, {windowClass: 'wide', backdrop: 'static'});
                     }
+                };
+
+
+                scope.ShareFacebook = function () {
+                    $FB.ui(
+                        {
+                            method: 'feed',
+                            name: (scope.post.type == 'request' ? 'Requesting' : 'Offering') + scope.post.title + 'for ' + $filter('price')(scope.post.price),
+                            link: 'http://kulamart.com/post/' + scope.post._id,
+                            picture: 'http://img.kulamart.com.s3.amazonaws.com/' + scope.post.images[0] || 'category/' + scope.post.category,
+                            caption: 'KulaMart.com - ' + $rootScope.currentArea.title,
+                            description: scope.post.description,
+                            message: ''
+                        });
                 };
             }
         };
