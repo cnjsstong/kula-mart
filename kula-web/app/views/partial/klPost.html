@@ -41,11 +41,11 @@
                 <form name="ReplyForm">
                     <b>Leave your message:</b>
                     <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
-                              ng-model="reply.content" ng-minlength="10" required></textarea>
+                              ng-model="reply.content" ng-minlength="10" required placeholder="-please type more than 10 char to prove you're human!"></textarea>
                     <b>Your Email:</b>
-                    <input type="email" class="form-control" ng-model="reply.email" required>
+                    <input type="email" class="form-control" ng-model="reply.email" required placeholder="-must have! it's how others contact you"> 
                     <b>Your Name:</b>
-                    <input type="text" class="form-control" ng-model="reply.displayName">
+                    <input type="text" class="form-control" ng-model="reply.displayName" placeholder="-your real name or an imagined name">
 
                     <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)"
                        ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>

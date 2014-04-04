@@ -148,7 +148,7 @@ input.form-control.no-margin {
     position: relative;
 }
 
-.post .tags .tag, .post .tags .tag:hover {
+.tags .tag, .tags .tag:hover {
     margin-right: 4px;
     margin-top: 5px;
     padding: 3px;
@@ -279,6 +279,8 @@ a.user-showcase {
 
 .category-tag {
     margin-right: 3px;
+    margin-bottom: 3px;
+    padding: 3px;
 }
 
 .padding-bottom {
