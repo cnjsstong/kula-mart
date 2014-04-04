@@ -353,6 +353,10 @@ section h1 {
     font-size: 3.5em;
 }
 
+section{
+    overflow: hidden;
+}
+
 section#intro {
     margin-bottom: 20px;
 }
