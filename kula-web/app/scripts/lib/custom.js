@@ -463,9 +463,9 @@ function InitImageHover() {
      */
 
 
-//    pspZoom = function (val, max) {
-//        return (val / max) * (-25) + 12.5;
-//    };
+    pspZoom = function (val, max) {
+        return (val / max) * (-25) + 12.5;
+    };
 
 //  if (!Modernizr.touch) {
     $(".grid .block-item").mouseenter(function (e) {

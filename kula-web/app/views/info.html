@@ -15,7 +15,7 @@
 <!-- Projects Section -->
 <section id="projects" class="section events">
     <div id="portfolio" class="effect-parent grid row">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 block-item" ng-repeat="event in events" fire-collage>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 block-item" ng-repeat="event in events | orderBy:'-_id'" fire-collage>
             <a class="link" href="#/event/{{ event._id }}">
                 <div class="hovercontent">
                     <h1 ng-bind="event.title"></h1>
