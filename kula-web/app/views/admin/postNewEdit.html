@@ -4,12 +4,13 @@
             <form role="form" name="postForm">
                 <input type="hidden" ng-model="post._id">
 
-                <div class="col-xs-12 lead-form post-form">
+                <div class="col-sm-12 lead-form post-form">
                     <div class="row">
+                        <div class="col-sm-4">
                         <div class="table">
                             <div class="form-group table-row">
                                 <div class="table-cell" style="width: 50px;">
-                                    I am
+                                    I am&nbsp;&nbsp;
                                 </div>
                                 <div class="btn-group table-cell" style="width: 160px;">
                                     <a class="btn btn-sm"
@@ -19,21 +20,28 @@
                                        ng-class="{'btn-danger bold':post.type=='request','btn-disabled':post.type!='request'}"
                                        ng-click="post.type='request'">Requesting</a>
                                 </div>
+                            </div>        
+                        </div>
+                        </div>
+                        <div class="col-sm-8">
+                        <div class="table">
+                            <div class="form-group table-row">        
                                 <input type="text" class="form-control table-cell" id="postTitle" placeholder="What?"
                                        ng-model="post.title" required>
 
                                 <div class="table-cell">
-                                    in
+                                    &nbsp;in&nbsp;
                                 </div>
                                 <select class="form-control table-cell" id="postCategory" ng-model="post.category"
                                         ng-options="c._id as c.title for c in categories" required>
-                                    <option value=""> ----- Which market?</option>
+                                    <option value=""> Which market?</option>
                                 </select>
                             </div>
                         </div>
+                        </div>
 
                         <div class="form-group">
-                            <label>Add Tags</label>
+                            <label>Add Tags<small> - add at least 3 tags/press ENTER to add.</small></label>
                             <tags-input id="postTags" ng-model="post.tags"
                                         custom-class="kl-tags"
                                         placeholder="Add tags here"
@@ -46,10 +54,8 @@
                                                max-results-to-show="10">
                                 </auto-complete>
                             </tags-input>
-                            <p class="help-block">You should add at least 3 tags. Type in your tag, then press ENTER to
-                                add.</p>
 
-                            Or choose from the following tags
+                            Or choose from the following tags:
                             <div class="tags">
                                 <a ng-repeat="tag in tags" ng-bind="tag.title"
                                    class="category-tag btn btn-sm btn-warning" ng-click="AddTag(tag)"></a>
@@ -57,7 +63,7 @@
                         </div>
                     </div>
                     <div class="row action-btns" ng-show="step==0">
-                        <a class="btn btn-primary btn-sm"
+                        <a class="btn btn-primary btn-sm cta pull-right"
                            ng-disabled="postForm.$invalid || !post.type || post.tags.length<3"
                            ng-click="step=1">Next</a>
                     </div>
@@ -99,7 +105,7 @@
                         </div>
                     </div>
                     <div class="row action-btns" ng-show="step==1">
-                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid" ng-click="step=2">Next</a>
+                        <a class="btn btn-primary btn-sm cta pull-right" ng-disabled="postForm.$invalid" ng-click="step=2">Next</a>
                     </div>
                 </div>
 
@@ -122,12 +128,10 @@
                                 <input type="checkbox" checklist-model="post.delivery" checklist-value="a.title">
                                 {{a.title}} &nbsp;&nbsp;&nbsp;
                             </label>
-                            <br>
-                            <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="row action-btns" ng-show="step==2">
-                        <a class="btn btn-primary btn-sm" ng-disabled="postForm.$invalid || !post.area"
+                        <a class="btn btn-primary btn-sm cta pull-right" ng-disabled="postForm.$invalid || !post.area"
                            ng-click="step=3">Next</a>
                     </div>
                 </div>
@@ -146,7 +150,7 @@
                         </div>
                     </div>
                     <div class="row action-btns">
-                        <a class="btn btn-primary cta" ng-disabled="postForm.$invalid" ng-click="Submit(post)">Post</a>
+                        <a class="btn btn-primary btn-sm cta full-width" ng-disabled="postForm.$invalid" ng-click="Submit(post)">Post</a>
                     </div>
                 </div>
             </form>
