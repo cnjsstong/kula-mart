@@ -50,37 +50,45 @@ function createPost(req, res) {
 }
 
 function updatePost(req, res) {
-
-    var post = {};
-    post.title = req.body.title;
-    post.type = req.body.type;
-    post.price = req.body.price;
-    post.author = req.body.author;
-    post.area = req.body.area;
-    post.category = req.body.category;
-    post.content = req.body.content;
-    post.tags = req.body.tags;
-    post.status = Post.Status.ACTIVE;
-    post.lastModified = Date.now();
-    post.images = req.body.images;
-    post.duration = req.body.duration;
-    post.neverExpire = !!req.body.neverExpire;
-    if (!post.neverExpire) {
-        var expireDate = new Date();
-        expireDate.setTime(Date.now() + parseInt(req.body.duration) * 24 * 60 * 60 * 1000);
-        post.expire = expireDate;
-    }
-    post.email = req.body.email;
-    post.phone = req.body.phone;
-    post.delivery = req.body.delivery;
-
-    Post.update({_id: ObjectID(req.body._id)}, post, {upsert: true}, function (err) {
+    Post.findOne({_id: ObjectID(req.params.postId)}, function (err, post) {
         if (err) {
-//            console.log(err);
-            return res.send(500);
-        } else {
-            return res.send(200);
+            return res.send(404, "Post not found.");
         }
+        if (req.account.type != role.ADMIN && post.author != req.account._id) {
+            return res.send(403, "You cannot access someone else's post.");
+        }
+
+        var newPost = {};
+        newPost.title = req.body.title;
+        newPost.type = req.body.type;
+        newPost.price = req.body.price;
+        newPost.author = req.body.author;
+        newPost.area = req.body.area;
+        newPost.category = req.body.category;
+        newPost.content = req.body.content;
+        newPost.tags = req.body.tags;
+        newPost.status = Post.Status.ACTIVE;
+        newPost.lastModified = Date.now();
+        newPost.images = req.body.images;
+        newPost.duration = req.body.duration;
+        newPost.neverExpire = !!req.body.neverExpire;
+        if (!newPost.neverExpire) {
+            var expireDate = new Date();
+            expireDate.setTime(Date.now() + parseInt(req.body.duration) * 24 * 60 * 60 * 1000);
+            newPost.expire = expireDate;
+        }
+        newPost.email = req.body.email;
+        newPost.phone = req.body.phone;
+        newPost.delivery = req.body.delivery;
+
+        Post.update({_id: ObjectID(req.body._id)}, newPost, {upsert: true}, function (err) {
+            if (err) {
+                return res.send(500);
+            } else {
+                return res.send(200);
+            }
+        });
+
     });
 }
 
@@ -265,15 +273,49 @@ function expirePost(req, res) {
         } else {
             return res.send(200);
         }
-    })
+    });
+}
+
+function adminQuery(req, res) {
+    Post.find({}, function (err, posts) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200, posts);
+        }
+    });
+}
+
+
+function adminDelete(req, res) {
+    Post.remove({_id: ObjectID(req.params.postId)}, function (err) {
+        if (err) {
+            return res.send(500);
+        } else {
+            return res.send(200);
+        }
+    });
 }
 
 exports.base = 'post';
 
 exports.routes = [
     {
+        'path': 'admin',
+        'method': httpMethod.GET,
+        'roles': [role.ADMIN],
+        'handler': adminQuery
+    },
+    {
+        'path': 'admin/:postId',
+        'method': httpMethod.DELETE,
+        'roles': [role.ADMIN],
+        'handler': adminDelete
+    },
+    {
         'path': '',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': createPost
     },
     {
@@ -284,6 +326,7 @@ exports.routes = [
     {
         'path': 'my',
         'method': httpMethod.GET,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': getMyPosts
     },
     {
@@ -294,6 +337,7 @@ exports.routes = [
     {
         'path': ':postId',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': updatePost
     },
     {
@@ -309,6 +353,7 @@ exports.routes = [
     {
         'path': ':postId',
         'method': httpMethod.DELETE,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': removePost
     },
     {
@@ -319,6 +364,7 @@ exports.routes = [
     {
         'path': ':postId/expire',
         'method': httpMethod.PUT,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': expirePost
     },
     {

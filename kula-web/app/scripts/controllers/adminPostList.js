@@ -4,7 +4,7 @@ angular.module('kulaWebApp')
     .controller('AdminPostListCtrl', ['$scope', 'Post', 'Category', '$location', function ($scope, Post, Category, $location) {
 
         function loadPosts() {
-            $scope.posts = Post.query();
+            $scope.posts = Post.adminQuery();
         }
 
         $scope.$on('$routeChangeSuccess', function () {
@@ -13,7 +13,7 @@ angular.module('kulaWebApp')
 
         $scope.RemovePost = function (post, $index) {
             console.log(post);
-            Post.delete({postId: post._id}, function () {
+            Post.adminDelete({postId: post._id}, function () {
                 $scope.posts.splice($index, 1);
             })
         };

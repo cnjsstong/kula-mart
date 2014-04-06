@@ -38,6 +38,17 @@ angular.module('resources').factory('Post', ['$resource', 'API', function ($reso
             url: url + 'my',
             method: API.Method.GET,
             isArray: true
+        },
+
+        adminQuery: {
+            url: url+'admin',
+            method: API.Method.GET,
+            isArray: true
+        },
+
+        adminDelete: {
+            url: url+'admin/:postId',
+            method: API.Method.DELETE
         }
     });
 }]);

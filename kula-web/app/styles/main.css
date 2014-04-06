@@ -575,3 +575,8 @@ html {
 .panel-heading.highlighted {
     background-color: #00ccff;
 }
+
+.form-control.short {
+    width: 120px;
+    display: inline-block;
+}
