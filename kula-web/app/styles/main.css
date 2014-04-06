@@ -55,9 +55,9 @@ a:hover {
     width: auto;
     border-radius: 5px;
 }
-    
-.btn>i{
-    font-size:120%;
+
+.btn > i {
+    font-size: 120%;
     margin-right: 4px;
 }
 
@@ -104,7 +104,7 @@ a.btn.banner {
     margin: 2px;
 }
 
-.btn.full-width:hover{
+.btn.full-width:hover {
     border-color: white;
     color: white;
 }
@@ -154,9 +154,15 @@ input.form-control.no-margin {
     padding: 3px;
     background-color: #226998;
     cursor: default;
+    text-transform: lowercase;
 }
 
-.tag-primary,.tag-primary:hover{
+.tags .tag.category-tag, .tags .tag.category-tag:hover {
+    text-transform: none !important;
+    font-weight: bold;
+}
+
+.tag-primary, .tag-primary:hover {
     padding: 3px 6px;
     background-color: #d9534f;
     color: #ffffff;
@@ -164,9 +170,10 @@ input.form-control.no-margin {
     font-size: 1.1em;
     font-weight: 400;
     cursor: default;
+    text-transform: none !important;
 }
 
-.tag-primary.tag-request,.tag-primary.tag-request:hover{
+.tag-primary.tag-request, .tag-primary.tag-request:hover {
     background-color: #f0ad4e;
 }
 
@@ -229,6 +236,7 @@ input.form-control.no-margin {
 .form-inline .form-control {
     display: inline-block !important;
 }
+
 .full-width {
     width: 100%;
 }
@@ -281,6 +289,7 @@ a.user-showcase {
     margin-right: 3px;
     margin-bottom: 3px;
     padding: 3px;
+    text-transform: lowercase;
 }
 
 .padding-bottom {
@@ -355,7 +364,7 @@ section h1 {
     font-size: 3.5em;
 }
 
-section{
+section {
     overflow: hidden;
 }
 
@@ -509,7 +518,7 @@ a.kula-image.with-margin {
     margin: 1em;
 }
 
-form.ng-dirty input.ng-invalid {
+form.ng-dirty input.ng-invalid, form.ng-dirty tags-input.ng-invalid .ngTagsInput div.tags {
     box-shadow: 0 0 10px #ff7777;
 }
 

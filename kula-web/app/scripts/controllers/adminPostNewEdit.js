@@ -44,8 +44,12 @@ angular.module('kulaWebApp')
 
         $scope.AddTag = function (tag) {
             if ($scope.post.tags.indexOf(tag.title) < 0) {
-                $scope.post.tags.push(tag.title);
+                $scope.post.tags.push(tag.title.toLowerCase());
             }
+        };
+
+        $scope.Lower = function($tag) {
+            $scope.post.tags[$scope.post.tags.indexOf($tag)] = $tag.toLowerCase();
         };
 
         UploadService.processor('success', 'post', function (event, xhr, item, response) {

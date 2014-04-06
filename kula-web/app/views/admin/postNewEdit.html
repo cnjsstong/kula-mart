@@ -49,7 +49,10 @@
                                         add-on-comma="false"
                                         add-on-space="false"
                                         add-on-enter="true"
-                                        add-on-blur="true">
+                                        add-on-blur="true"
+                                        min-tags="3"
+                                        min-length="3"
+                                        on-tag-added="Lower($tag)">
                                 <auto-complete source="QueryTagsForAutocomplete($query)"
                                                max-results-to-show="10">
                                 </auto-complete>
