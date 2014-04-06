@@ -123,6 +123,11 @@ angular.module('kulaWebApp', [
                 templateUrl: 'views/signup.html',
                 controller: 'LoginCtrl'
             })
+            .when('/signup/facebook', {
+                templateUrl: 'views/signupFacebook.html',
+                controller: 'LoginCtrl',
+                identifier: 'facebook'
+            })
             .when('/my', {
                 templateUrl: 'views/my.html',
                 controller: 'MyCtrl',
@@ -210,9 +215,9 @@ angular.module('kulaWebApp', [
                 SecurityService.checkLogin();
             }
             ga('send', {
-  'hitType': 'pageview',
-  'page': $location.absUrl(),
-});
+                'hitType': 'pageview',
+                'page': $location.absUrl()
+            });
         });
 
         $rootScope.$on('Security:LoggedOut', function (event) {
@@ -268,7 +273,7 @@ angular.module('kulaWebApp', [
             $rootScope.ifShowAreaDropdown = true;
         };
 
-        $rootScope.$on('Security:LoginChecked', function() {
+        $rootScope.$on('Security:LoginChecked', function () {
             $rootScope.me = SecurityService.getUser();
         });
 

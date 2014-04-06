@@ -8,9 +8,14 @@ angular.module('resources').factory('Account', ['$resource', 'API', function ($r
             url: url + 'signup'
         },
 
-        loginWithFacebook: {
+        checkFacebookId: {
             method: API.Method.POST,
-            url: url + 'facebook'
+            url: url + 'facebook/check'
+        },
+
+        signUpWithFacebook: {
+            method: API.Method.POST,
+            url: url + 'facebook/signup'
         },
 
         login: {

@@ -4,14 +4,15 @@ var role = require('../enums/role'),
     mongoose = require('mongoose'),
     ObjectID = require('mongodb').ObjectID,
     bcrypt = require('bcrypt-nodejs'),
-    salt = bcrypt.genSaltSync(),
     tokenGenerator = require('crypto');
 
 // Load configurations (default: development)
 var env = process.env.NODE_ENV || 'development',
     config = require('../conf/' + env + '.local.config');
 
-var Account = mongoose.model('Account');
+var Account = mongoose.model('Account')
+
+var FB = require('fb');
 
 /*
  * Load balancer test alive   
@@ -97,29 +98,79 @@ function signup(req, res) {
     });
 }
 
-function facebook(req, res) {
-    var virtualEmail = req.body.facebookId + '@facebookusers.kulamart.com';
-    Account.findOne({email: virtualEmail}, function (err, account) {
-        if (err || !account) {
-            var virtualReq = {
-                email: virtualEmail,
-                password: req.body.facebookId + Date.now(),
-                facebookId: req.body.facebookId,
-                name: req.body.name
-            };
-            Account.createAccount(virtualReq, function(err, acc){
+//function facebook(req, res) {
+//    var virtualEmail = req.body.facebookId + '@facebookusers.kulamart.com';
+//    Account.findOne({email: virtualEmail}, function (err, account) {
+//        if (err || !account) {
+//            var virtualReq = {
+//                email: virtualEmail,
+//                password: req.body.facebookId + Date.now(),
+//                facebookId: req.body.facebookId,
+//                name: req.body.name
+//            };
+//            Account.createAccount(virtualReq, function(err, acc){
+//                if (err) {
+//                    return res.send(500, err);
+//                }
+//                var toClientAccount = acc.securityMapping();
+//                return res.send(201, toClientAccount);
+//            });
+//        } else {
+//            return res.send(201, account.securityMapping());
+//        }
+//    })
+//}
+
+function checkFacebookId(req, res) {
+    _checkFacebookId(req.body.facebookId, function(account) {
+        _validateFacebookLogin(req.body.accessToken, req.body.facebookId, function(result){
+            return res.send(200, account.securityMapping());
+        }, function(err) {
+            return res.send(403);
+        });
+    }, function(err) {
+        return res.send(404, err);
+    });
+}
+
+function _checkFacebookId(id, success, error) {
+    Account.findOne({facebookId: id}, function(err, account) {
+        if(err || !account) {
+            error(err);
+        } else {
+            success(account);
+        }
+    });
+}
+
+function _validateFacebookLogin(accessToken, id, success, error) {
+    FB.setAccessToken(accessToken);
+    FB.api('/me', {}, function (result) {
+        if(result.id && result.id == id) {
+            success(result);
+        } else {
+            error(result);
+        }
+    });
+}
+
+function signUpWithFacebook(req, res) {
+    _checkFacebookId(req.body.facebookId, function() {
+        return res.send(400, 'User already exists.')
+    }, function() {
+        _validateFacebookLogin(req.body.accessToken, req.body.facebookId, function(result) {
+            Account.createAccount(req.body, function (err, acc) {
                 if (err) {
                     return res.send(500, err);
                 }
                 var toClientAccount = acc.securityMapping();
                 return res.send(201, toClientAccount);
             });
-        } else {
-            return res.send(201, account.securityMapping());
-        }
-    })
+        }, function(result) {
+            return res.send(400, 'Invalid facebook access token.');
+        });
+    });
 }
-
 
 function addFavoritePost(req, res) {
     console.log(req.account, req.body.postId);
@@ -194,9 +245,14 @@ exports.routes = [
         'version': '0.0.1'
     },
     {
-        'path': 'facebook',
+        'path': 'facebook/signup',
         'method': httpMethod.POST,
-        'handler': facebook
+        'handler': signUpWithFacebook
+    },
+    {
+        'path': 'facebook/check',
+        'method': httpMethod.POST,
+        'handler': checkFacebookId
     },
     {
         'path': 'favorite',

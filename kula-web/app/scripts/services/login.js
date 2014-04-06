@@ -29,17 +29,21 @@ angular.module('services.login')
             login: function () {
                 var defer = $q.defer();
 
-                $FB.login(function (res) {
-                    if (res.status == 'connected') {
-                        console.log('Broadcasting Facebook.Connected ...');
-                        $rootScope.$broadcast('Facebook.Connected', res);
-                        defer.resolve(res);
-                    } else {
-                        console.log('Broadcasting Facebook.NotConnected ...');
-                        $rootScope.$broadcast('Facebook.NotConnected', res);
-                        defer.reject(res);
-                    }
+                service.getLoginStatus().then(function(res) {
                     defer.resolve(res);
+                }, function(err) {
+                    $FB.login(function (res) {
+                        if (res.status == 'connected') {
+                            console.log('Broadcasting Facebook.Connected ...');
+                            $rootScope.$broadcast('Facebook.Connected', res);
+                            defer.resolve(res);
+                        } else {
+                            console.log('Broadcasting Facebook.NotConnected ...');
+                            $rootScope.$broadcast('Facebook.NotConnected', res);
+                            defer.reject(res);
+                        }
+                        defer.resolve(res);
+                    }, {scope: 'email'});
                 });
 
                 return defer.promise;

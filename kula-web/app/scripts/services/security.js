@@ -159,7 +159,7 @@ angular.module('services.security')
 
             loginWithFacebook: function (facebookResponse) {
                 var defer = $q.defer();
-                Account.loginWithFacebook({}, {facebookId: facebookResponse.authResponse.userID, name: 'Facebook User'}, function (res) {
+                Account.checkFacebookId({}, {facebookId: facebookResponse.authResponse.userID, accessToken: facebookResponse.authResponse.accessToken}, function (res) {
                     if (res.token) {
                         service.setAuthenticationHeader(res).setLocalUser(res).confirmLogin(res).last(function () {
                             defer.resolve();
@@ -168,9 +168,26 @@ angular.module('services.security')
                         defer.reject(res);
                     }
                 }, function (err) {
+                    console.log(err);
                     defer.reject(err);
                 });
-                return defer.promise();
+                return defer.promise;
+            },
+
+            signUpWithFacebook: function(user) {
+                var defer = $q.defer();
+                Account.signUpWithFacebook({}, user, function (res) {
+                    if (res.token) {
+                        service.setAuthenticationHeader(res).setLocalUser(res).confirmLogin(res).last(function () {
+                            defer.resolve(res);
+                        }, null);
+                    } else {
+                        defer.reject(res);
+                    }
+                }, function (err) {
+                    defer.reject(err);
+                });
+                return defer.promise;
             }
         };
 
