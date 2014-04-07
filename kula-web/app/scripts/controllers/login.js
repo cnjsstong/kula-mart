@@ -14,7 +14,20 @@ angular.module('kulaWebApp')
                     console.log(err);
                 });
             }
+            if(current.identifier == 'edit') {
+                $scope.user = SecurityService.getUser();
+            }
         });
+
+        $scope.SaveProfile = function (user) {
+            SecurityService.saveProfile(user).then(function () {
+                $dialogs.notify('KulaMart', 'Successfully updated.');
+                $location.path('/my');
+            }, function () {
+                $dialogs.notify('KulaMart', 'Update failed.');
+            });
+        };
+
         $scope.SignUp = function (user) {
             SecurityService.signUp(user).then(function () {
                 $dialogs.notify('KulaMart', 'You have successfully signed up and logged in.');

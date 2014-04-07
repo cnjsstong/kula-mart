@@ -2,7 +2,13 @@
 
 angular.module('resources').factory('Account', ['$resource', 'API', function ($resource, API) {
     var url = API.ResourceUrl + 'account/';
-    return $resource(url + ':accountId', {accountId: '@id'}, {
+    return $resource(url + ':accountId', {}, {
+
+        validate: {
+            method: API.Method.GET,
+            url: url
+        },
+
         signUp: {
             method: API.Method.POST,
             url: url + 'signup'
@@ -47,6 +53,11 @@ angular.module('resources').factory('Account', ['$resource', 'API', function ($r
         adminDelete: {
             method: API.Method.DELETE,
             url: url + 'admin/:accountId'
+        },
+
+        updateProfile: {
+            method: API.Method.PUT,
+            url: url
         }
     });
 }]);

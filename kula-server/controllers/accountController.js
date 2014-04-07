@@ -98,6 +98,22 @@ function signup(req, res) {
     });
 }
 
+function saveProfile(req, res) {
+    console.log(req.account, req.body);
+    Account.updateAccount(req.account, req.body, function (err, acc) {
+        if (err) {
+            return res.send(500, err);
+        }
+        var toClientAccount = acc.securityMapping();
+        return res.send(200, toClientAccount);
+    });
+}
+
+
+function validate(req, res) {
+    res.send(200, req.account.securityMapping());
+}
+
 //function facebook(req, res) {
 //    var virtualEmail = req.body.facebookId + '@facebookusers.kulamart.com';
 //    Account.findOne({email: virtualEmail}, function (err, account) {
@@ -227,6 +243,20 @@ exports.base = 'account';
 
 exports.routes = [
     {
+        'path': '',
+        'method': httpMethod.GET,
+        'handler': validate,
+        'roles': [role.ADMIN, role.CUSTOMER],
+        'version': '0.0.1'
+    },
+    {
+        'path': '',
+        'method': httpMethod.PUT,
+        'handler': saveProfile,
+        'roles': [role.ADMIN, role.CUSTOMER],
+        'version': '0.0.1'
+    },
+    {
         'path': 'alive',
         'method': httpMethod.GET,
         'handler': alive,
@@ -257,11 +287,13 @@ exports.routes = [
     {
         'path': 'favorite',
         'method': httpMethod.POST,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': addFavoritePost
     },
     {
         'path': 'favorite',
         'method': httpMethod.GET,
+        'roles': [role.ADMIN, role.CUSTOMER],
         'handler': getFavoritePost
     },
     {

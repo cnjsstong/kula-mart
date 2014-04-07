@@ -80,10 +80,37 @@ angular.module('services.security')
                 }
             },
 
+            validate: function() {
+                var defer = $q.defer();
+                Account.validate({},function(response) {
+                    if(response.token) {
+                        $user = response;
+                        service.checkedLogin(response).last(function () {
+                            defer.resolve(response);
+                        }, null);
+                    } else {
+                        defer.reject(response);
+                    }
+                }, function(err) {
+                    defer.reject(err);
+                });
+                return defer.promise;
+            },
+
+            saveProfile: function(updated) {
+                var defer = $q.defer();
+                Account.updateProfile({}, updated, function(res) {
+                    defer.resolve(res);
+                }, function(err) {
+                    defer.reject(err);
+                });
+                return defer.promise;
+            },
+
             loadUserFromCookie: function () {
                 if (ipCookie('email') && ipCookie('token')) {
                     $user = {email: ipCookie('email'), token: ipCookie('token'), type: ipCookie('type'), id: ipCookie('id')};
-                    service.setAuthenticationHeader($user);
+                    service.setAuthenticationHeader($user).validate();
                 }
             },
 

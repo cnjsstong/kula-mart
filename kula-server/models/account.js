@@ -90,23 +90,32 @@ AccountSchema.statics = {
                 callback(err, account);
             });
         });
+    },
+
+
+    updateAccount: function (account, accountInfo, callback) {
+        console.log(account, accountInfo);
+        account.email = accountInfo.email;
+        if (accountInfo.password) {
+            account.password = accountInfo.password;
+        }
+        account.name = accountInfo.name;
+        account.password = bcrypt.hashSync(account.password, salt);
+        account.save(function (err, newAcc) {
+            callback(err, newAcc);
+        });
+
     }
 };
 
 AccountSchema.methods = {
-//    toClient: function () {
-//        var account = this.toObject();
-//        account.id = account._id;
-//        delete account._id;
-//        return account;
-//    },
-
     securityMapping: function () {
         var account = {};
         account.id = this.id;
         account.email = this.email;
         account.token = this.token;
         account.type = this.type;
+        account.name = this.name;
         return account;
     }
 };

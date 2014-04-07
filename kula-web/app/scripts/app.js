@@ -133,6 +133,12 @@ angular.module('kulaWebApp', [
                 controller: 'MyCtrl',
                 requireLogin: true
             })
+            .when('/my/profile', {
+                templateUrl: 'views/myProfile.html',
+                controller: 'LoginCtrl',
+                identifier: 'edit',
+                requireLogin: true
+            })
             .when('/reply/:replyId', {
                 templateUrl: 'views/reply.html',
                 controller: 'ReplyCtrl'
