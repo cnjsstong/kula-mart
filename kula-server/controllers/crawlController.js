@@ -33,7 +33,7 @@ function getPost(req, res) {
                     return res.send(500);
                 }
                 var vars = {
-                    title: (post.type == 'request' ? 'Requesting' : 'Offering') + post.title + 'for ' + filterPrice(post.price),
+                    title: (post.type == 'request' ? '[Requesting] ' : '[Offering] ') + post.title + ' - for ' + filterPrice(post.price),
                     link: 'http://kulamart.com/post/' + post._id,
                     image: 'http://img.kulamart.com.s3.amazonaws.com/' + post.images[0] || 'category/' + post.category,
                     description: post.content
