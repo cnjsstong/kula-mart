@@ -28,7 +28,8 @@ angular.module('kulaWebApp')
                 });
         };
 
-        $scope.ShareFacebook2 = function (post) {
+        $scope.ShareFacebook2 = function () {
+            var url = encodeURIComponent('http://kulamart.com/post/' + $scope.post._id);
             var share = 'http://www.facebook.com/sharer.php?s=100&p[url]=' + url;
             $window.open(share, 'sharer', 'toolbar=0,status=0,width=548,height=325');
         };
