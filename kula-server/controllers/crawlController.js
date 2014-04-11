@@ -9,24 +9,27 @@ var Post = mongoose.model('Post');
 var Category = mongoose.model('Category');
 
 var _ = require('lodash-node');
-//console.log(_);
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
-function filterPrice(price) {
-    if (!price || price == 0) {
-        return 'Free';
-    } else {
-        return '$' + price;
-    }
-}
+console.log(_);
 
 function getPost(req, res) {
+
+    console.log(_);
+    function filterPrice(price) {
+        if (!price || price == 0) {
+            return 'Free';
+        } else {
+            return '$' + price;
+        }
+    }
+
     Post.findOne({_id: ObjectID(req.params.postId)}, function (err, post) {
         if (err) {
             return res.send(500);
         } else {
-            fs.readFile('templates/post.html', function(err, data) {
-                if(err) {
+            fs.readFile('templates/post.html', function (err, data) {
+                if (err) {
                     return res.send(500);
                 }
                 var vars = {
