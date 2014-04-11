@@ -12,6 +12,13 @@ var _ = require('lodash-node');
 //console.log(_);
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
+function filterPrice(price) {
+    if (!price || price == 0) {
+        return 'Free';
+    } else {
+        return '$' + price;
+    }
+}
 
 function getPost(req, res) {
     Post.findOne({_id: ObjectID(req.params.postId)}, function (err, post) {
@@ -22,8 +29,13 @@ function getPost(req, res) {
                 if(err) {
                     return res.send(500);
                 }
-
-                var compiled = _.template(data.toString(), post, {variable: 'post'});
+                var vars = {
+                    title: (post.type == 'request' ? 'Requesting' : 'Offering') + post.title + 'for ' + filterPrice(post.price),
+                    link: 'http://kulamart.com/post/' + post._id,
+                    image: 'http://img.kulamart.com.s3.amazonaws.com/' + post.images[0] || 'category/' + post.category,
+                    description: post.content
+                };
+                var compiled = _.template(data.toString(), vars, {variable: 'vars'});
                 res.writeHead(200, {
                     'Content-Length': Buffer.byteLength(compiled),
                     'Content-Type': 'text/html'
