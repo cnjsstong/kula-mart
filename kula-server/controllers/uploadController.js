@@ -11,80 +11,9 @@ var env = process.env.NODE_ENV || 'development',
 var fs = require('fs');
 
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('conf/aws_config.json');
+AWS.config.loadFromPath('./conf/aws_config.json');
 var s3 = new AWS.S3({apiVersion: '2006-03-01'});
 var bucket = 'img.kulamart.com';
-
-//var Predefined = mongoose.model('Predefined');
-
-/*
- * Create or Update one predefined.
- */
-//function createPredefined(req, res) {
-//    var predefined = new Predefined();
-//    predefined._id = new ObjectID();
-//    predefined.title = req.body.title;
-//    predefined.type = req.body.type || '';
-//
-//    predefined.save(function (err) {
-//        if (err) {
-//            return res.send(500);
-//        } else {
-//            return res.send(200, predefined);
-//        }
-//    });
-//}
-//
-//function updatePredefined(req, res) {
-//
-//    console.log(req.body);
-//
-//    var predefined = {};
-//    predefined.title = req.body.title;
-//    predefined.type = req.body.type;
-//
-//    Predefined.update({_id: ObjectID(req.body._id)}, predefined, {upsert: true}, function (err) {
-//        if (err) {
-//            console.log(err);
-//            return res.send(500);
-//        } else {
-//            return res.send(200);
-//        }
-//    });
-//}
-//
-//function listPredefineds(req, res) {
-//    var type = req.params.type;
-//
-//    Predefined.find({type: type}, function (err, predefineds) {
-//        if (err) {
-//            return res.send(500);
-//        } else {
-//            return res.send(200, predefineds);
-//        }
-//    });
-//}
-//
-//function getPredefined(req, res) {
-//    Predefined.findOne({_id: ObjectID(req.params.predefinedId)}, function (err, predefined) {
-//        if (err) {
-//            return res.send(500);
-//        } else {
-//            return res.send(200, predefined);
-//        }
-//    });
-//}
-//
-//function removePredefined(req, res) {
-//    Predefined.remove({_id: ObjectID(req.params.predefinedId)}, function (err) {
-//        if (err) {
-//            return res.send(500);
-//        } else {
-//            return res.send(200);
-//        }
-//    });
-//
-//}
 
 function upload(req, res) {
     var image = req.files.image;

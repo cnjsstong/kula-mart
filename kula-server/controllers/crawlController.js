@@ -11,11 +11,8 @@ var Category = mongoose.model('Category');
 var _ = require('lodash-node');
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
-console.log(_);
-
 function getPost(req, res) {
 
-    console.log(_);
     function filterPrice(price) {
         if (!price || price == 0) {
             return 'Free';
