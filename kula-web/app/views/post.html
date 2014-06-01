@@ -2,87 +2,78 @@
 <section id="intro" class="intro-heading section current">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <h1 ng-bind="post.category | categoryTitle"></h1>
-
-                <p ng-bind="post.title"></p>
-            </div>
+            <p ng-bind="post.category | categoryTitle"></p>
         </div>
     </div>
 </section> <!-- end Intro Section -->
 
 
-<section id="main-wrapper" class="portfolio-item">
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
 
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-lg-12 block-item section">
-                        <a class="kula-image with-margin" ng-click="ImageModal()"
-                           style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||'category/'+post.category }});"></a>
-                    </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div>
+                    <a class="display-image" ng-click="ImageModal()"><img src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||(post.category?'category/'+post.category:false)||'placeholder.png' }}"></a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="wrapper project-description">
+        </div>
+        <div class="col-md-6">
+            <div class="row info-card">
 
-                    <!-- about project -->
-                    <div class="project-about">
-                        <h3>Price</h3>
+                <!-- about project -->
+                <h4>
+                    <span class="type" ng-switch="post.type">
+                        <a ng-switch-when="request">Requesting</a>
+                        <a ng-switch-when="offer">Offering</a>
+                    </span>
 
-                        <p ng-bind="post.price"></p>
-                    </div>
+                    <span class="title" ng-bind="post.title"></span> 
+                    <span class="pull-right">
+                        for  
+                        <span  class="price" ng-bind="post.price | price"></span>
+                    </span>
+                </h4>
+                <span class="tags">
+                    <span class="tag" ng-repeat="tag in post.tags" ng-bind="tag"></span>
+                </span>
 
-                    <!-- about project -->
-                    <div class="project-about">
-                        <h3>Description</h3>
+                <span class="tags">
+                    <span class="secondary tag" ng-repeat="delivery in post.delivery" ng-bind="delivery"></li>
+                </span>                            
+                <p ng-bind="post.content"></p>
+            </div>
 
-                        <p ng-bind="post.content"></p>
-                    </div>
+            <!-- project details -->
+            <div>
+                <a class="btn btn-default cta btn-sm" ng-click="SaveForLater()" ng-hide="postSaved"><i
+                        class="linecon-star"></i>Awesome</a>
+                <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()"><i class="icon-facebook-sign"></i>Share</a>
+                <a ng-show="me.type==0" class="btn btn-primary cta btn-sm" ng-click="ShareFacebook2(post)"><i class="icon-facebook-sign"></i> Share to Groups</a>
+            </div>
 
-                    <!-- project details -->
-                    <div class="project-details clearfix">
-                        <h3>Tags</h3>
-                        <ul>
-                            <li><i class="icon-li icon-star"></i><span ng-bind="post.category | categoryTitle"></span>
-                            </li>
-                            <li ng-repeat="tag in post.tags"><i class="icon-li icon-ok"></i><span ng-bind="tag"></span>
-                            </li>
-                        </ul>
-                        <a class="btn btn-primary cta btn-sm full-width" ng-click="ShareFacebook()"><i class="icon-facebook-sign"></i> Share on Facebook</a>
-                        <br>
-                        <br>
-                        <a ng-show="me.type==0" class="btn btn-primary cta btn-sm full-width" ng-click="ShareFacebook2(post)"><i class="icon-facebook-sign"></i> Post on Facebook Groups</a>
-                    </div>
+            <!-- reply box -->
+            <div class="row contact-border">
+                <div class="col-xs-12 contact-form">
+                    <form name="ReplyForm">
+                        <b>Leave your message:</b>
+                        <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
+                                  ng-model="reply.content" ng-minlength="10" required></textarea>
+                        <b>Your Email:</b>
+                        <input type="email" class="form-control" ng-model="reply.email" required>
+                        <b>Your Name:</b>
+                        <input type="text" class="form-control" ng-model="reply.displayName">
 
-                    <!-- project links -->
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <form name="ReplyForm">
-                                <b>Leave your message:</b>
-                                <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
-                                          ng-model="reply.content" ng-minlength="10" required></textarea>
-                                <b>Your Email:</b>
-                                <input type="email" class="form-control" ng-model="reply.email" required>
-                                <b>Your Name:</b>
-                                <input type="text" class="form-control" ng-model="reply.displayName">
-
-                                <a class="btn cta" ng-click="Reply(post,reply)"
-                                   ng-disabled="ReplyForm.$invalid">Reply</a>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row project-links clearfix">
-                        <div class="col-lg-6 view-project">
-                            <!--<a class="btn cta" ng-click="Reply(post,reply)">Reply</a>-->
-                        </div>
-                        <div class="col-lg-6 social-sharing">
-                            <a class="btn">Save for Later</a>
-                        </div>
-                    </div>
+                        <a class="btn btn-md btn-info pull-right" ng-click="Reply(post,reply)"
+                           ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>
+                    </form>
+                </div>
+            </div>
+            <div class="row project-links clearfix">
+                <div class="col-lg-6 view-project">
+                    <!--<a class="btn cta" ng-click="Reply(post,reply)">Reply</a>-->
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
