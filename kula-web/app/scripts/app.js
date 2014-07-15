@@ -86,6 +86,21 @@ angular.module('kulaWebApp', [
                 controller: 'AdminAreaNewEditCtrl',
                 requireLogin: true
             })
+            .when('/admin/business', {
+                templateUrl: 'views/admin/businessList.html',
+                controller: 'AdminBusinessListCtrl',
+                requireLogin: true
+            })
+            .when('/admin/business/new', {
+                templateUrl: 'views/admin/businessNewEdit.html',
+                controller: 'AdminBusinessNewEditCtrl',
+                requireLogin: true
+            })
+            .when('/admin/business/:businessId', {
+                templateUrl: 'views/admin/businessNewEdit.html',
+                controller: 'AdminBusinessNewEditCtrl',
+                requireLogin: true
+            })
             .when('/admin/predefined', {
                 templateUrl: 'views/admin/predefined.html',
                 controller: 'AdminPredefinedCtrl',
@@ -95,6 +110,11 @@ angular.module('kulaWebApp', [
                 templateUrl: 'views/admin/account.html',
                 controller: 'AdminAccountCtrl',
                 requireLogin: true
+            })
+            .when('/businesses', {
+                templateUrl: 'views/businesses.html',
+                controller: 'BusinessesCtrl',
+                reloadOnSearch: false
             })
             .when('/market', {
                 templateUrl: 'views/market.html',

@@ -1,0 +1,39 @@
+<section id="adminBusinessList" class="section">
+    <div class="container">
+        <div class="row">
+            <a href="/admin/business/new" class="btn cta">New Business</a>
+            <br>
+            &nbsp;
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="business in businesses">
+                    <td ng-bind="business.title"></td>
+                    <td ng-bind="business.description"></td>
+                    <td ng-bind="business.address"></td>
+                    <td><a ng-click="EditBusiness(business, $index)">Edit</a> <a
+                            ng-click="RemoveBusiness(business, $index)">Remove</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

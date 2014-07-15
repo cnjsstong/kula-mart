@@ -32,12 +32,10 @@ function updateBusiness(req, res) {
 
     console.log(req.body);
 
-    var business = {};
-    business.title = req.body.title;
-    business.description = req.body.description;
-    business.area = req.body.area;
+    var business = req.body;
+    delete business._id;
 
-    Business.update({_id: ObjectID(req.body._id)}, business, {upsert: true}, function (err) {
+    Business.findOneAndUpdate({_id: ObjectID(req.params.businessId)}, business, function (err) {
         if (err) {
             console.log(err);
             return res.send(500);
@@ -48,9 +46,13 @@ function updateBusiness(req, res) {
 }
 
 function listBusinesss(req, res) {
-    Business.find({}, function (err, businesss) {
+    var query = {};
+    if(req.params.areaId) {
+        query.area = {$all: [req.params.areaId]};
+    }
+    Business.find(query, function (err, businesss) {
         if (err) {
-            return res.send(500);
+            return res.send(500, err);
         } else {
             return res.send(200, businesss);
         }

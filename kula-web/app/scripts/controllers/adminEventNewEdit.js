@@ -33,12 +33,6 @@ angular.module('kulaWebApp')
             console.log(res);
             return res;
         };
-//
-//        $scope.AddTag = function(tag) {
-//            if($scope.event.tags.indexOf(tag.title)<0) {
-//                $scope.event.tags.push(tag.title);
-//            }
-//        };
 
         UploadService.processor('success', 'event', function (event, xhr, item, response) {
             item.uploadInfo.scope.event.images.push(response.imageId);

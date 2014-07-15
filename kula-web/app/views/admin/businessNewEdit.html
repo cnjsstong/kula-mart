@@ -1,0 +1,51 @@
+<section id="adminBusinessNewEdit" class="section">
+    <div class="container">
+        <div class="row">
+            <form role="form">
+                <input type="hidden" ng-model="business._id">
+
+                <div class="form-group">
+                    <label for="businessTitle">Title</label>
+                    <input type="text" class="form-control" id="businessTitle" placeholder="Business Title"
+                           ng-model="business.title">
+                </div>
+                <div class="form-group">
+                    <label for="businessDescription">Description</label>
+                    <input type="text" class="form-control" id="businessDescription" placeholder="Business Description"
+                           ng-model="business.description">
+                </div>
+                <div class="form-group">
+                    <label for="businessAddress">Area</label>
+                    <div id="businessAddress">
+                        <label ng-repeat="a in areas">
+                            <input type="checkbox" checklist-model="business.area" checklist-value="a._id"> {{a.title}}
+                            &nbsp;&nbsp;&nbsp;
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="businessLogo">Logo</label>
+                    <input type="text" class="form-control" id="businessLogo" placeholder="Business Logo"
+                           ng-model="business.logo">
+                </div>
+                <div class="form-group">
+                    <label for="businessCoverPhoto">Cover Photo</label>
+                    <input type="text" class="form-control" id="businessCoverPhoto" placeholder="Business Cover Photo"
+                           ng-model="business.coverPhoto">
+                </div>
+
+                <div class="form-group">
+                    <label>Photos</label>
+                    <ul class="post-image-list">
+                        <li class="image" ng-repeat="photo in business.photos">
+                            <img ng-src="{{ 'http://img.kulamart.com.s3.amazonaws.com/'+photo }}">
+                            <div ng-bind="photo"></div>
+                        </li>
+                    </ul>
+                    <input ng-file-select="GetBusinessPhotoUploadOptions()" type="file">
+                </div>
+                <button type="submit" class="btn btn-default cta" ng-click="Submit(business)">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>

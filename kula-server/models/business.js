@@ -17,7 +17,18 @@ var BusinessSchema = new Schema({
         admin: [String],
         template: {
             type: String
-        }
+        },
+        story: {
+            type: String
+        },
+        coverPhoto: {
+            type: String
+        },
+        logo: {
+            type: String
+        },
+        photos: [String],
+        tags: [String]
     },
     {
         id: true

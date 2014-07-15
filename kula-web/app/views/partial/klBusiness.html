@@ -1,0 +1,84 @@
+<div id="lead-form" class="col-xs-12 lead-form post">
+    <div class="row">
+        <div class="col-xs-3">
+            <!--ImageModal-->
+            <a class="kula-image" ng-class="{'no-click':post.images.length==0}" ng-click="ImageModal()"
+               style="background-image: url(http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0]||(post.category?'category/'+post.category:false)||'placeholder.png' }});"></a>
+            <!--<img class="post-image"-->
+            <!--ng-src="http://img.kulamart.com.s3.amazonaws.com/{{ post.images[0] || 'placeholder.png' }}">-->
+        </div>
+        <div class="col-xs-9 post-content">
+            <div class="header">
+                <span class="type" ng-switch="post.type">
+                    <a class="tag-primary tag-request" ng-switch-when="request">Requesting</a>
+                    <a class="tag-primary" ng-switch-when="offer">Offering</a>
+                </span>
+
+                &nbsp;<span class="title"><a ng-href="/post/{{post._id}}" ng-bind="post.title"></a></span>
+                <span class="price pull-right">
+                    for <strong ng-bind="post.price | price"></strong>
+                </span>
+            </div>
+            <div>
+                <span class="tags">
+                    <span class="tag category-tag btn btn-md btn-primary"
+                          ng-bind="post.category | categoryTitle"></span>
+                    <span class="tag btn btn-md btn-primary" ng-repeat="tag in post.tags" ng-bind="tag"></span>
+                </span>
+            </div>
+
+            <div class="details" ng-show="post.expanded">
+                <div ng-bind="post.content">Have a question you would like to ask? Or maybe a project you would like us
+                    to work on? Either way,
+                    why not get in touch!
+                </div>
+                <hr>
+                <label>Delivery:</label>
+                <ul>
+                    <li ng-repeat="delivery in post.delivery" ng-bind="delivery"></li>
+                </ul>
+                <br>
+
+                <form name="ReplyForm">
+                    <b>Leave your message:</b>
+                    <textarea style="height: 120px; resize: vertical;" cols="5" class="form-control"
+                              ng-model="reply.content" ng-minlength="10" required placeholder="-please type more than 10 char to prove you're human!"></textarea>
+                    <b>Your Email:</b>
+                    <input type="email" class="form-control" ng-model="reply.email" required placeholder="-must have! it's how others contact you"> 
+                    <b>Your Name:</b>
+                    <input type="text" class="form-control" ng-model="reply.displayName" placeholder="-your real name or an imagined name">
+
+                    <a class="btn btn-sm cta pull-right" ng-click="Reply(post,reply)"
+                       ng-disabled="ReplyForm.$invalid"><i class="linecon-paperplane"></i>Reply</a>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 footer" ng-switch="ActionsType()">
+            <span class="actions pull-right" ng-switch-when="0">
+                Expired
+            </span>
+            <span class="actions pull-right" ng-switch-when="1">
+                <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()"><i class="icon icon-facebook"></i> Share</a>
+                <a class="btn btn-sm btn-info cta" ng-click="SaveForLater()" ng-hide="postSaved"><i
+                        class="linecon-star"></i>Awesome</a>
+                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i
+                        class="linecon-eye"></i>Quick View</a>
+            </span>
+            <span class="actions pull-right" ng-switch-when="2">
+                <a class="btn btn-md btn-primary" ng-href="/admin/post/{{post._id}}">Edit</a>
+                <a class="btn btn-md btn-primary" ng-click="ExpirePost()">Mark As Expired</a>
+                <a class="btn btn-md btn-primary" ng-click="DeletePost()">Delete</a>
+            </span>
+            <span class="actions pull-right" ng-switch-when="4">
+                <a class="btn btn-primary cta btn-sm" ng-click="ShareFacebook()"><i class="icon icon-facebook"></i> Share</a>
+                <a class="btn btn-sm btn-default cta" ng-click="post.expanded=!post.expanded"><i
+                        class="linecon-eye"></i>Quick View</a>
+            </span>
+        </div>
+
+    </div>
+</div>
