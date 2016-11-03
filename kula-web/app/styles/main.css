@@ -148,6 +148,11 @@ input.form-control.no-margin {
     position: relative;
 }
 
+.tags {
+    display: block;
+    margin-top: 5px;
+}
+
 .tags .tag, .tags .tag:hover {
     margin-right: 4px;
     margin-top: 5px;
@@ -155,6 +160,14 @@ input.form-control.no-margin {
     background-color: #226998;
     cursor: default;
     text-transform: lowercase;
+    text-shadow: -1px -1px #aa3030;
+    font-size: 17px;
+    border-radius: 8px;
+
+}
+
+.tags .secondary.tag {
+    background-color: #F0AD4E;
 }
 
 .tags .tag.category-tag, .tags .tag.category-tag:hover {
@@ -287,9 +300,8 @@ a.user-showcase {
 
 .category-tag {
     margin-right: 3px;
-    margin-bottom: 3px;
     padding: 3px;
-    text-transform: lowercase;
+    text-transform: uppercase;
 }
 
 .padding-bottom {
@@ -496,6 +508,60 @@ a.kula-image.with-margin {
 
 .portfolio-item .project-description {
     top: 0 !important;
+}
+
+.info-card {
+    border-radius: 10px;
+    background: #233140;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.info-card p {
+    border: 3px #2c3e50 solid;
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding: 5px;
+    border-radius: 10px; 
+}
+
+.info-card h4 {
+    font-weight: 300;
+}
+
+.contact-border {
+    background: url("../images/contact-background.png");
+    margin-top: 25px;
+}
+
+.contact-form {
+    background: white;
+    margin: 4%;
+    width: 92%;
+    padding-bottom: 15px;
+    border-radius: 3px;
+    color: #d9534f;
+
+}
+
+
+a.full-image img{
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+a.display-image img{
+    display: block;
+    max-width: 90%;
+    padding: 5%;
+    border: #56799c 3px solid;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .modal.wide .modal-dialog {
